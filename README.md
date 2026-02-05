@@ -48,11 +48,11 @@ Each team member contributes to different project components, including:
 ---
 
 ## **Team Members**
-- Jason Lowey
+- Soyesh Subbha
 - Madhav Sharma
 - Umang Basnet
-- Punika Shrestha
-- Randall Krouth
+- Lamine
+- Fredrick
 
 ## Architecture Design Overview
 
