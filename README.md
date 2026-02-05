@@ -1,7 +1,7 @@
 
-# **CSC 427 – Lab 9: Patient Management Application**
+# **CSC 429: Patient Management App
 
-**Course:** CSC 427 – Software Engineering
+**Course:** CSC 429 – Obj Oriented Software Development
 **Level:** Undergraduate
 **Project Type:** Team Project
 
@@ -9,7 +9,7 @@
 
 ## **Overview**
 
-This repository contains the collaborative team project developed for *CSC 427: Software Engineering*.
+This repository contains the collaborative team project developed for *CSC 429:Object Oriented Software Development*.
 The project focuses on designing and implementing a **Patient Management Application**, demonstrating key principles of software engineering such as requirements analysis, modular design, testing, and version control.
 
 The repository includes:
