@@ -1,10 +1,9 @@
 
-# **CSC 429: Patient Management App
+# **CSC 529: Lab4
 
-**Course:** CSC 429 – Obj Oriented Software Development
-**Level:** Undergraduate
-**Project Type:** Team Project
-
+**Course:** CSC 529 – Obj Oriented Software Development
+**Level:** Graduateraduate
+**Project Type:** REST API Tutorial
 ---
 
 ## **Overview**
@@ -52,7 +51,7 @@ Each team member contributes to different project components, including:
 - Madhav Sharma
 - Umang Basnet
 - Lamine
-- Fredrick
+- Frederick
 
 ## Architecture Design Overview
 
