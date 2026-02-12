@@ -2,7 +2,7 @@
 # **CSC 529: Lab4
 
 **Course:** CSC 529 – Obj Oriented Software Development
-**Level:** Graduateraduate
+**Level:** Graduate
 **Project Type:** REST API Tutorial
 ---
 
