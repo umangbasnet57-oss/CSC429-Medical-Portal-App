@@ -1,25 +1,54 @@
 package edu.secourse.patientportal.models;
 
-import edu.secourse.patientportal.services.UserService;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
  * Represents a scheduled appointment between a {@link Patient} and {@link Doctor}.
  * <p>
- * This class includes fields for identifying the appointment, tracking the
- * participants, storing the scheduled date and time, and the appointment status.
- * All setter methods perform basic null/validity checks and return boolean flags
- * instead of throwing exceptions, to prevent runtime failure in the UI flow.
+ * Mapped to the {@code appointments} table. The patient and doctor fields are
+ * foreign-key references to the {@code patients} and {@code doctors} tables
+ * respectively, expressed via {@link ManyToOne} associations.
  */
+@Entity
+@Table(name = "appointments")
 public class Appointment {
 
-    private int appointmentId = 0;
+    /** Primary key — assigned by the database after em.persist(). Null = new entity. */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer appointmentId = null;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient = new Patient();
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor = new Doctor();
+
+    @Column(name = "start_time", nullable = false)
     private LocalDateTime appointmentDateTime = LocalDateTime.MIN;
+
+    @Column(name = "end_time")
+    private LocalDateTime endTime = LocalDateTime.MIN;
+
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated = null;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 20)
     private Status status = Status.UNSPECIFIED;
-    private UserService userService = new UserService();
 
     /**
      * Enumeration representing possible appointment states.
@@ -30,13 +59,17 @@ public class Appointment {
         UNSPECIFIED
     }
 
+    /** No-argument constructor required by Hibernate for entity instantiation. */
+    public Appointment() {}
+
     /**
      * Constructs an Appointment given a patient, doctor, and scheduled time.
+     * The end time is automatically set to 30 minutes after the start time.
      * If any argument is null, the default values are retained.
      *
      * @param patient             the patient associated with the appointment
      * @param doctor              the doctor associated with the appointment
-     * @param appointmentDateTime the date and time the appointment occurs
+     * @param appointmentDateTime the date and time the appointment starts
      */
     public Appointment(Patient patient, Doctor doctor, LocalDateTime appointmentDateTime) {
         try {
@@ -44,6 +77,8 @@ public class Appointment {
                 this.patient = patient;
                 this.doctor = doctor;
                 this.appointmentDateTime = appointmentDateTime;
+                this.endTime = appointmentDateTime.plusMinutes(30);
+                this.lastUpdated = LocalDateTime.now();
                 this.status = Status.ACTIVE;
             }
         } catch (Exception _) {
@@ -82,14 +117,14 @@ public class Appointment {
     /**
      * Retrieves the unique appointment ID.
      *
-     * @return the appointment ID
+     * @return the appointment ID, or 0 if not yet persisted
      */
     public int getAppointmentId() {
-        return appointmentId;
+        return appointmentId != null ? appointmentId : 0;
     }
 
     /**
-     * Assigns a new appointment ID if it falls within valid integer bounds.
+     * Assigns a new appointment ID (used by the in-memory service layer).
      *
      * @param appointmentId the new ID value
      * @return true if the update succeeds, false otherwise
@@ -117,7 +152,8 @@ public class Appointment {
     }
 
     /**
-     * Attempts to update the patient associated with this appointment.
+     * Attempts to update the patient associated with this appointment
+     * and records the modification timestamp.
      *
      * @param patient the new patient object
      * @return true if updated successfully, false otherwise
@@ -127,6 +163,7 @@ public class Appointment {
         try {
             if (patient != null) {
                 this.patient = patient;
+                this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
         } catch (Exception _) {
@@ -146,7 +183,8 @@ public class Appointment {
     }
 
     /**
-     * Attempts to update the doctor associated with the appointment.
+     * Attempts to update the doctor associated with the appointment
+     * and records the modification timestamp.
      *
      * @param doctor the new doctor object
      * @return true if updated successfully, false otherwise
@@ -156,6 +194,7 @@ public class Appointment {
         try {
             if (doctor != null) {
                 this.doctor = doctor;
+                this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
         } catch (Exception _) {
@@ -174,9 +213,11 @@ public class Appointment {
     }
 
     /**
-     * Attempts to update the appointment's date and time.
+     * Attempts to update the appointment's start date/time. Also updates
+     * end time to 30 minutes after the new start time and records the
+     * modification timestamp.
      *
-     * @param appointmentDateTime the new date/time value
+     * @param appointmentDateTime the new start date/time value
      * @return true if updated successfully, false otherwise
      */
     public boolean setAppointmentDateTime(LocalDateTime appointmentDateTime) {
@@ -184,12 +225,52 @@ public class Appointment {
         try {
             if (appointmentDateTime != null) {
                 this.appointmentDateTime = appointmentDateTime;
+                this.endTime = appointmentDateTime.plusMinutes(30);
+                this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
         } catch (Exception _) {
 
         }
         return success;
+    }
+
+    /**
+     * Returns the end time of this appointment.
+     *
+     * @return the end time as a {@link LocalDateTime}
+     */
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * Explicitly sets the end time of the appointment.
+     *
+     * @param endTime the new end time
+     * @return true if updated successfully, false otherwise
+     */
+    public boolean setEndTime(LocalDateTime endTime) {
+        boolean success = false;
+        try {
+            if (endTime != null) {
+                this.endTime = endTime;
+                this.lastUpdated = LocalDateTime.now();
+                success = true;
+            }
+        } catch (Exception _) {
+
+        }
+        return success;
+    }
+
+    /**
+     * Returns the timestamp of the last modification made to this appointment.
+     *
+     * @return the last updated timestamp, or {@code null} if never modified
+     */
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
     }
 
     /**
@@ -215,11 +296,14 @@ public class Appointment {
         String doctorName = (doctor != null) ? doctor.getUsername() : "Unknown Doctor";
         String time = (appointmentDateTime != null) ? appointmentDateTime.toString() : "No Date";
 
+        String end = (endTime != null && endTime != LocalDateTime.MIN) ? endTime.toString() : "No End Time";
+
         return "Appointment {" +
                 "ID=" + appointmentId +
                 ", Patient='" + patientName + '\'' +
                 ", Doctor='" + doctorName + '\'' +
-                ", DateTime=" + time +
+                ", Start=" + time +
+                ", End=" + end +
                 ", Status=" + status +
                 '}';
     }

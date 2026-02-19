@@ -5,7 +5,9 @@ import edu.secourse.patientportal.services.UserService;
 import edu.secourse.patientportal.controllers.UserController;
 import edu.secourse.patientportal.services.AppointmentService;
 import edu.secourse.patientportal.controllers.AppointmentController;
+import edu.secourse.patientportal.util.JPAUtil;
 
+import jakarta.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
@@ -16,24 +18,42 @@ public class Main {
 
         boolean state = false;
 
+        // ── Connexion à la base de données MySQL ──────────────────────────────
+        EntityManager em = JPAUtil.getEntityManager();
+        System.out.println("[DB] Connexion MySQL établie.");
+
         UserService userService = new UserService();
         AppointmentService appointmentService = new AppointmentService();
         UserController userController = new UserController(userService);
         AppointmentController appointmentController = new AppointmentController(appointmentService);
 
-        // Demo Data
-        Patient newUser = new Patient("john123", "John Smith", "pass123", "johnsmith123@gmail.com");
-        Doctor newUser2 = new Doctor("jack123", "Jack Smith", "pass123", "jack123@gmail.com");
+        // ── Demo Data : créés en mémoire ET persistés en base ─────────────────
+        Patient newUser  = new Patient("john123", "pass123", "John Smith", "johnsmith123@gmail.com");
+        Doctor  newUser2 = new Doctor("jack123",  "pass123", "Jack Smith", "jack123@gmail.com");
         LocalDateTime time = LocalDateTime.of(2025, 12, 12, 8, 30);
         Appointment app = new Appointment(newUser, newUser2, time);
 
+        // Sauvegarder dans la base MySQL
+        try {
+            em.getTransaction().begin();
+            em.persist(newUser);   // INSERT INTO users (role='patient', ...)
+            em.persist(newUser2);  // INSERT INTO users (role='doctor',  ...)
+            em.persist(app);       // INSERT INTO appointments (...)
+            em.getTransaction().commit();
+            System.out.println("[DB] Données de démo insérées en base.");
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            System.out.println("[DB] Les données de démo existent déjà ou erreur : " + e.getMessage());
+        }
+
+        // Garder aussi en mémoire pour le reste de l'application
         appointmentService.createAppointment(app);
         userService.createUser(newUser);
         userService.createUser(newUser2);
 
-        while (!state) {
+        try (Scanner input = new Scanner(System.in)) {
 
-            Scanner input = new Scanner(System.in);
+        while (!state) {
 
             System.out.println("********************************");
             System.out.println("Patient Portal - Admin Dashboard");
@@ -271,11 +291,15 @@ public class Main {
 
                 case 9:
                     state = true;
+                    em.close();
+                    JPAUtil.close();
+                    System.out.println("[DB] Connexion fermée.");
                     return;
 
                 default:
                     System.out.println("Invalid choice");
             }
         }
+        } // end try-with-resources (Scanner)
     }
 }

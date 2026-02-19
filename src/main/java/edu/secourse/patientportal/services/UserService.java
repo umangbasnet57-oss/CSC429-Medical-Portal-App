@@ -116,6 +116,9 @@ public class UserService {
 
     /**
      * Updates an existing user's username, password, name, and email.
+     * <p>
+     * If {@code newUsername} is already taken by a different user, the update
+     * is rejected and {@code false} is returned.
      *
      * @param oldUsername   the user's current username
      * @param newUsername   the user's desired new username
@@ -127,7 +130,15 @@ public class UserService {
     public boolean updateUser(String oldUsername, String newUsername, String hashedPassword, String name, String email) {
         boolean success = false;
         try {
-            // Find matching user
+            // Reject if newUsername is already taken by a different user
+            if (!oldUsername.equals(newUsername)) {
+                for (User user : users) {
+                    if (user.getUsername().equals(newUsername)) {
+                        return false;
+                    }
+                }
+            }
+            // Find matching user and update
             for (User user : users) {
                 if (user.getUsername().equals(oldUsername)) {
                     user.setUsername(newUsername);

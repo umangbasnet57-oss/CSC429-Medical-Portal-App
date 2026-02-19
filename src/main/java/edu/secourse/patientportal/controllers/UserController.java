@@ -29,7 +29,7 @@ public class UserController {
      */
     public UserController(UserService userService) {
         try {
-            if (userService != null && this.userService != null) {
+            if (userService != null) {
                 this.userService = userService;
             }
         } catch (Exception _) {

@@ -1,15 +1,21 @@
 package edu.secourse.patientportal.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
 /**
  * Represents a doctor within the patient portal system.
  * <p>
  * This class extends the abstract {@link User} class and adds
- * a unique doctor-specific auto-incrementing identifier.
- * <br>
- * The ID is only incremented when integer boundary safety checks pass.
+ * a unique doctor-specific auto-incrementing identifier. Stored in the shared
+ * {@code users} table with {@code role = 'doctor'}.
  */
+@Entity
+@DiscriminatorValue("doctor")
 public class Doctor extends User {
 
+    @Column(name = "doctor_id")
     private int doctorId = 0;
     private static int nextDoctorId = 1;
 

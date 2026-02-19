@@ -1,6 +1,5 @@
 package edu.secourse.patientportal.services;
 
-import edu.secourse.patientportal.models.Appointment;
 import edu.secourse.patientportal.models.*;
 
 import java.time.LocalDateTime;

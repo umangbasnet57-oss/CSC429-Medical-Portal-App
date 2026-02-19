@@ -1,14 +1,21 @@
 package edu.secourse.patientportal.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
 /**
  * Represents an administrator user within the patient portal system.
  * <p>
  * Admin extends the abstract {@link User} class and provides an additional
- * auto-incrementing admin-specific identifier. The ID will only increment
- * if safe integer boundary checks pass.
+ * auto-incrementing admin-specific identifier. Stored in the shared
+ * {@code users} table with {@code role = 'admin'}.
  */
+@Entity
+@DiscriminatorValue("admin")
 public class Admin extends User {
 
+    @Column(name = "admin_id")
     private int adminId = 0;
     private static int nextAdminId = 1;
 
