@@ -1,5 +1,5 @@
 
-# **CSC 429: Patient Management App
+# **CSC 429: Medical Portal App
 
 **Course:** CSC 429 – Obj Oriented Software Development
 **Level:** Undergraduate
