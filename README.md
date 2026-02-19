@@ -103,6 +103,39 @@ The application is designed as **two loosely-coupled components**:
 
 ## 📂 Repository Structure
 ---
+## 👥 Team Collaboration
+
+Development followed **Agile practices**:
+
+- GitHub for **version control & branching**
+- Feature development on **individual branches**
+- **Kanban board** for backlog tracking
+- Peer reviews and frequent merges
+- Sprint demos aligned with course **Epic milestones**
+
+---
+
+## 📑 Documentation Deliverables
+
+- UML diagrams (architecture, data flow, use cases)
+- Design rationale and planning artifacts
+- Test plans and coverage reports
+- Sprint retrospectives
+- AI usage log documenting prompt assistance and evaluation
+
+---
+
+## 🚀 How to Run the Project
+
+### 1️⃣ Start Database
+Configure and run **MySQL/MariaDB** with the schema provided in `/docs`.
+
+### 2️⃣ Run Backend API
+### 3️⃣ Run JavaFX Client
+### 4️⃣ Test API
+Import the **Postman collection** from `/docs/postman` and verify endpoints.
+
+---
 
 ## **Team Members**
 - Soyesh Subbha
@@ -111,6 +144,27 @@ The application is designed as **two loosely-coupled components**:
 - Lamine
 - Fredrick
 
+## 🤖 Use of AI Tools
+
+AI tools (including ChatGPT) were used to:
+
+- Clarify architectural design decisions  
+- Generate documentation drafts  
+- Assist with debugging and testing strategies  
+
+All AI assistance was **reviewed, validated, and modified** by the development team to ensure correctness and academic integrity.
+
+---
+
+## 📅 Course Timeline Alignment
+
+- **Epic 1:** Core architecture & login  
+- **Epic 2:** Admin CRUD functionality  
+- **Epic 3:** Patient & doctor dashboards  
+- **Epic 4:** Search, filtering, UI polish  
+- **Epic 5:** Testing, documentation, final demo  
+
+---
 ## Architecture Design Overview
 
 ---
