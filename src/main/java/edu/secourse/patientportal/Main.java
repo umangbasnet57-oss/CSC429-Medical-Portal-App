@@ -9,7 +9,9 @@ import edu.secourse.patientportal.controllers.AppointmentController;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
