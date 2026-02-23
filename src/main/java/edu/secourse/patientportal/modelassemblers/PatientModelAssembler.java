@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class PatientModelAssembler implements  RepresentationModelAssembler<Patient, EntityModel<Patient>> {
     public EntityModel<Patient> toModel(Patient patient){
         return EntityModel.of(patient, //
-                linkTo(methodOn(PatientController.class).one(patient.getPatientId())).withSelfRel(),
-                linkTo(methodOn(PatientController.class).all()).withRel("employees"));
+                linkTo(methodOn(PatientController.class).getOnePatient(patient.getPatientId())).withSelfRel(),
+                linkTo(methodOn(PatientController.class).getAllPatients()).withRel("patients"));
     }
 }

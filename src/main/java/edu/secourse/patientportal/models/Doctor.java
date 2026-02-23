@@ -1,4 +1,6 @@
 package edu.secourse.patientportal.models;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 /**
  * Represents a doctor within the patient portal system.
@@ -8,9 +10,10 @@ package edu.secourse.patientportal.models;
  * <br>
  * The ID is only incremented when integer boundary safety checks pass.
  */
+@Entity
 public class Doctor extends User {
-
-    private int doctorId = 0;
+    private @Id
+    int doctorId = 0;
     private static int nextDoctorId = 1;
 
     /**

@@ -1,6 +1,10 @@
 package edu.secourse.patientportal.models;
 
 import edu.secourse.patientportal.services.UserService;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 import java.time.LocalDateTime;
 
@@ -12,14 +16,30 @@ import java.time.LocalDateTime;
  * All setter methods perform basic null/validity checks and return boolean flags
  * instead of throwing exceptions, to prevent runtime failure in the UI flow.
  */
+@Entity
 public class Appointment {
+    private @Id
+    int appointmentId = 0;
 
-    private int appointmentId = 0;
+    @OneToOne
+    @JoinColumn(name = "patient_patient_id")
     private Patient patient = new Patient();
+
+    @OneToOne
+    @JoinColumn(name = "doctor_doctor_id")
     private Doctor doctor = new Doctor();
+
     private LocalDateTime appointmentDateTime = LocalDateTime.MIN;
     private Status status = Status.UNSPECIFIED;
-    private UserService userService = new UserService();
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+//    private UserService userService = new UserService();
 
     /**
      * Enumeration representing possible appointment states.
@@ -28,6 +48,15 @@ public class Appointment {
         ACTIVE,
         CANCELLED,
         UNSPECIFIED
+    }
+
+    /**
+     * Default no-argument constructor.
+     * <p>
+     * All fields remain at their default values until explicitly set.
+     */
+    public Appointment() {
+
     }
 
     /**

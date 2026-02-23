@@ -1,7 +1,12 @@
 package edu.secourse.patientportal.services;
+import edu.secourse.patientportal.dto.PatientDTO;
+import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.User;
 
+import edu.secourse.patientportal.repositories.PatientRepository;
+import org.modelmapper.ModelMapper;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service layer responsible for managing {@link User} objects.
@@ -50,6 +55,8 @@ public class UserService {
         }
         return success;
     }
+
+
 
     /**
      * Retrieves a user by their username.
@@ -161,5 +168,6 @@ public class UserService {
         }
         return containsUser;
     }
+
 }
 

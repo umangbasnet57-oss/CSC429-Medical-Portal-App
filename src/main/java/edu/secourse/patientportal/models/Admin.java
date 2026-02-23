@@ -1,5 +1,7 @@
 package edu.secourse.patientportal.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 /**
  * Represents an administrator user within the patient portal system.
  * <p>
@@ -7,9 +9,10 @@ package edu.secourse.patientportal.models;
  * auto-incrementing admin-specific identifier. The ID will only increment
  * if safe integer boundary checks pass.
  */
+@Entity
 public class Admin extends User {
-
-    private int adminId = 0;
+    private @Id
+    int adminId = 0;
     private static int nextAdminId = 1;
 
     /**
