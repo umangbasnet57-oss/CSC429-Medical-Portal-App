@@ -151,7 +151,7 @@ public class Appointment {
      * @param patient the new patient object
      * @return true if updated successfully, false otherwise
      */
-    public boolean setPatient(Patient patient) {
+    public boolean hasSetPatient(Patient patient) {
         boolean success = false;
         try {
             if (patient != null) {
@@ -180,7 +180,7 @@ public class Appointment {
      * @param doctor the new doctor object
      * @return true if updated successfully, false otherwise
      */
-    public boolean setDoctor(Doctor doctor) {
+    public boolean hasSetDoctor(Doctor doctor) {
         boolean success = false;
         try {
             if (doctor != null) {

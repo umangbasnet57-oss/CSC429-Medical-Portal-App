@@ -21,7 +21,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
-@RequestMapping("/maclogixapi")
+@RequestMapping("/maclogixapi/v1/patients")
 public class PatientController {
     private final PatientRepository repository;
     private final PatientModelAssembler assembler;
@@ -33,11 +33,11 @@ public class PatientController {
         this.service = service;
     }
 
-    @GetMapping("/patient-home")
+    @GetMapping("/home")
     public String patientWelcome(){
         return "Welcome to Patient Portal.";
     }
-    @PostMapping("/patients")
+    @PostMapping
     public ResponseEntity<Patient> createPatient(@RequestBody PatientDTO patientDTO){
         Patient patient = service.createPatient(patientDTO);
         return new ResponseEntity<>(patient, HttpStatus.CREATED);
@@ -58,19 +58,19 @@ public class PatientController {
     }
 
 //    Single item
-    @GetMapping("/patients/{id}")
+    @GetMapping("/{id}")
     public EntityModel<Patient> getOnePatient(@PathVariable Integer id){
         Patient patient = service.getOnePatient(id);
 
         return assembler.toModel(patient);
     }
 
-    @PutMapping("/patients/{id}")
+    @PutMapping("/{id}")
     public Patient replacePatient(@RequestBody Patient newPatient, @PathVariable Integer id){
         return new Patient();
     }
 
-    @DeleteMapping("/patients/{id}")
+    @DeleteMapping("/{id}")
     public void deletePatient(@PathVariable Integer id){
         repository.deleteById(id);
     }

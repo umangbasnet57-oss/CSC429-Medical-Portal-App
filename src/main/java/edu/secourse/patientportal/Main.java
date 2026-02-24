@@ -1,18 +1,7 @@
 package edu.secourse.patientportal;
 
-import edu.secourse.patientportal.models.*;
-import edu.secourse.patientportal.services.UserService;
-import edu.secourse.patientportal.controllers.UserController;
-import edu.secourse.patientportal.services.AppointmentService;
-import edu.secourse.patientportal.controllers.AppointmentController;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Scanner;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.security.autoconfigure.SecurityAutoConfiguration;
 
 @SpringBootApplication
 public class Main {

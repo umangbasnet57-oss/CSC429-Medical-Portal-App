@@ -4,7 +4,7 @@ import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.Doctor;
 import edu.secourse.patientportal.models.Appointment;
 import edu.secourse.patientportal.services.UserService;
-import edu.secourse.patientportal.services.AppointmentService;
+import edu.secourse.patientportal.services.AppointmentServiceOld;
 
 import java.time.LocalDateTime;
 
@@ -15,19 +15,19 @@ import java.time.LocalDateTime;
 public class AppController {
 
     private final UserService userService;
-    private final AppointmentService appointmentService;
+    private final AppointmentServiceOld appointmentServiceOld;
 
     public AppController() {
         this.userService = new UserService();
-        this.appointmentService = new AppointmentService();
+        this.appointmentServiceOld = new AppointmentServiceOld();
     }
 
     public UserService getUserService() {
         return userService;
     }
 
-    public AppointmentService getAppointmentService() {
-        return appointmentService;
+    public AppointmentServiceOld getAppointmentService() {
+        return appointmentServiceOld;
     }
 
     /**
@@ -68,7 +68,7 @@ public class AppController {
         LocalDateTime dt = LocalDateTime.parse(dateTime);
         Appointment appointment = new Appointment(patient, doctor, dt);
 
-        appointmentService.createAppointment(appointment);
+        appointmentServiceOld.createAppointment(appointment);
         return appointment;
     }
 }

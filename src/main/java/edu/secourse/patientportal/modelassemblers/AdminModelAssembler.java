@@ -1,9 +1,7 @@
 package edu.secourse.patientportal.modelassemblers;
 
 import edu.secourse.patientportal.controllers.AdminController;
-import edu.secourse.patientportal.controllers.DoctorController;
 import edu.secourse.patientportal.models.Admin;
-import edu.secourse.patientportal.models.Doctor;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;

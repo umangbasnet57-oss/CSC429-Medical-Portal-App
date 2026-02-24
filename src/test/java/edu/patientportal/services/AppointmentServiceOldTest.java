@@ -3,7 +3,7 @@ package edu.patientportal.services;
 import edu.secourse.patientportal.models.Appointment;
 import edu.secourse.patientportal.models.Doctor;
 import edu.secourse.patientportal.models.Patient;
-import edu.secourse.patientportal.services.AppointmentService;
+import edu.secourse.patientportal.services.AppointmentServiceOld;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for the {@link AppointmentService} class.
+ * Unit tests for the {@link AppointmentServiceOld} class.
  *
  * <p>This suite validates:
  * <ul>
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *     <li>Correct status and field updates</li>
  * </ul>
  **/
-public class AppointmentServiceTest {
+public class AppointmentServiceOldTest {
 
     /**
      * Verifies that a valid appointment can be created successfully.
@@ -33,7 +33,7 @@ public class AppointmentServiceTest {
     @DisplayName("createAppointment(): create an appointment")
     void createAppointment() {
         // Arrange & Act
-        AppointmentService appointmentsService = new AppointmentService();
+        AppointmentServiceOld appointmentsService = new AppointmentServiceOld();
         Patient patient = new Patient("alice3", "23lkjsdf03j", "Alice Fiona", "alicefiona3@gmail.com");
         Doctor doctor = new Doctor("Doctor Jones", "sljdfoj23j5l", "Raul Jones", "RaulJones@gmail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now());
@@ -50,7 +50,7 @@ public class AppointmentServiceTest {
     @DisplayName("createAppointmentSameTest(): create an appointment twice should fail second time")
     void createAppointmentSameTest() {
         // Arrange & Act
-        AppointmentService appointmentsService = new AppointmentService();
+        AppointmentServiceOld appointmentsService = new AppointmentServiceOld();
         Patient patient = new Patient("alice3", "23lkjsdf03j", "Alice Fiona", "alicefiona3@gmail.com");
         Doctor doctor = new Doctor("Doctor Jones", "sljdfoj23j5l", "Raul Jones", "RaulJones@gmail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now());
@@ -67,7 +67,7 @@ public class AppointmentServiceTest {
     @DisplayName("cancelAppointment(): cancel an appointment")
     public void cancelAppointment() {
         // Arrange
-        AppointmentService appointmentsService = new AppointmentService();
+        AppointmentServiceOld appointmentsService = new AppointmentServiceOld();
         Patient patient = new Patient("alice3", "23lkjsdf03j", "Alice Fiona", "alicefiona3@gmail.com");
         Doctor doctor = new Doctor("dJones", "sljdfoj23j5l", "Raul Jones", "RaulJones@gmail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now());
@@ -92,7 +92,7 @@ public class AppointmentServiceTest {
     @DisplayName("modifyAppointment(): modify an appointment")
     public void modifyAppointment() {
         // Arrange
-        AppointmentService appointmentsService = new AppointmentService();
+        AppointmentServiceOld appointmentsService = new AppointmentServiceOld();
         Patient patient = new Patient("alice3", "23lkjsdf03j", "Alice Fiona", "alicefiona3@gmail.com");
         Doctor doctor = new Doctor("Doctor Jones", "sljdfoj23j5l", "Raul Jones", "RaulJones@gmail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now());
@@ -128,7 +128,7 @@ public class AppointmentServiceTest {
     @DisplayName("getAppointments(): gets appointments for correct user")
     public void getAppointmentsTest() {
         // Arrange
-        AppointmentService appointmentsService = new AppointmentService();
+        AppointmentServiceOld appointmentsService = new AppointmentServiceOld();
         Patient patient = new Patient("alice3", "23lkjsdf03j", "Alice Fiona", "alicefiona3@gmail.com");
         Doctor doctor = new Doctor("Doctor Jones", "sljdfoj23j5l", "Raul Jones", "RaulJones@gmail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now());
