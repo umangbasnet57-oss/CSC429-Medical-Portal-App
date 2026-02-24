@@ -1,9 +1,11 @@
-package edu.secourse.patientportal.routes;
+package edu.secourse.patientportal.controllers;
 
 import edu.secourse.patientportal.dto.PatientDTO;
+import edu.secourse.patientportal.exceptions.PatientNotFoundException;
 import edu.secourse.patientportal.modelassemblers.PatientModelAssembler;
 import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.repositories.PatientRepository;
+import java.util.stream.Collectors;
 
 import edu.secourse.patientportal.services.PatientService;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
 
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 
 import java.util.List;
 

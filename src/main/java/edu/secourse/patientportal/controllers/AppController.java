@@ -1,4 +1,4 @@
-package edu.secourse.patientportal.routes;
+package edu.secourse.patientportal.controllers;
 
 import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.Doctor;
