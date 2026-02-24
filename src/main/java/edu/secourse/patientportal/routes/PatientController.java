@@ -1,11 +1,9 @@
-package edu.secourse.patientportal.controllers;
+package edu.secourse.patientportal.routes;
 
 import edu.secourse.patientportal.dto.PatientDTO;
-import edu.secourse.patientportal.exceptions.PatientNotFoundException;
 import edu.secourse.patientportal.modelassemblers.PatientModelAssembler;
 import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.repositories.PatientRepository;
-import java.util.stream.Collectors;
 
 import edu.secourse.patientportal.services.PatientService;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
 
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 
 import java.util.List;
 
@@ -46,11 +43,10 @@ public class PatientController {
 //    @PostMapping
 //    public EntityModel<Patient> createPatient(@RequestBody PatientDTO patientDTO){
 //        Patient patient = patientService.createPatient(patientDTO);
-////        return new ResponseEntity<>(patient, HttpStatus.CREATED);
 //        return assembler.toModel(patient);
 //    }
 
-    @GetMapping("/patients")
+    @GetMapping
     public CollectionModel<EntityModel<Patient>> getAllPatients(){
         List<EntityModel<Patient>> patients = service.getAllPatients();
 

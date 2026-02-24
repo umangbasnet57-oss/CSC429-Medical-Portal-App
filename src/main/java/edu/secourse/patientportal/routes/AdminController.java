@@ -1,4 +1,4 @@
-package edu.secourse.patientportal.controllers;
+package edu.secourse.patientportal.routes;
 
 import edu.secourse.patientportal.dto.AdminDTO;
 import edu.secourse.patientportal.modelassemblers.AdminModelAssembler;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 
 import java.util.List;
 
