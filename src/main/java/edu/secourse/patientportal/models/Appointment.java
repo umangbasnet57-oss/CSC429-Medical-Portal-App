@@ -81,7 +81,7 @@ public class Appointment {
                 this.lastUpdated = LocalDateTime.now();
                 this.status = Status.ACTIVE;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -108,7 +108,7 @@ public class Appointment {
                 this.status = status;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -136,7 +136,7 @@ public class Appointment {
                 this.appointmentId = appointmentId;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -166,7 +166,7 @@ public class Appointment {
                 this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
 
@@ -197,7 +197,7 @@ public class Appointment {
                 this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -229,7 +229,7 @@ public class Appointment {
                 this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -258,7 +258,7 @@ public class Appointment {
                 this.lastUpdated = LocalDateTime.now();
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -279,7 +279,7 @@ public class Appointment {
     public void cancelAppointment() {
         try {
             this.status = Status.CANCELLED;
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }

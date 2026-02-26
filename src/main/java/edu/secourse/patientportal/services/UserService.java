@@ -1,20 +1,28 @@
 package edu.secourse.patientportal.services;
+
 import edu.secourse.patientportal.models.User;
+import edu.secourse.patientportal.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+@Service
 
 /**
  * Service layer responsible for managing {@link User} objects.
  * <p>
- * This class stores all users in memory and provides operations for creating,
- * retrieving, printing, updating, and removing users.
- * <p>
- * All methods follow a defensive design using try-catch blocks so that any
- * UI or controller interaction cannot crash the application.
+ * Uses JPA repository when running in Spring Boot context.
+ * Falls back to in-memory ArrayList for unit tests.
  */
 public class UserService {
 
-    /** Internal list of all registered users in the system. */
+    /** JPA repository — injected by Spring, null when used in unit tests. */
+    @Autowired(required = false)
+    private UserRepository userRepository;
+
+    /** In-memory fallback list (used by unit tests). */
     public ArrayList<User> users = new ArrayList<>();
 
     /**
@@ -34,18 +42,25 @@ public class UserService {
     public boolean createUser(User user) {
         boolean success = false;
         try {
-            boolean exists = false;
-            for (User value : users) {
-                if (value.getUsername().equals(user.getUsername())) {
-                    exists = true;
-                    break;
+            if (userRepository != null) {
+                if (!userRepository.existsByUsername(user.getUsername())) {
+                    userRepository.save(user);
+                    success = true;
+                }
+            } else {
+                boolean exists = false;
+                for (User value : users) {
+                    if (value.getUsername().equals(user.getUsername())) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    users.add(user);
+                    success = true;
                 }
             }
-            if (!exists) {
-                users.add(user);
-                success = true;
-            }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -58,12 +73,22 @@ public class UserService {
      * @return the matching user, or {@code null} if none found
      */
     public User getUser(String username) {
+        if (userRepository != null) {
+            return userRepository.findByUsername(username).orElse(null);
+        }
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 return user;
             }
         }
         return null;
+    }
+
+    public List<User> getAllUsers() {
+        if (userRepository != null) {
+            return userRepository.findAll();
+        }
+        return users;
     }
 
     /**
@@ -88,7 +113,7 @@ public class UserService {
             if (!userExists) {
                 System.out.println("User does not exist.");
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -103,12 +128,15 @@ public class UserService {
         boolean success = false;
         try {
             if (user != null) {
-                if (users.contains(user)) {
+                if (userRepository != null) {
+                    userRepository.delete(user);
+                    success = true;
+                } else if (users.contains(user)) {
                     users.remove(user);
                     success = true;
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -130,26 +158,38 @@ public class UserService {
     public boolean updateUser(String oldUsername, String newUsername, String hashedPassword, String name, String email) {
         boolean success = false;
         try {
-            // Reject if newUsername is already taken by a different user
-            if (!oldUsername.equals(newUsername)) {
-                for (User user : users) {
-                    if (user.getUsername().equals(newUsername)) {
-                        return false;
-                    }
+            if (userRepository != null) {
+                if (!oldUsername.equals(newUsername) && userRepository.existsByUsername(newUsername)) {
+                    return false;
                 }
-            }
-            // Find matching user and update
-            for (User user : users) {
-                if (user.getUsername().equals(oldUsername)) {
+                User user = userRepository.findByUsername(oldUsername).orElse(null);
+                if (user != null) {
                     user.setUsername(newUsername);
                     user.setHashedPassword(hashedPassword);
                     user.setName(name);
                     user.setEmail(email);
-
+                    userRepository.save(user);
                     success = true;
                 }
+            } else {
+                if (!oldUsername.equals(newUsername)) {
+                    for (User user : users) {
+                        if (user.getUsername().equals(newUsername)) {
+                            return false;
+                        }
+                    }
+                }
+                for (User user : users) {
+                    if (user.getUsername().equals(oldUsername)) {
+                        user.setUsername(newUsername);
+                        user.setHashedPassword(hashedPassword);
+                        user.setName(name);
+                        user.setEmail(email);
+                        success = true;
+                    }
+                }
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -164,10 +204,12 @@ public class UserService {
     public boolean containsUser(User user) {
         boolean containsUser = false;
         try {
-            if (users.contains(user)) {
-                containsUser = true;
+            if (userRepository != null) {
+                containsUser = userRepository.existsByUsername(user.getUsername());
+            } else {
+                containsUser = users.contains(user);
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return containsUser;

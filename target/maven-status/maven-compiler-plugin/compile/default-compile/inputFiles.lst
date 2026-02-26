@@ -1,12 +1,12 @@
-/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/Main.java
-/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/controllers/AppController.java
-/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/controllers/AppointmentController.java
-/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/controllers/UserController.java
+/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/PatientPortalApplication.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/models/Admin.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/models/Appointment.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/models/Doctor.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/models/Patient.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/models/User.java
+/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/repositories/AppointmentRepository.java
+/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/repositories/UserRepository.java
+/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/routes/AppointmentRoutes.java
+/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/routes/UserRoutes.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/services/AppointmentService.java
 /Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/services/UserService.java
-/Users/lamineaitbara/Documents/OO-project/src/main/java/edu/secourse/patientportal/util/JPAUtil.java

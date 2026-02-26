@@ -104,7 +104,7 @@ public abstract class User {
                 this.firstName = parts[0];
                 this.lastName = (parts.length > 1) ? parts[1] : "";
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -135,7 +135,7 @@ public abstract class User {
     public void setUsername(String username) {
         try {
             this.username = username;
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -158,7 +158,7 @@ public abstract class User {
         try {
             this.hashedPassword = hashedPassword;
             this.lastPasswordChange = LocalDateTime.now();
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -186,7 +186,7 @@ public abstract class User {
                 this.firstName = parts[0];
                 this.lastName = (parts.length > 1) ? parts[1] : "";
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -208,7 +208,7 @@ public abstract class User {
     public void setEmail(String email) {
         try {
             this.email = email;
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -230,7 +230,7 @@ public abstract class User {
     public void setFirstName(String firstName) {
         try {
             this.firstName = firstName;
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -252,7 +252,7 @@ public abstract class User {
     public void setLastName(String lastName) {
         try {
             this.lastName = lastName;
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -272,7 +272,7 @@ public abstract class User {
     public void recordLogin() {
         try {
             this.lastLogin = LocalDateTime.now();
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -303,7 +303,7 @@ public abstract class User {
     public void setRole(String role) {
         try {
             this.role = role;
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -331,7 +331,7 @@ public abstract class User {
                 User user = (User) o;
                 return Objects.equals(this.username, user.username);
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return isEqual;

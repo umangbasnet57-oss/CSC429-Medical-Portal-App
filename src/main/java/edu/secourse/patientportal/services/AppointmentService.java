@@ -1,24 +1,32 @@
 package edu.secourse.patientportal.services;
 
 import edu.secourse.patientportal.models.*;
+import edu.secourse.patientportal.repositories.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
+@Service
+
 /**
  * Service layer responsible for managing {@link Appointment} objects.
  * <p>
- * This class performs storage, lookup, creation, modification, and cancellation
- * of appointments. All operations are wrapped in try-catch blocks to protect
- * the UI layer from runtime crashes.
+ * Uses JPA repository when running in Spring Boot context.
+ * Falls back to in-memory ArrayList for unit tests.
  */
 public class AppointmentService {
 
-    /** Internal list storing all appointments created in the system. */
+    /** JPA repository — injected by Spring, null when used in unit tests. */
+    @Autowired(required = false)
+    private AppointmentRepository appointmentRepository;
+
+    /** In-memory fallback list (used by unit tests). */
     private final ArrayList<Appointment> appointments = new ArrayList<>();
 
-    /** Auto-incrementing ID counter for newly created appointments. */
+    /** Auto-incrementing ID counter for in-memory mode. */
     private int nextId = 1;
 
     /**
@@ -37,27 +45,39 @@ public class AppointmentService {
     public boolean createAppointment(Appointment appointment) {
         boolean success = false;
         try {
-            boolean exists = false;
-
-            for (Appointment existingAppointment : appointments) {
-                boolean samePatient = existingAppointment.getPatient().equals(appointment.getPatient());
-                boolean sameDoctor = existingAppointment.getDoctor().equals(appointment.getDoctor());
-                boolean sameTime = existingAppointment.getAppointmentDateTime()
-                        .truncatedTo(ChronoUnit.MINUTES)
-                        .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES));
-
-                if (samePatient && sameDoctor && sameTime) {
-                    exists = true;
-                    break;
+            if (appointmentRepository != null) {
+                // Vérifier les doublons en base
+                Patient p = appointment.getPatient();
+                Doctor d = appointment.getDoctor();
+                boolean exists = appointmentRepository.findByPatient(p).stream().anyMatch(a ->
+                        a.getDoctor().equals(d) &&
+                        a.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES)
+                         .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES))
+                );
+                if (!exists) {
+                    appointmentRepository.save(appointment);
+                    success = true;
+                }
+            } else {
+                boolean exists = false;
+                for (Appointment existingAppointment : appointments) {
+                    boolean samePatient = existingAppointment.getPatient().equals(appointment.getPatient());
+                    boolean sameDoctor = existingAppointment.getDoctor().equals(appointment.getDoctor());
+                    boolean sameTime = existingAppointment.getAppointmentDateTime()
+                            .truncatedTo(ChronoUnit.MINUTES)
+                            .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES));
+                    if (samePatient && sameDoctor && sameTime) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    appointment.setAppointmentId(nextId++);
+                    appointments.add(appointment);
+                    success = true;
                 }
             }
-
-            if (!exists) {
-                appointment.setAppointmentId(nextId++);
-                appointments.add(appointment);
-                success = true;
-            }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -72,17 +92,22 @@ public class AppointmentService {
     public boolean cancelAppointment(int appointmentId) {
         boolean success = false;
         try {
-            for (int i = 0; i < appointments.size(); i++) {
-                if (appointments.get(i) != null) {
-                    Appointment appointment = appointments.get(i);
-
-                    if (appointment.getAppointmentId() == appointmentId) {
+            if (appointmentRepository != null) {
+                Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+                if (appointment != null) {
+                    appointment.setStatus(Appointment.Status.CANCELLED);
+                    appointmentRepository.save(appointment);
+                    success = true;
+                }
+            } else {
+                for (Appointment appointment : appointments) {
+                    if (appointment != null && appointment.getAppointmentId() == appointmentId) {
                         appointment.setStatus(Appointment.Status.CANCELLED);
                         success = true;
                     }
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -100,9 +125,19 @@ public class AppointmentService {
     public boolean modifyAppointment(int appointmentId, Patient patient, Doctor doctor, LocalDateTime newDateTime) {
         boolean success = false;
         try {
-            for (Appointment value : appointments) {
-                if (value != null) {
-                    if (value.getAppointmentId() == appointmentId) {
+            if (appointmentRepository != null) {
+                Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+                if (appointment != null) {
+                    appointment.setPatient(patient);
+                    appointment.setDoctor(doctor);
+                    appointment.setAppointmentDateTime(newDateTime);
+                    appointment.setStatus(Appointment.Status.ACTIVE);
+                    appointmentRepository.save(appointment);
+                    success = true;
+                }
+            } else {
+                for (Appointment value : appointments) {
+                    if (value != null && value.getAppointmentId() == appointmentId) {
                         value.setPatient(patient);
                         value.setDoctor(doctor);
                         value.setAppointmentDateTime(newDateTime);
@@ -111,7 +146,7 @@ public class AppointmentService {
                     }
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return success;
@@ -133,15 +168,23 @@ public class AppointmentService {
         ArrayList<Appointment> result = new ArrayList<>();
         try {
             if (user != null) {
-                for (Appointment appointment : appointments) {
-                    if (user instanceof Patient && appointment.getPatient().equals(user)) {
-                        result.add(appointment);
-                    } else if (user instanceof Doctor && appointment.getDoctor().equals(user)) {
-                        result.add(appointment);
+                if (appointmentRepository != null) {
+                    if (user instanceof Patient) {
+                        result.addAll(appointmentRepository.findByPatient((Patient) user));
+                    } else if (user instanceof Doctor) {
+                        result.addAll(appointmentRepository.findByDoctor((Doctor) user));
+                    }
+                } else {
+                    for (Appointment appointment : appointments) {
+                        if (user instanceof Patient && appointment.getPatient().equals(user)) {
+                            result.add(appointment);
+                        } else if (user instanceof Doctor && appointment.getDoctor().equals(user)) {
+                            result.add(appointment);
+                        }
                     }
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception ignored) {
 
         }
         return result;

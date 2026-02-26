@@ -1,12 +1,11 @@
 edu/secourse/patientportal/models/Appointment.class
 edu/secourse/patientportal/models/Admin.class
-edu/secourse/patientportal/controllers/AppointmentController.class
+edu/secourse/patientportal/routes/AppointmentRoutes.class
 edu/secourse/patientportal/models/Appointment$Status.class
-edu/secourse/patientportal/controllers/UserController.class
-edu/secourse/patientportal/Main.class
 edu/secourse/patientportal/services/AppointmentService.class
-edu/secourse/patientportal/controllers/AppController.class
+edu/secourse/patientportal/routes/UserRoutes.class
 edu/secourse/patientportal/models/Doctor.class
 edu/secourse/patientportal/services/UserService.class
 edu/secourse/patientportal/models/User.class
 edu/secourse/patientportal/models/Patient.class
+edu/secourse/patientportal/PatientPortalApplication.class
