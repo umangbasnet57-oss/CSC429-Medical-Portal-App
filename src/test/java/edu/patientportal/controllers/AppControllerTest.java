@@ -1,5 +1,8 @@
 package edu.patientportal.controllers;
 
+import edu.secourse.patientportal.controllers.AppController;
+import edu.secourse.patientportal.models.Patient;
+import edu.secourse.patientportal.models.Doctor;
 import edu.secourse.patientportal.models.Appointment;
 import org.junit.Test;
 

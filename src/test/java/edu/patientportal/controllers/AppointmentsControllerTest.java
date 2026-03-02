@@ -1,7 +1,8 @@
 package edu.patientportal.controllers;
 
 import edu.secourse.patientportal.models.*;
-import edu.secourse.patientportal.controllers.AppointmentController;
+import edu.secourse.patientportal.services.AppointmentServiceOld;
+import edu.secourse.patientportal.controllers.AppointmentControllerOld;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test suite for {@link AppointmentController}.
+ * Test suite for {@link AppointmentControllerOld}.
  * <p>
  * These tests verify controller behavior including:
  * <ul>
@@ -36,7 +37,7 @@ class AppointmentControllerOldTest {
     @DisplayName("nullContructorTest(): test null constructor")
     void nullConstructorTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(null);
+        AppointmentControllerOld controller = new AppointmentControllerOld(null);
 
         // Act & Assert
         assertNotNull(controller);
@@ -50,7 +51,7 @@ class AppointmentControllerOldTest {
     void createAppointmentTest() {
         // Arrange
         AppointmentServiceOld service = new AppointmentServiceOld();
-        AppointmentController controller = new AppointmentController(service);
+        AppointmentControllerOld controller = new AppointmentControllerOld(service);
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now().plusDays(1));
@@ -69,7 +70,7 @@ class AppointmentControllerOldTest {
     @DisplayName("createFalseAppointmentTest(): test create bad appointment")
     void createFalseAppointmentTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
 
         // Act
         boolean result = controller.createAppointment(null);
@@ -85,7 +86,7 @@ class AppointmentControllerOldTest {
     @DisplayName("cancelFalseAppointmentTest(): cancel false appointment test")
     void cancelFalseAppointmentTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
 
         // Act
         boolean result = controller.cancelAppointment(999);
@@ -102,7 +103,7 @@ class AppointmentControllerOldTest {
     void cancelAppointmentTest() {
         // Arrange
         AppointmentServiceOld service = new AppointmentServiceOld();
-        AppointmentController controller = new AppointmentController(service);
+        AppointmentControllerOld controller = new AppointmentControllerOld(service);
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now().plusDays(1));
@@ -124,7 +125,7 @@ class AppointmentControllerOldTest {
     void modifyAppointmentTest() {
         // Arrange
         AppointmentServiceOld service = new AppointmentServiceOld();
-        AppointmentController controller = new AppointmentController(service);
+        AppointmentControllerOld controller = new AppointmentControllerOld(service);
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now().plusDays(1));
@@ -146,7 +147,7 @@ class AppointmentControllerOldTest {
     @DisplayName("modifyNullAppointmentTest(): modify null appointment test")
     void modifyNullAppointmentTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
 
@@ -163,7 +164,7 @@ class AppointmentControllerOldTest {
     @DisplayName("modifyNotFoundAppointmentTest(): modify appointment not found test")
     void modifyNotFoundAppointmentTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
 
@@ -181,7 +182,7 @@ class AppointmentControllerOldTest {
     @DisplayName("getNullAppointmentsForUser(): get null appointments for user test")
     void getNullAppointmentsForUser() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
 
         // Act
         ArrayList<Appointment> list = controller.getAppointmentsForUser(null);
@@ -198,7 +199,7 @@ class AppointmentControllerOldTest {
     void getAppointmentsForUser() {
         // Arrange
         AppointmentServiceOld service = new AppointmentServiceOld();
-        AppointmentController controller = new AppointmentController(service);
+        AppointmentControllerOld controller = new AppointmentControllerOld(service);
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
         Appointment appt = new Appointment(patient, doctor, LocalDateTime.now().plusDays(1));
@@ -218,7 +219,7 @@ class AppointmentControllerOldTest {
     @DisplayName("printNullAppointmentsTest(): print null appointments test")
     void printNullAppointmentsTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
 
         // Act
         controller.printAppointment(null);
@@ -231,7 +232,7 @@ class AppointmentControllerOldTest {
     @DisplayName("printAppointmentsTest(): print appointments test")
     void printAppointmentsTest() {
         // Arrange
-        AppointmentController controller = new AppointmentController(new AppointmentServiceOld());
+        AppointmentControllerOld controller = new AppointmentControllerOld(new AppointmentServiceOld());
         Patient patient = new Patient("p", "pass", "Pat", "p@mail.com");
         Doctor doctor = new Doctor("d", "pass", "Doc", "d@mail.com");
         Appointment appointment = new Appointment(patient, doctor, LocalDateTime.now().plusDays(1));

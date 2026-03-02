@@ -1,12 +1,13 @@
 package edu.patientportal.models;
 
-import edu.secourse.patientportal.models.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
 import edu.secourse.patientportal.models.Appointment;
+import edu.secourse.patientportal.models.Patient;
+import edu.secourse.patientportal.models.Doctor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *     <li>Mutation of patient, doctor, and appointment time fields</li>
  * </ul>
  * <p>
- * These tests use real {@link User} and {@link User} objects,
+ * These tests use real {@link Patient} and {@link Doctor} objects,
  * and they do not use mocks or any external dependencies.
  */
 public class AppointmentTest {
@@ -34,15 +35,15 @@ public class AppointmentTest {
     @DisplayName("constructorTest: constructor test")
     void constructorTest() {
         // Arrange
-        User patient = new User("pat", "pass", "Patient", "pat lastname", "pat@mail.com","patient");
-        User doctor = new User("doc", "pass", "Doctor", "doc lastname","doc@mail.com", "doctor");
+        Patient patient = new Patient("pat", "pass", "Patient", "pat@mail.com");
+        Doctor doctor = new Doctor("doc", "pass", "Doctor", "doc@mail.com");
         LocalDateTime time = LocalDateTime.now();
         Appointment appointment = new Appointment(patient, doctor, time);
 
         // Act & Assert
         assertEquals(patient, appointment.getPatient());
         assertEquals(doctor, appointment.getDoctor());
-        assertEquals(time, appointment.getAppointmentDate());
+        assertEquals(time, appointment.getAppointmentDateTime());
         assertEquals(Appointment.Status.ACTIVE, appointment.getStatus());
     }
 
@@ -54,8 +55,8 @@ public class AppointmentTest {
     void setAppointmentIdTest() {
         // Arrange
         Appointment a = new Appointment(
-                new User("p", "pass", "Patient", "pat lastname", "p@mail.com", "patient"),
-                new User("d", "pass", "Doctor", "doc lastname", "d@mail.com", "doctor"),
+                new Patient("p", "pass", "Patient", "p@mail.com"),
+                new Doctor("d", "pass", "Doctor", "d@mail.com"),
                 LocalDateTime.now()
         );
 
@@ -74,12 +75,12 @@ public class AppointmentTest {
     void setPatientTest() {
         // Arrange
         Appointment appointment = new Appointment(
-                new User("p1", "pass", "Pat1", "Pat1 lastname", "p1@mail.com", "patient"),
-                new User("d1", "pass", "Doc1", "Doc1 lastname", "d1@mail.com", "doctor"),
+                new Patient("p1", "pass", "Pat1", "p1@mail.com"),
+                new Doctor("d1", "pass", "Doc1", "d1@mail.com"),
                 LocalDateTime.now()
         );
 
-        User newPatient = new User("p2", "pass", "Pat2", "Pat2 lastname", "p2@mail.com", "patient");
+        Patient newPatient = new Patient("p2", "pass", "Pat2", "p2@mail.com");
 
         // Act
         appointment.setPatient(newPatient);
@@ -96,12 +97,12 @@ public class AppointmentTest {
     void setDoctorTest() {
         // Arrange
         Appointment appointment = new Appointment(
-                new User("p1", "pass", "Pat1", "Pat1 lastname", "p1@mail.com", "patient"),
-                new User("d1", "pass", "Doc1", "Doc1 lastname", "d1@mail.com", "doctor"),
+                new Patient("p1", "pass", "Pat1", "p1@mail.com"),
+                new Doctor("d1", "pass", "Doc1", "d1@mail.com"),
                 LocalDateTime.now()
         );
 
-        User newDoctor = new User("d2", "pass", "Doc2", "Doc2 lastname", "d2@mail.com", "doctor");
+        Doctor newDoctor = new Doctor("d2", "pass", "Doc2", "d2@mail.com");
 
         // Act
         appointment.setDoctor(newDoctor);
@@ -118,8 +119,8 @@ public class AppointmentTest {
     void setAppointmentDateTimeTest() {
         // Arrange
         Appointment appointment = new Appointment(
-                new User("p1", "pass", "Pat1", "Pat1 lastname", "p1@mail.com", "patient"),
-                new User("d1", "pass", "Doc1", "Doc1 lastname", "d1@mail.com", "doctor"),
+                new Patient("p1", "pass", "Pat1", "p1@mail.com"),
+                new Doctor("d1", "pass", "Doc1", "d1@mail.com"),
                 LocalDateTime.now()
         );
 
@@ -128,7 +129,7 @@ public class AppointmentTest {
         appointment.setAppointmentDateTime(newTime);
 
         // Assert
-        assertEquals(newTime, appointment.getAppointmentDate());
+        assertEquals(newTime, appointment.getAppointmentDateTime());
     }
 
     /**
@@ -139,8 +140,8 @@ public class AppointmentTest {
     void cancelAppointmentTest() {
         // Arrange
         Appointment appointment = new Appointment(
-                new User("p1", "pass", "Pat1", "Pat1 lastname", "p1@mail.com", "patient"),
-                new User("d1", "pass", "Doc1", "Doc1 lastname", "d1@mail.com", "doctor"),
+                new Patient("p1", "pass", "Pat1", "p1@mail.com"),
+                new Doctor("d1", "pass", "Doc1", "d1@mail.com"),
                 LocalDateTime.now()
         );
 
@@ -159,8 +160,8 @@ public class AppointmentTest {
     void setStatusTest() {
         // Arrange
         Appointment appointment = new Appointment(
-                new User("p1", "pass", "Pat1", "Pat1 lastname", "p1@mail.com", "patient"),
-                new User("d1", "pass", "Doc1", "Doc1 lastname", "d1@mail.com", "doctor"),
+                new Patient("p1", "pass", "Pat1", "p1@mail.com"),
+                new Doctor("d1", "pass", "Doc1", "d1@mail.com"),
                 LocalDateTime.now()
         );
 

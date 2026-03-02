@@ -1,17 +1,12 @@
 package edu.secourse.patientportal.services;
-import edu.secourse.patientportal.assemblers.UserModelAssembler;
+import edu.secourse.patientportal.dto.PatientDTO;
+import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.User;
 
-import edu.secourse.patientportal.repositories.UserRepository;
-import edu.secourse.patientportal.repositories.UserRepositoryImpl;
+import edu.secourse.patientportal.repositories.PatientRepository;
 import org.modelmapper.ModelMapper;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
-
-import org.springframework.stereotype.Service;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 /**
  * Service layer responsible for managing {@link User} objects.
@@ -22,39 +17,18 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
  * All methods follow a defensive design using try-catch blocks so that any
  * UI or controller interaction cannot crash the application.
  */
-@Service
 public class UserService {
-
-    private final UserRepository repository;
-    private UserModelAssembler assembler = null;
-    private ModelMapper modelMapper = null;
 
     /** Internal list of all registered users in the system. */
     public ArrayList<User> users = new ArrayList<>();
 
     /**
-     * Overloaded constructor.
-     * @param repository
-     * @param assembler
-     * @param modelMapper
+     * Default constructor. Initializes an empty user list.
      */
-    public UserService(UserRepository repository, UserModelAssembler assembler, ModelMapper modelMapper){
-        this.repository = repository;
-        this.modelMapper = modelMapper;
-        this.assembler = assembler;
-    }
-    public UserService(){
-        this.repository = new UserRepositoryImpl();
+    public UserService() {
+
     }
 
-    // Runs automatically after the bean is initialized to fetch data from database
-    @PostConstruct
-    public void init() {
-        System.out.println("Loading users from DB on startup...");
-        // Fetch data from database and populate the list
-        users = (ArrayList<User>)repository.findAll();
-        System.out.println("Loaded " + users.size() + " users.");
-    }
     /**
      * Attempts to create a new user. A user is only added if no existing user
      * already has the same username.
@@ -97,27 +71,6 @@ public class UserService {
             }
         }
         return null;
-    }
-
-    public User getUserById(Integer id){
-        for (User user: users){
-            if (user.getAccountNumber() == id){
-                return user;
-            }
-        }
-        return null;
-    }
-
-//    public List<EntityModel<User>> getAllUsers(){
-//        List<EntityModel<User>> users = repository.findAll().stream()
-//                .map(user -> EntityModel.of(user,
-//                        linkTo(methodOn(UserRoute.class).getUser(user.getUserId())).withSelfRel(),
-//                        linkTo(methodOn(UserRoute.class).getAllUsers()).withRel("users")))
-//                .collect(Collectors.toList());
-//        return users;
-//    }
-    public List<User> getAllUsers(){
-        return repository.findAll();
     }
 
     /**
