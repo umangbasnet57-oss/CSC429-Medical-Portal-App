@@ -1,6 +1,10 @@
 package edu.secourse.patientportal.models;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 /**
  * The base abstract class for all user types in the patient portal system.
@@ -12,41 +16,46 @@ import java.util.Objects;
  * All setters and logic blocks are wrapped in try-catch blocks to prevent UI
  * crashes, matching the defensive coding style used across the project.
  */
-public abstract class User {
+@Entity
+//@MappedSuperclass
+public class User {
 
-    private int accountNumber = 0;
-    public static int nextAccountNumber = 1;
+    private @Id int userId = 0;
+
+    public static int nextUserId = 1;
     public String username = "";
-    private String hashedPassword = "";
-    private String name = "";
+    private String password = "";
+    private String firstName = "";
+    private String lastName = "";
     private String email = "";
     private String role = "";
+    private LocalDateTime lastLogin;
+    private LocalDateTime lastPasswordChange;
 
     /**
      * Default no-argument constructor.
      * <p>
      * Leaves all user fields uninitialized until explicitly set.
      */
-    public User() {
-
-    }
+    public User() {}
 
     /**
      * Constructs a User with full identifying information, assigning a unique
      * auto-incremented account number.
      *
      * @param username       the username chosen by the user
-     * @param hashedPassword the user's hashed password
-     * @param name           the user's real name
+     * @param password the user's hashed password
+     * @param firstName           the user's real name
      * @param email          the user's email address
      * @param role           the role of the user (patient, doctor, admin)
      */
-    public User(String username, String hashedPassword, String name, String email, String role) {
+    public User(String username, String password, String firstName, String lastName, String email, String role) {
         try {
-            this.accountNumber = nextAccountNumber++;
+            this.userId = nextUserId++;
             this.username = username;
-            this.hashedPassword = hashedPassword;
-            this.name = name;
+            this.password = password;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.email = email;
             this.role = role;
         } catch (Exception _) {
@@ -54,14 +63,6 @@ public abstract class User {
         }
     }
 
-    /**
-     * Retrieves the unique account number assigned to this user.
-     *
-     * @return the user's account number
-     */
-    public int getAccountNumber() {
-        return accountNumber;
-    }
 
     /**
      * Retrieves the user's username.
@@ -70,6 +71,14 @@ public abstract class User {
      */
     public String getUsername() {
         return username;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     /**
@@ -85,45 +94,60 @@ public abstract class User {
         }
     }
 
-    /**
-     * Retrieves the user's hashed password.
-     *
-     * @return the hashed password string
-     */
-    public String getHashedPassword() {
-        return hashedPassword;
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDateTime getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(LocalDateTime lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public LocalDateTime getLastPasswordChange() {
+        return lastPasswordChange;
+    }
+
+    public void setLastPasswordChange(LocalDateTime lastPasswordChange) {
+        this.lastPasswordChange = lastPasswordChange;
     }
 
     /**
      * Updates the user's hashed password.
      *
-     * @param hashedPassword the new hashed password string
+     * @param password the new hashed password string
      */
-    public void setHashedPassword(String hashedPassword) {
+    public void setPassword(String password) {
         try {
-            this.hashedPassword = hashedPassword;
+            this.password = password;
         } catch (Exception _) {
 
         }
     }
 
-    /**
-     * Retrieves the user's name.
-     *
-     * @return the user's full name
-     */
-    public String getName() {
-        return name;
-    }
 
     /**
      * Updates the user's name.
      *
-     * @param name the new name string
+     * @param firstName the new name string
      */
-    public void setName(String name) {
+    public void setFirstName(String firstName) {
         try {
-            this.name = name;
+            this.firstName = firstName;
         } catch (Exception _) {
 
         }
@@ -174,6 +198,26 @@ public abstract class User {
     }
 
     /**
+     * Returns a hash code based on the username field.
+     *
+     * @return the computed hash code
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+
+    /**
      * Determines whether this user is equal to another object.
      * <p>
      * Users are considered equal if:
@@ -200,16 +244,6 @@ public abstract class User {
 
         }
         return isEqual;
-    }
-
-    /**
-     * Returns a hash code based on the username field.
-     *
-     * @return the computed hash code
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(username);
     }
 }
 

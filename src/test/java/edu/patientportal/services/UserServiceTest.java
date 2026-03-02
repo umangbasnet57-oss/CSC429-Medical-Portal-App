@@ -1,9 +1,6 @@
 package edu.patientportal.services;
 
-import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.User;
-import edu.secourse.patientportal.models.Doctor;
-import edu.secourse.patientportal.models.Admin;
 import edu.secourse.patientportal.services.UserService;
 
 import org.junit.jupiter.api.DisplayName;
@@ -40,9 +37,9 @@ public class UserServiceTest {
     public void createUserTest() {
         // Arrange
         UserService userService = new UserService();
-        User patient = new Patient("jfox", "lskjdlfjsdj", "John Fox", "johnfox8@gmail.com");
-        User admin   = new Admin("bjones", "sdlfkjlsj", "Brian Jones", "brianjones@gmail.com");
-        User doctor  = new Doctor("rraux", "lkmlksljdioj", "Raul Rox", "raulrox23@gmail.com");
+        User patient = new User("jfox", "lskjdlfjsdj", "John Fox", "johnfox8@gmail.com", "patient");
+        User admin   = new User("bjones", "sdlfkjlsj", "Brian Jones", "brianjones@gmail.com", "admin");
+        User doctor  = new User("rraux", "lkmlksljdioj", "Raul Rox", "raulrox23@gmail.com","doctor");
 
         // Act
         userService.createUser(patient);
@@ -64,9 +61,9 @@ public class UserServiceTest {
     public void removeUserTest() {
         // Arrange
         UserService userService = new UserService();
-        User patient = new Patient("jfox", "lskjdlfjsdj", "John Fox", "johnfox8@gmail.com");
-        User admin   = new Admin("bjones", "sdlfkjlsj", "Brian Jones", "brianjones@gmail.com");
-        User doctor  = new Doctor("rraux", "lkmlksljdioj", "Raul Rox", "raulrox23@gmail.com");
+        User patient = new User("jfox", "lskjdlfjsdj", "John Fox", "johnfox8@gmail.com", "patient");
+        User admin   = new User("bjones", "sdlfkjlsj", "Brian Jones", "brianjones@gmail.com", "admin");
+        User doctor  = new User("rraux", "lkmlksljdioj", "Raul Rox", "raulrox23@gmail.com", "doctor");
 
         // Act
         userService.createUser(patient);
@@ -89,7 +86,7 @@ public class UserServiceTest {
     public void getUserTest() {
         // Arrange
         UserService userService = new UserService();
-        User patient = new Patient("jfox", "lskjdlfjsdj", "John Fox", "johnfox8@gmail.com");
+        User patient = new User("jfox", "lskjdlfjsdj", "John Fox", "johnfox8@gmail.com", "patient");
 
         // Act
         userService.createUser(patient);
@@ -107,7 +104,7 @@ public class UserServiceTest {
     public void printUserTest() {
         // Arrange
         UserService service = new UserService();
-        User user = new Patient("john123", "pass", "John Smith", "john@mail.com");
+        User user = new User("john123", "pass", "John Smith", "john@mail.com", "patient");
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         // Act

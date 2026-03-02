@@ -1,7 +1,5 @@
 package edu.secourse.patientportal.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 /**
  * Represents an administrator user within the patient portal system.
  * <p>
@@ -9,11 +7,10 @@ import jakarta.persistence.Id;
  * auto-incrementing admin-specific identifier. The ID will only increment
  * if safe integer boundary checks pass.
  */
-@Entity
-public class Admin extends User {
-    private @Id
-    int adminId = 0;
-    private static int nextAdminId = 1;
+public class Admin {
+//    private @Id
+//    int adminId = 0;
+//    private static int nextAdminId = 1;
 
     /**
      * Default no-argument constructor.
@@ -34,11 +31,12 @@ public class Admin extends User {
      * @param email          the admin's email address
      */
     public Admin(String username, String hashedPassword, String name, String email) {
-        super(username, hashedPassword, name, email, "admin");
+//        super(username, hashedPassword, name, email, "admin");
 
-        this.adminId = nextAdminId;
-
-        nextAdminId += 1;
+        System.out.println(("Will create Patient"));
+//        this.adminId = nextAdminId;
+//
+//        nextAdminId += 1;
     }
 
     /**
@@ -46,7 +44,7 @@ public class Admin extends User {
      *
      * @return the admin's ID number
      */
-    public int getAdminId() {
-        return adminId;
-    }
+//    public int getAdminId() {
+//        return adminId;
+//    }
 }

@@ -1,15 +1,13 @@
 package edu.secourse.patientportal.models;
 
-import edu.secourse.patientportal.services.UserService;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
- * Represents a scheduled appointment between a {@link Patient} and {@link Doctor}.
+ * Represents a scheduled appointment between a {@link User} and {@link User}.
  * <p>
  * This class includes fields for identifying the appointment, tracking the
  * participants, storing the scheduled date and time, and the appointment status.
@@ -18,25 +16,29 @@ import java.time.LocalDateTime;
  */
 @Entity
 public class Appointment {
+
     private @Id
     int appointmentId = 0;
 
     @OneToOne
-    @JoinColumn(name = "patient_patient_id")
-    private Patient patient = new Patient();
+    @JoinColumn(name = "patient_user_id")
+    private User patient;
 
     @OneToOne
-    @JoinColumn(name = "doctor_doctor_id")
-    private Doctor doctor = new Doctor();
+    @JoinColumn(name = "doctor_user_id")
+    private User doctor;
 
-    private LocalDateTime appointmentDateTime = LocalDateTime.MIN;
+    private LocalDate appointmentDate = LocalDate.MIN;
+    private LocalTime startTime = LocalTime.MIN;
+    private LocalTime endTime = LocalTime.MIN;
+    private LocalDateTime lastUpdated = LocalDateTime.MIN;
     private Status status = Status.UNSPECIFIED;
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(User doctor) {
         this.doctor = doctor;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(User patient) {
         this.patient = patient;
     }
 //    private UserService userService = new UserService();
@@ -65,14 +67,16 @@ public class Appointment {
      *
      * @param patient             the patient associated with the appointment
      * @param doctor              the doctor associated with the appointment
-     * @param appointmentDateTime the date and time the appointment occurs
+     * @param appointmentDate the date and time the appointment occurs
      */
-    public Appointment(Patient patient, Doctor doctor, LocalDateTime appointmentDateTime) {
+    public Appointment(User patient, User doctor, LocalDate appointmentDate, LocalTime startTime, LocalTime endTime) {
         try {
-            if (patient != null && doctor != null && appointmentDateTime != null) {
+            if (patient != null && doctor != null && appointmentDate != null) {
                 this.patient = patient;
                 this.doctor = doctor;
-                this.appointmentDateTime = appointmentDateTime;
+                this.appointmentDate = appointmentDate;
+                this.startTime = startTime;
+                this.endTime = endTime;
                 this.status = Status.ACTIVE;
             }
         } catch (Exception _) {
@@ -141,7 +145,7 @@ public class Appointment {
      *
      * @return the appointment's patient
      */
-    public Patient getPatient() {
+    public User getPatient() {
         return patient;
     }
 
@@ -151,7 +155,7 @@ public class Appointment {
      * @param patient the new patient object
      * @return true if updated successfully, false otherwise
      */
-    public boolean hasSetPatient(Patient patient) {
+    public boolean hasSetPatient(User patient) {
         boolean success = false;
         try {
             if (patient != null) {
@@ -170,7 +174,7 @@ public class Appointment {
      *
      * @return the appointment's doctor
      */
-    public Doctor getDoctor() {
+    public User getDoctor() {
         return doctor;
     }
 
@@ -180,7 +184,7 @@ public class Appointment {
      * @param doctor the new doctor object
      * @return true if updated successfully, false otherwise
      */
-    public boolean hasSetDoctor(Doctor doctor) {
+    public boolean hasSetDoctor(User doctor) {
         boolean success = false;
         try {
             if (doctor != null) {
@@ -198,27 +202,51 @@ public class Appointment {
      *
      * @return the appointment date and time
      */
-    public LocalDateTime getAppointmentDateTime() {
-        return appointmentDateTime;
+    public LocalDate getAppointmentDate() {
+        return appointmentDate;
     }
 
     /**
      * Attempts to update the appointment's date and time.
      *
-     * @param appointmentDateTime the new date/time value
+     * @param appointmentDate the new date/time value
      * @return true if updated successfully, false otherwise
      */
-    public boolean setAppointmentDateTime(LocalDateTime appointmentDateTime) {
+    public boolean setAppointmentDate(LocalDate appointmentDate) {
         boolean success = false;
         try {
-            if (appointmentDateTime != null) {
-                this.appointmentDateTime = appointmentDateTime;
+            if (appointmentDate != null) {
+                this.appointmentDate = appointmentDate;
                 success = true;
             }
         } catch (Exception _) {
 
         }
         return success;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     /**
@@ -242,7 +270,7 @@ public class Appointment {
     public String toString() {
         String patientName = (patient != null) ? patient.getUsername() : "Unknown Patient";
         String doctorName = (doctor != null) ? doctor.getUsername() : "Unknown Doctor";
-        String time = (appointmentDateTime != null) ? appointmentDateTime.toString() : "No Date";
+        String time = (appointmentDate != null) ? appointmentDate.toString() : "No Date";
 
         return "Appointment {" +
                 "ID=" + appointmentId +

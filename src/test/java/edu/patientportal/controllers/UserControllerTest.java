@@ -56,7 +56,7 @@ public class UserControllerTest {
         UserService service = new UserService();
         UserController controller = new UserController(service);
         UserController userControllerCoverageCall = new UserController();
-        User user = new Admin("admin", "pass", "Admin Name", "admin@mail.com");
+        User user = new User("admin", "pass", "Admin Name", "admin@mail.com", "admin");
 
         // Act
         controller.createUser(user);
@@ -99,8 +99,8 @@ public class UserControllerTest {
         UserController controller = new UserController(service);
 
         // Act
-        controller.createUser(new Admin("u1", "p1", "Name1", "u1@mail.com"));
-        controller.createUser(new Admin("u2", "p2", "Name2", "u2@mail.com"));
+        controller.createUser(new User("u1", "p1", "Name1", "u1@mail.com", "admin"));
+        controller.createUser(new User("u2", "p2", "Name2", "u2@mail.com", "admin"));
 
         captureOutput(() ->
                 controller.updateUser("u1", "u2", "pass", "Name", "mail@mail.com")
@@ -122,12 +122,12 @@ public class UserControllerTest {
         UserController controller = new UserController(service);
 
         // Act
-        User user = new Admin("admin", "pass", "Admin Name", "admin@mail.com");
+        User user = new User("admin", "pass", "Admin Name", "admin@mail.com", "admin");
         controller.createUser(user);
 
         boolean result = controller.validateUser(user);
 
-        User userTwo = new Admin("admin", "pass", "Admin Name", "admin@mail.com");
+        User userTwo = new User("admin", "pass", "Admin Name", "admin@mail.com", "admin");
         userTwo.setRole("");
 
         controller.createUser(userTwo);

@@ -2,11 +2,8 @@ package edu.secourse.patientportal.services.impl;
 
 import edu.secourse.patientportal.dto.AppointmentDTO;
 import edu.secourse.patientportal.exceptions.AppointmentNotFoundException;
-import edu.secourse.patientportal.exceptions.DoctorNotFoundException;
-import edu.secourse.patientportal.modelassemblers.AppointmentModelAssembler;
+import edu.secourse.patientportal.assemblers.AppointmentModelAssembler;
 import edu.secourse.patientportal.models.Appointment;
-import edu.secourse.patientportal.models.Doctor;
-import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.User;
 import edu.secourse.patientportal.repositories.AppointmentRepository;
 import edu.secourse.patientportal.services.AppointmentService;
@@ -34,7 +31,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         this.modelMapper = modelMapper;
     }
     /**
-     * @param appointment
+     * @param appointmentDTO
      * @return
      */
     @Override
@@ -59,7 +56,7 @@ public class AppointmentServiceImpl implements AppointmentService {
      * @return
      */
     @Override
-    public boolean modifyAppointment(int appointmentId, Patient patient, Doctor doctor, LocalDateTime newDateTime) {
+    public boolean modifyAppointment(int appointmentId, User patient, User doctor, LocalDateTime newDateTime) {
         return false;
     }
 
