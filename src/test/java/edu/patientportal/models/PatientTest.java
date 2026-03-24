@@ -2,7 +2,7 @@ package edu.patientportal.models;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import edu.secourse.patientportal.models.Patient;
+import edu.secourse.patientportal.model.Patient;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,14 +35,14 @@ public class PatientTest {
 
         // Assert
         assertEquals("admin", p.getUsername());
-        assertEquals("hash", p.getHashedPassword());
+        assertEquals("hash", p.getPassword());
         assertEquals("Admin Name", p.getName());
         assertEquals("admin@mail.com", p.getEmail());
-        assertTrue(p.getAccountNumber() > 0);
+        assertTrue(p.getId() > 0);
     }
 
     /**
-     * Ensures that all setter methods inherited from {@link edu.secourse.patientportal.models.User}
+     * Ensures that all setter methods inherited from {@link edu.secourse.patientportal.model.User}
      * correctly update their respective fields.
      */
     @Test
@@ -53,14 +53,14 @@ public class PatientTest {
 
         // Act
         p.setUsername("newAdmin");
-        p.setHashedPassword("newHash");
+        p.setPassword("newHash");
         p.setName("New Name");
         p.setEmail("new@mail.com");
         p.setRole("patientRole");
 
         // Assert
         assertEquals("newAdmin", p.getUsername());
-        assertEquals("newHash", p.getHashedPassword());
+        assertEquals("newHash", p.getPassword());
         assertEquals("New Name", p.getName());
         assertEquals("new@mail.com", p.getEmail());
         assertEquals("patientRole", p.getRole());
@@ -138,8 +138,8 @@ public class PatientTest {
         Patient p2 = new Patient("u2", "p2", "N2", "e2@mail.com");
 
         // Act
-        int id1 = p1.getAccountNumber();
-        int id2 = p2.getAccountNumber();
+        int id1 = p1.getId();
+        int id2 = p2.getId();
 
         // Assert
         assertTrue(id2 > id1);

@@ -2,7 +2,7 @@ package edu.patientportal.models;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import edu.secourse.patientportal.models.Admin;
+import edu.secourse.patientportal.model.Admin;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +24,7 @@ public class AdminTest {
 
     /**
      * Verifies that the constructor correctly initializes
-     * all inherited {@link edu.secourse.patientportal.models.User} fields.
+     * all inherited {@link edu.secourse.patientportal.model.User} fields.
      */
     @Test
     @DisplayName("constructorTest(): constructor test")
@@ -34,11 +34,11 @@ public class AdminTest {
 
         // Assert
         assertEquals("admin", a.getUsername());
-        assertEquals("hash", a.getHashedPassword());
+        assertEquals("hash", a.getPassword());
         assertEquals("Admin Name", a.getName());
         assertEquals("admin@mail.com", a.getEmail());
-        assertEquals("admin", a.getRole());
-        assertTrue(a.getAccountNumber() > 0);
+        assertEquals("ADMIN", a.getRole());
+        assertTrue(a.getId() > 0);
     }
 
     /**
@@ -52,14 +52,14 @@ public class AdminTest {
 
         // Act
         a.setUsername("newAdmin");
-        a.setHashedPassword("newHash");
+        a.setPassword("newHash");
         a.setName("New Name");
         a.setEmail("new@mail.com");
         a.setRole("adminRole");
 
         // Assert
         assertEquals("newAdmin", a.getUsername());
-        assertEquals("newHash", a.getHashedPassword());
+        assertEquals("newHash", a.getPassword());
         assertEquals("New Name", a.getName());
         assertEquals("new@mail.com", a.getEmail());
         assertEquals("adminRole", a.getRole());
@@ -133,8 +133,8 @@ public class AdminTest {
         Admin a2 = new Admin("u2", "p2", "N2", "e2@mail.com");
 
         // Act
-        int id1 = a1.getAccountNumber();
-        int id2 = a2.getAccountNumber();
+        int id1 = a1.getId();
+        int id2 = a2.getId();
 
         // Assert
         assertTrue(id2 > id1);

@@ -2,7 +2,7 @@ package edu.patientportal.models;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import edu.secourse.patientportal.models.Doctor;
+import edu.secourse.patientportal.model.Doctor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,15 +36,15 @@ public class DoctorTest {
 
         // Act & Assert
         assertEquals("admin", doctor.getUsername());
-        assertEquals("hash", doctor.getHashedPassword());
+        assertEquals("hash", doctor.getPassword());
         assertEquals("Admin Name", doctor.getName());
         assertEquals("admin@mail.com", doctor.getEmail());
-        assertTrue(doctor.getAccountNumber() > 0);
+        assertTrue(doctor.getId() > 0);
     }
 
     /**
      * Ensures that the setter methods correctly update all modifiable
-     * fields inherited from {@link edu.secourse.patientportal.models.User}.
+     * fields inherited from {@link edu.secourse.patientportal.model.User}.
      */
     @Test
     @DisplayName("setterMethodsTest(): setter methods test")
@@ -52,14 +52,14 @@ public class DoctorTest {
         // Arrange & Act
         Doctor doctor = new Doctor("admin", "hash", "Admin", "admin@mail.com");
         doctor.setUsername("newAdmin");
-        doctor.setHashedPassword("newHash");
+        doctor.setPassword("newHash");
         doctor.setName("New Name");
         doctor.setEmail("new@mail.com");
         doctor.setRole("adminRole");
 
         // Assert
         assertEquals("newAdmin", doctor.getUsername());
-        assertEquals("newHash", doctor.getHashedPassword());
+        assertEquals("newHash", doctor.getPassword());
         assertEquals("New Name", doctor.getName());
         assertEquals("new@mail.com", doctor.getEmail());
         assertEquals("adminRole", doctor.getRole());
@@ -137,8 +137,8 @@ public class DoctorTest {
         Doctor d2 = new Doctor("u2", "p2", "N2", "e2@mail.com");
 
         // Act
-        int id1 = d1.getAccountNumber();
-        int id2 = d2.getAccountNumber();
+        int id1 = d1.getId();
+        int id2 = d2.getId();
 
         // Assert
         assertTrue(id2 > id1);

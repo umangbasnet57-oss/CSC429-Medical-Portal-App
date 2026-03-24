@@ -1,10 +1,10 @@
 package edu.patientportal.services;
 
-import edu.secourse.patientportal.models.Patient;
-import edu.secourse.patientportal.models.User;
-import edu.secourse.patientportal.models.Doctor;
-import edu.secourse.patientportal.models.Admin;
-import edu.secourse.patientportal.services.UserService;
+import edu.secourse.patientportal.model.Patient;
+import edu.secourse.patientportal.model.User;
+import edu.secourse.patientportal.model.Doctor;
+import edu.secourse.patientportal.model.Admin;
+import edu.secourse.patientportal.service.UserService;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
