@@ -1,5 +1,6 @@
 package edu.secourse.patientportal.controller;
 
+import edu.secourse.patientportal.dto.AppointmentResponse;
 import edu.secourse.patientportal.model.Appointment;
 import edu.secourse.patientportal.model.Doctor;
 import edu.secourse.patientportal.model.Patient;
@@ -35,7 +36,7 @@ public class AppointmentController {
      * Returns all appointments for a user (patient or doctor).
      */
     @GetMapping("/user/{username}")
-    @PreAuthorize("hasAnyRole('PATIENT', 'DOCTOR')")
+    @PreAuthorize("hasRole('ADMIN') or (hasAnyRole('PATIENT', 'DOCTOR') and #username == authentication.name)")
     public ResponseEntity<?> getAppointmentsForUser(@PathVariable String username) {
         var user = userService.getUser(username);
         if (user == null) {
@@ -78,7 +79,7 @@ public class AppointmentController {
             boolean success = appointmentService.createAppointment(appointment);
 
             if (success) {
-                return ResponseEntity.ok(appointment);
+                return ResponseEntity.ok(AppointmentResponse.fromEntity(appointment));
             } else {
                 return ResponseEntity.badRequest().body("This appointment already exists.");
             }

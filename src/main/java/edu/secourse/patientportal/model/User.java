@@ -23,7 +23,6 @@ import java.util.Objects;
  */
 @Entity
 @Data
-//@Builder
 @SuperBuilder
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

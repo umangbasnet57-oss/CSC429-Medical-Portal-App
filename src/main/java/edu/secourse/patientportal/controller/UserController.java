@@ -1,5 +1,6 @@
 package edu.secourse.patientportal.controller;
 
+import edu.secourse.patientportal.dto.UserResponse;
 import edu.secourse.patientportal.exception.RoleNotFoundException;
 import edu.secourse.patientportal.model.Admin;
 import edu.secourse.patientportal.model.Doctor;
@@ -12,7 +13,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -99,7 +99,8 @@ public class UserController {
 
             boolean success = userService.createUser(user);
             if (success) {
-                return ResponseEntity.ok(user);
+                // 3. Convert Entity to DTO (Security Layer)
+                return ResponseEntity.ok(UserResponse.fromEntity(user));
             } else {
                 return ResponseEntity.badRequest().body("Could not create user: " + username);
             }

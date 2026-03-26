@@ -213,6 +213,15 @@ public class UserService {
         return success;
     }
 
+    /**
+     * Checks if a user already exists in the database.
+     * @param username the username to check
+     * @return true if the user exists, false otherwise
+     */
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
 //    public boolean updateUser(String oldUsername, String newUsername, String hashedPassword, String name, String email) {
 //        boolean success = false;
 //        try {
