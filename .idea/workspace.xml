@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b42993f1-94ef-42ed-9718-0ed67055d05d" name="Changes" comment="UI progress">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AdminDashboardView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AppState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AppointmentRow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/ChangePasswordView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/DoctorDashboardView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/DoctorRow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/LoginView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/PatientDashboardView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/PatientRow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/MainApp.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="restapi_developer" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;umangbasnet57-oss&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/umangbasnet57-oss/CSC429-Medical-Portal-App.git&quot;,
+    &quot;accountId&quot;: &quot;0cabc985-d413-4ea9-be66-d44ec7dcc7f4&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="3BSJYqQQoeM4qlriyhPmL4NoNDI" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApp.executor": "Run",
+    "Maven.Medical-Portal-App [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "frontend__umang",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/umangbasnet/Desktop/CSC429-Medical-Portal-App",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.ui.controllers.MainApp" />
+      <module name="Lab_9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.ui.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="CSC429-Medical-Portal-App" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="CSC429-Medical-Portal-App" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b42993f1-94ef-42ed-9718-0ed67055d05d" name="Changes" comment="" />
+      <created>1774476589566</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774476589566</updated>
+    </task>
+    <task id="LOCAL-00001" summary="UI progress">
+      <option name="closed" value="true" />
+      <created>1774497343592</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1774497343592</updated>
+    </task>
+    <task id="LOCAL-00002" summary="UI progress">
+      <option name="closed" value="true" />
+      <created>1774497487814</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1774497487814</updated>
+    </task>
+    <task id="LOCAL-00003" summary="UI progress">
+      <option name="closed" value="true" />
+      <created>1774497965030</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1774497965030</updated>
+    </task>
+    <task id="LOCAL-00004" summary="UI progress">
+      <option name="closed" value="true" />
+      <created>1774498059944</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1774498059944</updated>
+    </task>
+    <task id="LOCAL-00005" summary="UI progress">
+      <option name="closed" value="true" />
+      <created>1774498281731</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1774498281731</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="UI progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI progress" />
+  </component>
+</project>
