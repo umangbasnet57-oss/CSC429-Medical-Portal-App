@@ -83,7 +83,7 @@ public class AuthController {
      *   "message": "Registration successful",
      *   "statusCode": 201,
      *   "data": {
-     *     "id": 1001,
+     *     "id": 1,
      *     "username": "johndoe",
      *     "email": "john@example.com",
      *     "firstName": "John",
