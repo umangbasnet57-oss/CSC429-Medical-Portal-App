@@ -35,37 +35,16 @@ public class Constants {
 
     // ==================== Business Constants ====================
 
-    /** AquaWorld Store Name */
+    /** Company name Store Name */
     public static final String COMPANY_NAME = "MACLOGIX";
 
-    /** Store Description - Guppy specialization */
+
     public static final String PATIENT_APPOINTMENT_APP_DESCRIPTION = "Premium medical services for you!";
 
-//    /** Default page size for pagination */
-//    public static final int DEFAULT_PAGE_SIZE = 10;
-//
-//    /** Maximum page size */
-//    public static final int MAX_PAGE_SIZE = 100;
 
     /** JWT token validity period in milliseconds (1 hour) */
     public static final long JWT_EXPIRATION_TIME = 3600000;
 
-    // ==================== Product Categories ====================
-
-    /** Guppy fish category */
-    public static final String CATEGORY_GUPPIES = "guppies";
-
-    /** Fish food category */
-    public static final String CATEGORY_FISH_FOOD = "fish_food";
-
-    /** Aquarium equipment category */
-    public static final String CATEGORY_EQUIPMENT = "equipment";
-
-    /** Decorations category */
-    public static final String CATEGORY_DECORATIONS = "decorations";
-
-    /** Medicines category */
-    public static final String CATEGORY_MEDICINES = "medicines";
 
     // ==================== Appointment Status ====================
 
