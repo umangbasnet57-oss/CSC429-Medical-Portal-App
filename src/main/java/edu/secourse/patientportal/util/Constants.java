@@ -39,7 +39,7 @@ public class Constants {
     public static final String COMPANY_NAME = "MACLOGIX";
 
 
-    public static final String PATIENT_APPOINTMENT_APP_DESCRIPTION = "Premium medical services for you!";
+    public static final String PATIENT_APPOINTMENT_APP_DESCRIPTION = "Premium medical service for you!";
 
 
     /** JWT token validity period in milliseconds (1 hour) */

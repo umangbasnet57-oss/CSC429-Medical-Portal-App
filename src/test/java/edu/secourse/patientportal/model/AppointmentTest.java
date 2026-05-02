@@ -1,13 +1,9 @@
-package edu.patientportal.models;
+package edu.secourse.patientportal.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-
-import edu.secourse.patientportal.model.Appointment;
-import edu.secourse.patientportal.model.Patient;
-import edu.secourse.patientportal.model.Doctor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
