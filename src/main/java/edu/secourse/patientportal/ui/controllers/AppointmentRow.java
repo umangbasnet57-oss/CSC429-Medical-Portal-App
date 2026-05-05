@@ -79,4 +79,19 @@ public class AppointmentRow {
     public StringProperty statusProperty() {
         return status;
     }
+    public void setDate(String newDate) {
+        date.set(newDate);
+    }
+
+    public void setTime(String newTime) {
+        time.set(newTime);
+    }
+
+    public void setPatientName(String newPatientName) {
+        patientName.set(newPatientName);
+    }
+
+    public void setDoctorName(String newDoctorName) {
+        doctorName.set(newDoctorName);
+    }
 }

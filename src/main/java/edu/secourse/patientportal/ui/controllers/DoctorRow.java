@@ -54,4 +54,15 @@ public class DoctorRow {
     public StringProperty emailProperty() {
         return email;
     }
+    public void setName(String newName) {
+        name.set(newName);
+    }
+
+    public void setUsername(String newUsername) {
+        username.set(newUsername);
+    }
+
+    public void setEmail(String newEmail) {
+        email.set(newEmail);
+    }
 }
