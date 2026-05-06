@@ -137,20 +137,13 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- JUnit Vintage Engine pour exécuter les tests JUnit 4 -->
+        <!-- JUnit Vintage Engine to run JUnit 4 tests -->
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
 
-<!--        &lt;!&ndash;  Mockito      &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.mockito</groupId>-->
-<!--            <artifactId>mockito-inline</artifactId>-->
-<!--            <version>5.2.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
