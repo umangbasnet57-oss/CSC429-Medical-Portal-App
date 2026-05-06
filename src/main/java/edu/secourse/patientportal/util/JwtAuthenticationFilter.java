@@ -1,11 +1,11 @@
 package edu.secourse.patientportal.util;
 
+import edu.secourse.patientportal.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,13 +18,11 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-//    @Autowired
-    private final JwtUtil jwtService; // Your utility class to validate/extract JWT data
-//    @Autowired
+    private final TokenService tokenService; // Your utility class to validate/extract JWT data
     private final UserDetailsService userDetailsService;
 
-    public JwtAuthenticationFilter(JwtUtil jwtService, UserDetailsService userDetailsService){
-        this.jwtService = jwtService;
+    public JwtAuthenticationFilter(TokenService tokenService, UserDetailsService userDetailsService){
+        this.tokenService = tokenService;
         this.userDetailsService = userDetailsService;
     }
 
@@ -45,13 +43,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7);
-        userEmail = jwtService.extractUsername(jwt); // Extract username from JWT
+        userEmail = tokenService.extractUsername(jwt); // Extract username from JWT
 
         // 2. If user is found and not already authenticated in this request
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
-            if (jwtService.validateToken(jwt)){ //userDetails)) {
+            if (tokenService.validateToken(jwt)){ //userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,

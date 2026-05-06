@@ -25,7 +25,7 @@ import java.util.Optional;
  * Uses JPA repository when running in Spring Boot context.
  * Falls back to in-memory ArrayList for unit tests.
  */
-public class UserService {
+public class UserService implements UserManagementService {
 
     /** JPA repository — injected by Spring, null when used in unit tests. */
     /** @Autowired //(required = false) */

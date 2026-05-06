@@ -6,6 +6,7 @@ import edu.secourse.patientportal.model.Admin;
 import edu.secourse.patientportal.model.Doctor;
 import edu.secourse.patientportal.model.Patient;
 import edu.secourse.patientportal.model.User;
+import edu.secourse.patientportal.service.UserManagementService;
 import edu.secourse.patientportal.service.UserService;
 import edu.secourse.patientportal.util.Constants;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ import java.util.Map;
 @RequestMapping(Constants.USERS_ENDPOINT)
 public class UserController {
 
-    private final UserService userService;
+//    private final UserService userService;
+    private final UserManagementService userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserManagementService userService) {
         this.userService = userService;
     }
 

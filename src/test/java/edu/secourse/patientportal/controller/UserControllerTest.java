@@ -1,44 +1,58 @@
 package edu.secourse.patientportal.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.secourse.patientportal.controller.UserController;
 import edu.secourse.patientportal.exception.GlobalExceptionHandler;
 import edu.secourse.patientportal.model.User;
-import edu.secourse.patientportal.service.UserService;
+import edu.secourse.patientportal.service.TokenService;
+import edu.secourse.patientportal.service.UserManagementService;
 import edu.secourse.patientportal.util.Constants;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
 import java.util.List;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(UserController.class)
+//@WebMvcTest(UserController.class)
+//@Import(GlobalExceptionHandler.class)
+@WebMvcTest(
+        controllers = UserController.class,
+        excludeAutoConfiguration = {
+                org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+                org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration.class
+        }
+)
 @AutoConfigureMockMvc(addFilters = false)
 @Import(GlobalExceptionHandler.class)
-
 class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockitoBean
-    private UserService userService;
+    private UserManagementService userService;
+
+    @MockitoBean
+    private TokenService tokenService;
+
+    @MockitoBean
+    private UserDetailsService userDetailsService;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-    // =========================
-    // GET USER
-    // =========================
 
     @Test
     void getUser_shouldReturn200_whenUserExists() throws Exception {
@@ -63,10 +77,6 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    // =========================
-    // GET ALL USERS
-    // =========================
-
     @Test
     void getAllUsers_shouldReturnList() throws Exception {
         List<User> users = List.of(
@@ -80,10 +90,6 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2));
     }
-
-    // =========================
-    // CREATE USER
-    // =========================
 
     @Test
     void createUser_shouldReturn200_whenSuccess() throws Exception {
@@ -137,10 +143,6 @@ class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    // =========================
-    // UPDATE USER
-    // =========================
-
     @Test
     void updateUser_shouldReturn200_whenSuccess() throws Exception {
         Map<String, String> body = Map.of("email", "new@test.com");
@@ -164,10 +166,6 @@ class UserControllerTest {
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isBadRequest());
     }
-
-    // =========================
-    // DELETE USER
-    // =========================
 
     @Test
     void deleteUser_shouldReturn200_whenSuccess() throws Exception {
@@ -198,5 +196,4 @@ class UserControllerTest {
         mockMvc.perform(delete(Constants.USERS_ENDPOINT + "/fred"))
                 .andExpect(status().isInternalServerError());
     }
-
 }
