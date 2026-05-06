@@ -1,14 +1,15 @@
 package edu.secourse.patientportal.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.secourse.patientportal.controller.UserController;
 import edu.secourse.patientportal.exception.GlobalExceptionHandler;
 import edu.secourse.patientportal.model.User;
 import edu.secourse.patientportal.service.UserService;
 import edu.secourse.patientportal.util.Constants;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;

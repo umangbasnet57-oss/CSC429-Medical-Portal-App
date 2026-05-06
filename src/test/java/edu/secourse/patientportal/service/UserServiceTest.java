@@ -6,6 +6,7 @@ import edu.secourse.patientportal.model.Admin;
 import edu.secourse.patientportal.repository.UserRepository;
 import edu.secourse.patientportal.exception.InvalidInputException;
 import edu.secourse.patientportal.exception.ResourceAlreadyExistsException;
+import edu.secourse.patientportal.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
