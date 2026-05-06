@@ -1,9 +1,7 @@
 package edu.secourse.patientportal.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -47,6 +45,8 @@ import jakarta.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "Login request containing username and password")
+@Getter
+@Setter
 public class LoginRequest {
 
     /**
@@ -57,8 +57,8 @@ public class LoginRequest {
      * - Length: 3-20 characters
      */
     @NotBlank(message = "Username is required")
-    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters")
-    @Schema(description = "Username", example = "johndoe")
+//    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters")
+//    @Schema(description = "Username", example = "johndoe")
     private String username;
 
     /**
@@ -69,7 +69,7 @@ public class LoginRequest {
      * - Length: 8-50 characters (strong password)
      */
     @NotBlank(message = "Password is required")
-    @Size(min = 8, max = 50, message = "Password must be between 8 and 50 characters")
-    @Schema(description = "Password", example = "SecurePass123")
+//    @Size(min = 8, max = 50, message = "Password must be between 8 and 50 characters")
+//    @Schema(description = "Password", example = "SecurePass123")
     private String password;
 }

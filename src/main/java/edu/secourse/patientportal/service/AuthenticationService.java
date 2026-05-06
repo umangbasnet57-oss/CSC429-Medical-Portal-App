@@ -6,15 +6,13 @@ import edu.secourse.patientportal.exception.UnauthorizedException;
 import edu.secourse.patientportal.model.User;
 import edu.secourse.patientportal.repository.UserRepository;
 import edu.secourse.patientportal.util.Constants;
-import edu.secourse.patientportal.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
-public class AuthenticationService {
+public class AuthenticationService implements AuthenticationManagementService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 //    private final JwtUtil jwtUtil;
@@ -46,6 +44,7 @@ public class AuthenticationService {
      * @return LoginResponse with JWT token and user info
      * @throws UnauthorizedException if username not found or password invalid (401)
      */
+    @Override
     public LoginResponse login(LoginRequest loginRequest) {
         // Find user by username
         User user = userRepository.findByUsername(loginRequest.getUsername())
