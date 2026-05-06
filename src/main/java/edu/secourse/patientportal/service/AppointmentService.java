@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Uses JPA repository when running in Spring Boot context.
  * Falls back to in-memory ArrayList for unit tests.
  */
-public class AppointmentService {
+public class AppointmentService implements AppointmentManagementService{
 
     /** JPA repository — injected by Spring, null when used in unit tests. */
     @Autowired(required = false)
@@ -42,6 +42,7 @@ public class AppointmentService {
      * @param appointment the appointment to be added
      * @return true if appointment was successfully created, false otherwise
      */
+    @Override
     public boolean createAppointment(Appointment appointment) {
         boolean success = false;
         try {
@@ -89,6 +90,7 @@ public class AppointmentService {
      * @param appointmentId the ID of the appointment to cancel
      * @return true if cancellation succeeded, false if not found
      */
+    @Override
     public boolean cancelAppointment(int appointmentId) {
         boolean success = false;
         try {
@@ -122,6 +124,7 @@ public class AppointmentService {
      * @param newDateTime   the new appointment date/time
      * @return true if the appointment was modified, false otherwise
      */
+    @Override
     public boolean modifyAppointment(int appointmentId, Patient patient, Doctor doctor, LocalDateTime newDateTime) {
         boolean success = false;
         try {
@@ -164,6 +167,7 @@ public class AppointmentService {
      * @param user the user whose appointments should be returned
      * @return a list of matching appointments (empty if none or if user is invalid)
      */
+    @Override
     public ArrayList<Appointment> getAppointmentsForUser(User user) {
         ArrayList<Appointment> result = new ArrayList<>();
         try {

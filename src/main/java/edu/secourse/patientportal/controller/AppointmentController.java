@@ -4,7 +4,9 @@ import edu.secourse.patientportal.dto.AppointmentResponse;
 import edu.secourse.patientportal.model.Appointment;
 import edu.secourse.patientportal.model.Doctor;
 import edu.secourse.patientportal.model.Patient;
+import edu.secourse.patientportal.service.AppointmentManagementService;
 import edu.secourse.patientportal.service.AppointmentService;
+import edu.secourse.patientportal.service.UserManagementService;
 import edu.secourse.patientportal.service.UserService;
 import edu.secourse.patientportal.util.Constants;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +25,10 @@ import java.util.Map;
 @RequestMapping(Constants.APPOINTMENT_ENDPOINT)
 public class AppointmentController {
 
-    private final AppointmentService appointmentService;
-    private final UserService userService;
+    private final AppointmentManagementService appointmentService;
+    private final UserManagementService userService;
 
-    public AppointmentController(AppointmentService appointmentService, UserService userService) {
+    public AppointmentController(AppointmentManagementService appointmentService, UserManagementService userService) {
         this.appointmentService = appointmentService;
         this.userService = userService;
     }
