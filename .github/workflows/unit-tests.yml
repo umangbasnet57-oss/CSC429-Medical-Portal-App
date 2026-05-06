@@ -21,9 +21,6 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Grant execute permission to Maven Wrapper
-        run: chmod +x mvnw
-
       - name: Run unit tests
         run: mvn clean test
 
