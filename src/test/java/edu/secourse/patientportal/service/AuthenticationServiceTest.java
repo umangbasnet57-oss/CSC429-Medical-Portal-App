@@ -5,8 +5,6 @@ import edu.secourse.patientportal.dto.LoginResponse;
 import edu.secourse.patientportal.exception.UnauthorizedException;
 import edu.secourse.patientportal.model.User;
 import edu.secourse.patientportal.repository.UserRepository;
-import edu.secourse.patientportal.service.AuthenticationService;
-import edu.secourse.patientportal.util.JwtUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,12 +14,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
@@ -33,7 +29,7 @@ class AuthenticationServiceTest {
     private PasswordEncoder passwordEncoder;
 
     @Mock
-    private JwtUtil jwtUtil;
+    private TokenService tokenService;
 
     @InjectMocks
     private AuthenticationService authenticationService;
@@ -60,31 +56,46 @@ class AuthenticationServiceTest {
 
     @Test
     void login_shouldThrowUnauthorizedException_whenUserNotFound() {
-        when(userRepository.findByUsername("fred")).thenReturn(Optional.empty());
+        when(userRepository.findByUsername("fred"))
+                .thenReturn(Optional.empty());
 
-        assertThrows(UnauthorizedException.class, () -> authenticationService.login(loginRequest));
+        assertThrows(
+                UnauthorizedException.class,
+                () -> authenticationService.login(loginRequest)
+        );
 
         verify(passwordEncoder, never()).matches(anyString(), anyString());
-        verify(jwtUtil, never()).generateToken(anyString(), anyString());
-        verify(userRepository, never()).save(any());
+        verify(tokenService, never()).generateToken(anyString(), anyString());
+        verify(userRepository, never()).save(any(User.class));
     }
 
     @Test
     void login_shouldThrowUnauthorizedException_whenPasswordDoesNotMatch() {
-        when(userRepository.findByUsername("fred")).thenReturn(Optional.of(user));
-        when(passwordEncoder.matches("plainPassword", "encodedPassword")).thenReturn(false);
+        when(userRepository.findByUsername("fred"))
+                .thenReturn(Optional.of(user));
 
-        assertThrows(UnauthorizedException.class, () -> authenticationService.login(loginRequest));
+        when(passwordEncoder.matches("plainPassword", "encodedPassword"))
+                .thenReturn(false);
 
-        verify(jwtUtil, never()).generateToken(anyString(), anyString());
-        verify(userRepository, never()).save(any());
+        assertThrows(
+                UnauthorizedException.class,
+                () -> authenticationService.login(loginRequest)
+        );
+
+        verify(tokenService, never()).generateToken(anyString(), anyString());
+        verify(userRepository, never()).save(any(User.class));
     }
 
     @Test
     void login_shouldReturnLoginResponseAndSaveUser_whenCredentialsAreValid() {
-        when(userRepository.findByUsername("fred")).thenReturn(Optional.of(user));
-        when(passwordEncoder.matches("plainPassword", "encodedPassword")).thenReturn(true);
-        when(jwtUtil.generateToken("fred", "PATIENT")).thenReturn("jwt-token-123");
+        when(userRepository.findByUsername("fred"))
+                .thenReturn(Optional.of(user));
+
+        when(passwordEncoder.matches("plainPassword", "encodedPassword"))
+                .thenReturn(true);
+
+        when(tokenService.generateToken("fred", "PATIENT"))
+                .thenReturn("jwt-token-123");
 
         LoginResponse response = authenticationService.login(loginRequest);
 
@@ -100,33 +111,36 @@ class AuthenticationServiceTest {
         assertEquals(3600L, response.getExpiresIn());
         assertNotNull(response.getLoginAt());
 
-        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
-        verify(userRepository).save(captor.capture());
+        ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userRepository).save(userCaptor.capture());
 
-        User savedUser = captor.getValue();
+        User savedUser = userCaptor.getValue();
+
         assertEquals("PATIENT", savedUser.getRole());
         assertNotNull(savedUser.getLastLogin());
 
-        verify(jwtUtil).generateToken("fred", "PATIENT");
+        verify(tokenService).generateToken("fred", "PATIENT");
     }
 
     @Test
-    void validateToken_shouldDelegateToJwtUtil() {
-        when(jwtUtil.validateToken("abc")).thenReturn(true);
+    void validateToken_shouldDelegateToTokenService() {
+        when(tokenService.validateToken("abc"))
+                .thenReturn(true);
 
         boolean result = authenticationService.validateToken("abc");
 
         assertTrue(result);
-        verify(jwtUtil).validateToken("abc");
+        verify(tokenService).validateToken("abc");
     }
 
     @Test
-    void getUsernameFromToken_shouldDelegateToJwtUtil() {
-        when(jwtUtil.extractUsername("abc")).thenReturn("fred");
+    void getUsernameFromToken_shouldDelegateToTokenService() {
+        when(tokenService.extractUsername("abc"))
+                .thenReturn("fred");
 
         String result = authenticationService.getUsernameFromToken("abc");
 
         assertEquals("fred", result);
-        verify(jwtUtil).extractUsername("abc");
+        verify(tokenService).extractUsername("abc");
     }
 }

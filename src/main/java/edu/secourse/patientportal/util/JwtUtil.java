@@ -1,5 +1,6 @@
 package edu.secourse.patientportal.util;
 
+import edu.secourse.patientportal.service.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,7 +36,7 @@ import java.util.List;
  * @author AquaWorld Development Team
  */
 @Component
-public class JwtUtil {
+public class JwtUtil implements TokenService {
 
     // Injected from application.properties
     @Value("${jwt.secret.key}")
@@ -56,6 +57,7 @@ public class JwtUtil {
      * @param username the username to encode in the token
      * @return JWT token as a string
      */
+    @Override
     public String generateToken(String username, String role) {
         return Jwts.builder()
                 // Set the subject (username)
@@ -84,6 +86,7 @@ public class JwtUtil {
      * @param token the JWT token to validate
      * @return true if token is valid, false otherwise
      */
+    @Override
     public boolean validateToken(String token) {
         try {
             // Parse and verify the token signature
@@ -107,6 +110,7 @@ public class JwtUtil {
      * @param token the JWT token
      * @return username extracted from the token
      */
+    @Override
     public String extractUsername(String token) {
         return extractAllClaims(token).getSubject();
     }

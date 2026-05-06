@@ -17,15 +17,17 @@ import java.time.LocalDateTime;
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
+//    private final JwtUtil jwtUtil;
+    private final TokenService tokenService;
 
 //    @Autowired
     public AuthenticationService(UserRepository userRepository,
                                  PasswordEncoder passwordEncoder,
-                                 JwtUtil jwtUtil) {
+                                 TokenService tokenService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
+        this.tokenService = tokenService;
+//        this.jwtUtil = jwtUtil;
     }
 
     /**
@@ -64,7 +66,8 @@ public class AuthenticationService {
         userRepository.save(user);
 
         // Generate JWT token
-        String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
+//        String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
+        String token = tokenService.generateToken(user.getUsername(), user.getRole());
         System.out.println("This is the generatied token:\n"+ token);
         System.out.println(("This is the username and role: " + user.getUsername() + " " + user.getRole()));
 
@@ -92,7 +95,9 @@ public class AuthenticationService {
      * @return true if token is valid, false otherwise
      */
     public boolean validateToken(String token) {
-        return jwtUtil.validateToken(token);
+
+//        return jwtUtil.validateToken(token);
+        return tokenService.validateToken(token);
     }
 
     /**
@@ -104,6 +109,8 @@ public class AuthenticationService {
      * @return username from token
      */
     public String getUsernameFromToken(String token) {
-        return jwtUtil.extractUsername(token);
+
+//        return jwtUtil.extractUsername(token);
+        return tokenService.extractUsername(token);
     }
 }
