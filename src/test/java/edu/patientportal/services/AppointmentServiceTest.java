@@ -3,7 +3,7 @@ package edu.patientportal.services;
 import edu.secourse.patientportal.models.Appointment;
 import edu.secourse.patientportal.models.Doctor;
 import edu.secourse.patientportal.models.Patient;
-import edu.secourse.patientportal.services.AppointmentService;
+import edu.secourse.patientportal.service.AppointmentService;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

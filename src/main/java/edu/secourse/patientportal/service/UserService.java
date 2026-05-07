@@ -1,4 +1,4 @@
-package edu.secourse.patientportal.services;
+package edu.secourse.patientportal.service;
 import edu.secourse.patientportal.models.User;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class UserService {
                 users.add(user);
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -88,7 +88,7 @@ public class UserService {
             if (!userExists) {
                 System.out.println("User does not exist.");
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -108,7 +108,7 @@ public class UserService {
                     success = true;
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -138,7 +138,7 @@ public class UserService {
                     success = true;
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -156,7 +156,7 @@ public class UserService {
             if (users.contains(user)) {
                 containsUser = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return containsUser;

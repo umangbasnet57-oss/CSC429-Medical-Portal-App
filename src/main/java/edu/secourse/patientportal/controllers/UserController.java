@@ -1,7 +1,7 @@
 package edu.secourse.patientportal.controllers;
 
 import edu.secourse.patientportal.models.User;
-import edu.secourse.patientportal.services.UserService;
+import edu.secourse.patientportal.service.UserService;
 
 /**
  * Controller responsible for handling operations related to User entities.
@@ -32,7 +32,7 @@ public class UserController {
             if (userService != null && this.userService != null) {
                 this.userService = userService;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -49,7 +49,7 @@ public class UserController {
             if (user != null) {
                 success = userService.createUser(user);
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -69,7 +69,7 @@ public class UserController {
         boolean success = false;
         try {
             success = userService.updateUser(oldUsername, newUsername, hashedPassword, name, email);
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -89,7 +89,7 @@ public class UserController {
                     isValid = true;
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return isValid;

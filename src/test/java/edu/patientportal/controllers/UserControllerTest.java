@@ -2,7 +2,7 @@ package edu.patientportal.controllers;
 
 import edu.secourse.patientportal.models.Admin;
 import edu.secourse.patientportal.models.User;
-import edu.secourse.patientportal.services.UserService;
+import edu.secourse.patientportal.service.UserService;
 import edu.secourse.patientportal.controllers.UserController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

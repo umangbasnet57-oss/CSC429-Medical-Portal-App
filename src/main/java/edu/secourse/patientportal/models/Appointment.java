@@ -1,6 +1,6 @@
 package edu.secourse.patientportal.models;
 
-import edu.secourse.patientportal.services.UserService;
+import edu.secourse.patientportal.service.UserService;
 
 import java.time.LocalDateTime;
 
@@ -46,7 +46,7 @@ public class Appointment {
                 this.appointmentDateTime = appointmentDateTime;
                 this.status = Status.ACTIVE;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -73,7 +73,7 @@ public class Appointment {
                 this.status = status;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -101,7 +101,7 @@ public class Appointment {
                 this.appointmentId = appointmentId;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -129,7 +129,7 @@ public class Appointment {
                 this.patient = patient;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
 
@@ -158,7 +158,7 @@ public class Appointment {
                 this.doctor = doctor;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -186,7 +186,7 @@ public class Appointment {
                 this.appointmentDateTime = appointmentDateTime;
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -198,7 +198,7 @@ public class Appointment {
     public void cancelAppointment() {
         try {
             this.status = Status.CANCELLED;
-        } catch (Exception _) {
+        } catch (Exception ee_) {
 
         }
     }

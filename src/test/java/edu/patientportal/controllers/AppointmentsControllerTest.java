@@ -1,7 +1,7 @@
 package edu.patientportal.controllers;
 
 import edu.secourse.patientportal.models.*;
-import edu.secourse.patientportal.services.AppointmentService;
+import edu.secourse.patientportal.service.AppointmentService;
 import edu.secourse.patientportal.controllers.AppointmentController;
 
 import org.junit.jupiter.api.DisplayName;

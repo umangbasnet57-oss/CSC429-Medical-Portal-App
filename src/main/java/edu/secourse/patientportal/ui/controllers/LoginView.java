@@ -6,12 +6,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 
 public class LoginView {
 
     public static void open(Stage stage) {
         Label title = new Label("Medical Portal");
         title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1f3b57;");
+
 
         Label subtitle = new Label("Secure Patient Management System");
         subtitle.setStyle("-fx-font-size: 15px; -fx-text-fill: #5f6c7b;");
@@ -24,10 +34,6 @@ public class LoginView {
         passwordField.setPromptText("Password");
         passwordField.setMaxWidth(320);
 
-        ComboBox<UserRole> roleBox = new ComboBox<>();
-        roleBox.getItems().addAll(UserRole.ADMIN, UserRole.PATIENT, UserRole.DOCTOR);
-        roleBox.setPromptText("Select Role");
-        roleBox.setMaxWidth(320);
 
         Label message = new Label();
         message.setStyle("-fx-font-weight: bold;");
@@ -36,57 +42,107 @@ public class LoginView {
         loginButton.setMaxWidth(320);
         loginButton.setStyle("-fx-background-color: #1f6feb; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10;");
 
-        Label demoInfo = new Label("Demo Accounts: admin/admin123 | patient/patient123 | doctor/doctor123");
-        demoInfo.setStyle("-fx-font-size: 11px; -fx-text-fill: #6c757d;");
 
         loginButton.setOnAction(e -> {
             String username = usernameField.getText().trim();
             String password = passwordField.getText().trim();
-            UserRole role = roleBox.getValue();
 
-            if (username.isBlank() || password.isBlank() || role == null) {
-                message.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
-                message.setText("Please fill username, password, and role.");
-                return;
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                String jsonBody = """
+            {
+              "username": "%s",
+              "password": "%s"
             }
+            """.formatted(username, password);
 
-            boolean validLogin =
-                    (role == UserRole.ADMIN && username.equals("admin") && password.equals("admin123")) ||
-                            (role == UserRole.PATIENT && username.equals("patient") && password.equals("patient123")) ||
-                            (role == UserRole.DOCTOR && username.equals("doctor") && password.equals("doctor123"));
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("http://localhost:8080/maclogixapi/v1/auth/login"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                        .build();
 
-            if (!validLogin) {
+                HttpResponse<String> response =
+                        client.send(request, HttpResponse.BodyHandlers.ofString());
+
+                if (response.statusCode() != 200) {
+                    message.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                    message.setText("Login failed.");
+                    return;
+                }
+
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode root = mapper.readTree(response.body());
+                JsonNode data = root.path("data");
+
+                String role = data.path("role").asText();
+
+                String returnedUsername = data.path("username").asText();
+                String returnedRole = data.path("role").asText();
+                String token = data.path("token").asText();
+
+                AppState.token = token;
+                AppState.currentUsername = returnedUsername;
+                AppState.currentRole = returnedRole;
+
+                if (role.equalsIgnoreCase("ADMIN")) {
+                    AdminDashboardView.open(stage, username);
+                } else if (role.equalsIgnoreCase("PATIENT")) {
+                    PatientDashboardView.open(stage, username);
+                } else if (role.equalsIgnoreCase("DOCTOR")) {
+                    DoctorDashboardView.open(stage, username);
+                } else {
+                    message.setStyle("-fx-text-fill: red;");
+                    message.setText("Unknown role.");
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
                 message.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
-                message.setText("Invalid login. Use the correct demo account for the selected role.");
-                return;
-            }
-
-            switch (role) {
-                case ADMIN -> AdminDashboardView.open(stage, username);
-                case PATIENT -> PatientDashboardView.open(stage, username);
-                case DOCTOR -> DoctorDashboardView.open(stage, username);
+                message.setText("Could not connect to backend.");
             }
         });
 
-        VBox card = new VBox(15, title, subtitle, usernameField, passwordField, roleBox, loginButton, message, demoInfo);
+
+        usernameField.setOnAction(e -> passwordField.requestFocus());
+        passwordField.setOnAction(e -> loginButton.fire());
+
+
+        VBox card = new VBox(15, title, subtitle, usernameField, passwordField, loginButton, message);
         card.setAlignment(Pos.CENTER);
         card.setPadding(new Insets(35));
-        card.setMaxWidth(430);
-        card.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 16;" +
-                        "-fx-border-radius: 16;" +
-                        "-fx-border-color: #d0d7de;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 12, 0, 0, 4);"
+        card.setMaxWidth(380);
+        card.setMaxHeight(320);
+        card.setStyle("""
+        -fx-background-color: rgba(255,255,255,0.90);
+        -fx-background-radius: 22;
+        -fx-padding: 28;
+        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 25, 0.2, 0, 8);
+        """);
+
+        ImageView background = new ImageView(
+                new Image(
+                        Thread.currentThread()
+                                .getContextClassLoader()
+                                .getResource("images/gifwallpaper.gif")
+                                .toExternalForm()
+                )
         );
 
-        StackPane root = new StackPane(card);
-        root.setPadding(new Insets(30));
-        root.setStyle("-fx-background-color: linear-gradient(to bottom right, #dbeafe, #f8fafc);");
+        background.fitWidthProperty().bind(stage.widthProperty());
+        background.fitHeightProperty().bind(stage.heightProperty());
+        background.setPreserveRatio(false);
 
-        Scene scene = new Scene(root, 650, 500);
+        StackPane root = new StackPane(background, card);
+
+        root.setPadding(new Insets(30));
+
+        Scene scene = new Scene(root, 900, 650);
         stage.setTitle("Medical Portal - Login");
         stage.setScene(scene);
+        stage.setMinWidth(900);
+        stage.setMinHeight(650);
+        stage.centerOnScreen();
         stage.show();
     }
 }

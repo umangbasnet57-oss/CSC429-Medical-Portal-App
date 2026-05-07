@@ -1,7 +1,7 @@
 package edu.secourse.patientportal.controllers;
 
 import edu.secourse.patientportal.models.*;
-import edu.secourse.patientportal.services.AppointmentService;
+import edu.secourse.patientportal.service.AppointmentService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class AppointmentController {
             if (appointmentService != null) {
                 this.appointmentService = appointmentService;
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -48,7 +48,7 @@ public class AppointmentController {
             if (appointment != null) {
                 success = appointmentService.createAppointment(appointment);
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -64,7 +64,7 @@ public class AppointmentController {
         boolean success = false;
         try {
             success = appointmentService.cancelAppointment(appointmentId);
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -85,7 +85,7 @@ public class AppointmentController {
             if (patient != null && doctor != null && newDateTime != null) {
                 success = appointmentService.modifyAppointment(appointmentId, patient, doctor, newDateTime);
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -105,7 +105,7 @@ public class AppointmentController {
             if (user != null) {
                 userAppointments = appointmentService.getAppointmentsForUser(user);
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return userAppointments;
@@ -119,7 +119,7 @@ public class AppointmentController {
     public void printAppointment(Appointment appointment) {
         try {
             System.out.println(appointment.toString());
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }

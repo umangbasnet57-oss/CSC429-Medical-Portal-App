@@ -5,21 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b42993f1-94ef-42ed-9718-0ed67055d05d" name="Changes" comment="UI progress">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/UIStyle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/controllers/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/controllers/AppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/models/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/models/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/services/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/service/AppointmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AdminDashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AdminDashboardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AppState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AppState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AppointmentRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/AppointmentRow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/ChangePasswordView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/ChangePasswordView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/DoctorDashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/DoctorDashboardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/DoctorRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/DoctorRow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/PatientDashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/PatientDashboardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/PatientRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/PatientRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/UIStyle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/secourse/patientportal/ui/controllers/UIStyle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/patientportal/controllers/AppointmentsControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/patientportal/controllers/AppointmentsControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/patientportal/controllers/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/patientportal/controllers/UserControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/patientportal/services/AppointmentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/patientportal/services/AppointmentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/patientportal/services/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/patientportal/services/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/controllers/AppController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/controllers/AppController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/controllers/AppointmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/controllers/AppointmentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/controllers/UserController.class" afterDir="false" />
@@ -29,30 +36,21 @@
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/models/Doctor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/models/Doctor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/models/Patient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/models/Patient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/services/AppointmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/services/AppointmentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/services/AppointmentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/services/UserService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/AppState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/AppState.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/AppointmentRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/AppointmentRow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/ChangePasswordView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/ChangePasswordView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/DoctorDashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/DoctorDashboardView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/DoctorRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/DoctorRow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/LoginView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/LoginView$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/LoginView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/MainApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/MainApp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/PatientDashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/PatientDashboardView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/PatientRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/PatientRow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/UIStyle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/UIStyle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/secourse/patientportal/ui/controllers/UserRole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/controllers/AppControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/controllers/AppControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/controllers/AppointmentControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/controllers/AppointmentControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/controllers/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/controllers/UserControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/AdminTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/AdminTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/AppointmentTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/AppointmentTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/DoctorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/DoctorTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/PatientTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/models/PatientTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/services/AppointmentServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/services/AppointmentServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/patientportal/services/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/patientportal/services/UserServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +67,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="final_backend" />
+        <entry key="$PROJECT_DIR$" value="restapi_developer" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -83,11 +81,11 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/umangbasnet57-oss/CSC429-Medical-Portal-App.git&quot;,
-    &quot;accountId&quot;: &quot;0cabc985-d413-4ea9-be66-d44ec7dcc7f4&quot;
+    &quot;accountId&quot;: &quot;5ced1525-0f77-4bc8-9297-3a02d1f824ab&quot;
   }
 }</component>
-  <component name="MavenRunner">
-    <option name="jreName" value="openjdk-26" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -99,29 +97,39 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainApp.executor": "Run",
-    "Maven.Medical-Portal-App [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "frontend__umang",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/umangbasnet/Desktop/CSC429-Medical-Portal-App",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainApp.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Medical-Portal-App [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend__umang&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/madhapsharma/Desktop/spring 2026/object oriented/patientportal/frontend&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MainApp" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="homebrew-25" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.ui.controllers.MainApp" />
-      <module name="Lab_9" />
-      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/javafx-sdk-26.0.1/lib --add-modules javafx.controls,javafx.fxml" />
+      <module name="Medical-Portal-App" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx/lib --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="edu.secourse.patientportal.ui.controllers.*" />
@@ -143,17 +151,12 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.MainApp" />
-        <item itemvalue="Application.MainApp" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
@@ -164,6 +167,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1774476589566</updated>
+      <workItem from="1775096214500" duration="621000" />
+      <workItem from="1775096847519" duration="5256000" />
+      <workItem from="1775104539046" duration="181000" />
+      <workItem from="1775104722322" duration="285000" />
+      <workItem from="1775105009829" duration="5881000" />
+      <workItem from="1776353812821" duration="15000" />
+      <workItem from="1776354128117" duration="1291000" />
+      <workItem from="1776355992997" duration="322000" />
+      <workItem from="1776356317100" duration="6363000" />
+      <workItem from="1777509040688" duration="56000" />
+      <workItem from="1777509147784" duration="2684000" />
+      <workItem from="1778097159558" duration="1822000" />
+      <workItem from="1778098994042" duration="16594000" />
+      <workItem from="1778116068811" duration="11757000" />
     </task>
     <task id="LOCAL-00001" summary="UI progress">
       <option name="closed" value="true" />
@@ -207,6 +224,9 @@
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UI progress" />

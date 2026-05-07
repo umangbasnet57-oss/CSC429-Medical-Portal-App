@@ -49,7 +49,7 @@ public abstract class User {
             this.name = name;
             this.email = email;
             this.role = role;
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -80,7 +80,7 @@ public abstract class User {
     public void setUsername(String username) {
         try {
             this.username = username;
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -102,7 +102,7 @@ public abstract class User {
     public void setHashedPassword(String hashedPassword) {
         try {
             this.hashedPassword = hashedPassword;
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -124,7 +124,7 @@ public abstract class User {
     public void setName(String name) {
         try {
             this.name = name;
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -146,7 +146,7 @@ public abstract class User {
     public void setEmail(String email) {
         try {
             this.email = email;
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -168,7 +168,7 @@ public abstract class User {
     public void setRole(String role) {
         try {
             this.role = role;
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
     }
@@ -196,7 +196,7 @@ public abstract class User {
                 User user = (User) o;
                 return Objects.equals(this.username, user.username);
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return isEqual;

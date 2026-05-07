@@ -1,4 +1,4 @@
-package edu.secourse.patientportal.services;
+package edu.secourse.patientportal.service;
 
 import edu.secourse.patientportal.models.Appointment;
 import edu.secourse.patientportal.models.*;
@@ -58,7 +58,7 @@ public class AppointmentService {
                 appointments.add(appointment);
                 success = true;
             }
-        } catch (Exception _) {
+        } catch (Exception e) {
 
         }
         return success;
@@ -83,7 +83,7 @@ public class AppointmentService {
                     }
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -112,7 +112,7 @@ public class AppointmentService {
                     }
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return success;
@@ -142,9 +142,10 @@ public class AppointmentService {
                     }
                 }
             }
-        } catch (Exception _) {
+        } catch (Exception e_) {
 
         }
         return result;
     }
+
 }

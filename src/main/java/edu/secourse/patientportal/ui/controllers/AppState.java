@@ -7,7 +7,9 @@ public class AppState {
     public static final ObservableList<PatientRow> patients = FXCollections.observableArrayList();
     public static final ObservableList<DoctorRow> doctors = FXCollections.observableArrayList();
     public static final ObservableList<AppointmentRow> appointments = FXCollections.observableArrayList();
-
+    public static String token = "";
+    public static String currentUsername = "";
+    public static String currentRole = "";
     static {
         patients.add(new PatientRow(1, "John Smith", "john123", "john@gmail.com"));
         patients.add(new PatientRow(2, "Jane Doe", "jane456", "jane@gmail.com"));

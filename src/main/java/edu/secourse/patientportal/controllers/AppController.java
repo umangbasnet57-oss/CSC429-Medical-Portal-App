@@ -3,8 +3,8 @@ package edu.secourse.patientportal.controllers;
 import edu.secourse.patientportal.models.Patient;
 import edu.secourse.patientportal.models.Doctor;
 import edu.secourse.patientportal.models.Appointment;
-import edu.secourse.patientportal.services.UserService;
-import edu.secourse.patientportal.services.AppointmentService;
+import edu.secourse.patientportal.service.UserService;
+import edu.secourse.patientportal.service.AppointmentService;
 
 import java.time.LocalDateTime;
 

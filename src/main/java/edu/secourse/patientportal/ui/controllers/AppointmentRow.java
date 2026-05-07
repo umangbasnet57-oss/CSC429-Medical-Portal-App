@@ -86,6 +86,9 @@ public class AppointmentRow {
     public void setTime(String newTime) {
         time.set(newTime);
     }
+    public void setAppointmentId(int id) {
+        this.appointmentId.set(id);
+    }
 
     public void setPatientName(String newPatientName) {
         patientName.set(newPatientName);
