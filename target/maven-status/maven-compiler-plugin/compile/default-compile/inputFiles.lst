@@ -23,9 +23,13 @@
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/repository/UserRepository.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/response/MLogixApiResponse.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/security/SecurityConfig.java
+/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/AppointmentManagementService.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/AppointmentService.java
+/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/AuthenticationManagementService.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/AuthenticationService.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/JwtUserDetailsService.java
+/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/TokenService.java
+/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/UserManagementService.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/service/UserService.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/util/Constants.java
 /Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/main/java/edu/secourse/patientportal/util/JwtAuthenticationFilter.java
