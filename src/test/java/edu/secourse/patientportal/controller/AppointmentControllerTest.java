@@ -135,7 +135,7 @@ class AppointmentControllerTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Patient not found : wrongPatient"));
+                .andExpect(content().string("Patient not found: wrongPatient"));
     }
 
     @Test
@@ -156,7 +156,7 @@ class AppointmentControllerTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Doctor not found : wrongDoctor"));
+                .andExpect(content().string("Doctor not found: wrongDoctor"));
     }
 
     @Test
@@ -181,7 +181,7 @@ class AppointmentControllerTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("This appointment already exists."));
+                .andExpect(content().string("Appointment conflict: doctor or patient is already booked at this time."));
     }
 
     @Test
@@ -190,7 +190,7 @@ class AppointmentControllerTest {
 
         mockMvc.perform(delete(Constants.APPOINTMENT_ENDPOINT + "/1/cancel"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Appoitment 1 cancelled."));
+                .andExpect(content().string("Appointment 1 cancelled."));
     }
 
     @Test
