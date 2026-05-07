@@ -11,66 +11,98 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+/**
+ * Service responsible for handling authentication and JWT-related operations.
+ *
+ * <p>This service provides functionality for:
+ * <ul>
+ *     <li>User authentication (login)</li>
+ *     <li>JWT token generation</li>
+ *     <li>JWT token validation</li>
+ *     <li>Extracting user identity from tokens</li>
+ * </ul>
+ *
+ * <p><b>Authentication Flow:</b>
+ * <ol>
+ *     <li>Retrieve user by username</li>
+ *     <li>Validate password using {@link PasswordEncoder}</li>
+ *     <li>Update user's last login timestamp</li>
+ *     <li>Generate JWT token via {@link TokenService}</li>
+ *     <li>Return {@link LoginResponse} containing token and user details</li>
+ * </ol>
+ *
+ * <p><b>Security Notes:</b>
+ * <ul>
+ *     <li>Passwords are securely stored using hashing (e.g., BCrypt)</li>
+ *     <li>JWT tokens are stateless and time-limited</li>
+ *     <li>Invalid credentials result in {@link UnauthorizedException}</li>
+ * </ul>
+ */
 @Service
 public class AuthenticationService implements AuthenticationManagementService {
+
+    /** Repository used to retrieve and persist user data. */
     private final UserRepository userRepository;
+
+    /** Encoder used to verify hashed passwords. */
     private final PasswordEncoder passwordEncoder;
-//    private final JwtUtil jwtUtil;
+
+    /** Service responsible for JWT token operations. */
     private final TokenService tokenService;
 
-//    @Autowired
+    /**
+     * Constructs an AuthenticationService with required dependencies.
+     *
+     * @param userRepository repository for user data access
+     * @param passwordEncoder encoder for password verification
+     * @param tokenService service for JWT operations
+     */
     public AuthenticationService(UserRepository userRepository,
                                  PasswordEncoder passwordEncoder,
                                  TokenService tokenService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
-//        this.jwtUtil = jwtUtil;
     }
 
     /**
-     * Authenticate user and generate JWT token
+     * Authenticates a user and generates a JWT token.
      *
-     * Process:
-     * 1. Find user by username
-     * 2. If not found -> throw 401 Unauthorized
-     * 3. Compare provided password with stored encrypted password
-     * 4. If password doesn't match -> throw 401 Unauthorized
-     * 5. Update last login time
-     * 6. Generate JWT token
-     * 7. Return login response with token
+     * <p>This method performs the following:
+     * <ul>
+     *     <li>Validates that the user exists</li>
+     *     <li>Compares raw password with stored hashed password</li>
+     *     <li>Updates last login timestamp</li>
+     *     <li>Generates a JWT token</li>
+     * </ul>
      *
      * @param loginRequest contains username and password
-     * @return LoginResponse with JWT token and user info
-     * @throws UnauthorizedException if username not found or password invalid (401)
+     * @return {@link LoginResponse} containing user info and JWT token
+     * @throws UnauthorizedException if credentials are invalid
      */
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
-        // Find user by username
+
+        // Retrieve user or throw 401 Unauthorized
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new UnauthorizedException(Constants.MSG_INVALID_CREDENTIALS));
 
-        System.out.println("User details: "+ user.toString());
-        // Verify password
-        // passwordEncoder.matches() compares plain text with BCrypt encrypted password
+        // Validate password
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             throw new UnauthorizedException(Constants.MSG_INVALID_CREDENTIALS);
         }
 
-        // Make sure role is capitalized
+        // Normalize role
         user.setRole(user.getRole().toUpperCase());
 
-        // Update last login timestamp
+        // Update last login time
         user.setLastLogin(LocalDateTime.now());
         userRepository.save(user);
 
         // Generate JWT token
-//        String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
         String token = tokenService.generateToken(user.getUsername(), user.getRole());
-        System.out.println("This is the generatied token:\n"+ token);
-        System.out.println(("This is the username and role: " + user.getUsername() + " " + user.getRole()));
 
-        // Return login response with token
+        // Build and return response
         return LoginResponse.builder()
                 .id(user.getId())
                 .username(user.getUsername())
@@ -80,36 +112,37 @@ public class AuthenticationService implements AuthenticationManagementService {
                 .role(user.getRole())
                 .token(token)
                 .tokenType("Bearer")
-                .expiresIn(3600L) // 1 hour in seconds
+                .expiresIn(3600L) // 1 hour (seconds)
                 .loginAt(LocalDateTime.now())
                 .build();
     }
 
     /**
-     * Validate JWT token
+     * Validates a JWT token.
      *
-     * Used to check if a token is still valid
+     * <p>This method checks whether a token is:
+     * <ul>
+     *     <li>Properly signed</li>
+     *     <li>Not expired</li>
+     * </ul>
      *
-     * @param token the JWT token to validate
+     * @param token the JWT token
      * @return true if token is valid, false otherwise
      */
     public boolean validateToken(String token) {
-
-//        return jwtUtil.validateToken(token);
         return tokenService.validateToken(token);
     }
 
     /**
-     * Extract username from JWT token
+     * Extracts the username from a JWT token.
      *
-     * Used to identify the authenticated user
+     * <p>This is typically used to identify the currently authenticated user
+     * during request processing.
      *
      * @param token the JWT token
-     * @return username from token
+     * @return username embedded in the token
      */
     public String getUsernameFromToken(String token) {
-
-//        return jwtUtil.extractUsername(token);
         return tokenService.extractUsername(token);
     }
 }

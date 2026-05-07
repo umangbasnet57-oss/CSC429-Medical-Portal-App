@@ -7,63 +7,82 @@ import edu.secourse.patientportal.model.Doctor;
 import edu.secourse.patientportal.model.Patient;
 import edu.secourse.patientportal.model.User;
 import edu.secourse.patientportal.service.UserManagementService;
-import edu.secourse.patientportal.service.UserService;
 import edu.secourse.patientportal.util.Constants;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 /**
- * REST controller for user management.
- * Base URL: /maclogixapi/v1/users
+ * REST controller responsible for user management operations.
+ *
+ * <p>This controller provides endpoints for:
+ * <ul>
+ *     <li>Retrieving a single user</li>
+ *     <li>Retrieving all users</li>
+ *     <li>Creating new users</li>
+ *     <li>Updating existing users</li>
+ *     <li>Deleting users</li>
+ * </ul>
+ *
+ * <p><b>Base Path:</b> {@code /maclogixapi/v1/users}
+ *
+ * <p><b>Security:</b>
+ * <ul>
+ *     <li>All endpoints require ADMIN role</li>
+ * </ul>
+ *
+ * <p><b>Design Notes:</b>
+ * <ul>
+ *     <li>Delegates business logic to {@link UserManagementService}</li>
+ *     <li>Uses DTOs (e.g., {@link UserResponse}) for safe API responses</li>
+ *     <li>Supports dynamic updates via request body maps</li>
+ * </ul>
  */
 @RestController
 @RequestMapping(Constants.USERS_ENDPOINT)
 public class UserController {
 
-//    private final UserService userService;
+    /** Service layer responsible for user operations. */
     private final UserManagementService userService;
 
+    /**
+     * Constructs a UserController with required dependencies.
+     *
+     * @param userService service used for managing users
+     */
     public UserController(UserManagementService userService) {
         this.userService = userService;
     }
 
-    // Debug controll
-    @GetMapping("/debug")
-    public String debug(Authentication authentication) {
-        System.out.println("Trying to display User role...");
-        authentication.getAuthorities()
-                .forEach(a -> System.out.println(a.getAuthority()));
-
-        return "check console";
-    }
-//    @GetMapping("/debug")
-//    @PreAuthorize("permitAll()")
-//    public List<String> debug(Authentication authentication) {
-//        if(authentication == null) return List.of("No authentication");
-//        return authentication.getAuthorities()
-//                .stream()
-//                .map(a -> a.getAuthority())
-//                .toList();
-//    }
-
     /**
-     * GET /maclogixapi/v1/users/{username}
-     * Returns a user's information by their username.
+     * Retrieves a user by username.
+     *
+     * <p><b>Endpoint:</b> {@code GET /maclogixapi/v1/users/{username}}
+     *
+     * @param username the username of the user
+     * @return 200 OK with user data, or 404 Not Found if user does not exist
      */
     @GetMapping("/{username}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getUser(@PathVariable String username) {
         User user = userService.getUser(username);
+
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(user);
     }
 
+    /**
+     * Retrieves all users in the system.
+     *
+     * <p><b>Endpoint:</b> {@code GET /maclogixapi/v1/users}
+     *
+     * @return 200 OK with list of users
+     */
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllUsers() {
@@ -71,16 +90,31 @@ public class UserController {
     }
 
     /**
-     * POST /api/users
-     * Create a new User.
-     * Body JSON :
+     * Creates a new user.
+     *
+     * <p><b>Endpoint:</b> {@code POST /maclogixapi/v1/users/create}
+     *
+     * <p><b>Expected Request Body:</b>
+     * <pre>
      * {
      *   "username": "john123",
-     *   "password": "pass123",
-     *   "name":     "John Smith",
-     *   "email":    "john@mail.com",
-     *   "role":     "patient"  (patient | doctor | admin)
+     *   "password": "password123",
+     *   "name": "John Smith",
+     *   "email": "john@mail.com",
+     *   "role": "PATIENT" (PATIENT | DOCTOR | ADMIN)
      * }
+     * </pre>
+     *
+     * <p><b>Behavior:</b>
+     * <ul>
+     *     <li>Creates a user object based on the provided role</li>
+     *     <li>Delegates creation to service layer</li>
+     *     <li>Returns DTO representation of created user</li>
+     * </ul>
+     *
+     * @param body request body containing user details
+     * @return 200 OK with created user, or 400 Bad Request on failure
+     * @throws RoleNotFoundException if role is invalid
      */
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
@@ -90,75 +124,86 @@ public class UserController {
             String password = body.get("password");
             String name = body.get("name");
             String email = body.get("email");
-            String role = body.getOrDefault("role", "PATIENT");
+            String role = body.getOrDefault("role", "PATIENT").toUpperCase();
 
             User user = switch (role) {
                 case "DOCTOR" -> new Doctor(username, password, name, email);
                 case "ADMIN"  -> new Admin(username, password, name, email);
                 case "PATIENT" -> new Patient(username, password, name, email);
-                default       -> throw new RoleNotFoundException(role + " is not allowed");
+                default -> throw new RoleNotFoundException(role + " is not allowed");
             };
 
             boolean success = userService.createUser(user);
+
             if (success) {
-                // 3. Convert Entity to DTO (Security Layer)
                 return ResponseEntity.ok(UserResponse.fromEntity(user));
-            } else {
-                return ResponseEntity.badRequest().body("Could not create user: " + username);
             }
+
+            return ResponseEntity.badRequest().body("Could not create user: " + username);
+
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error : " + e.getMessage());
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 
     /**
-     * PUT /maclogixapi/v1/users/{username}
-     * Update the information of an existing user.
-     * Body JSON :
-     * {
-     *   "newUsername": "john456",
-     *   "password":    "newpass",
-     *   "name":        "John Updated",
-     *   "email":       "john456@mail.com"
-     * }
+     * Updates an existing user.
+     *
+     * <p><b>Endpoint:</b> {@code PUT /maclogixapi/v1/users/{username}}
+     *
+     * <p><b>Behavior:</b>
+     * <ul>
+     *     <li>Updates only fields provided in request body</li>
+     *     <li>Delegates update logic to service layer</li>
+     * </ul>
+     *
+     * @param username the username of the user to update
+     * @param body map containing fields to update
+     * @return 200 OK if updated, 400 Bad Request otherwise
      */
     @PutMapping("/{username}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody Map<String, String> body) {
+    public ResponseEntity<?> updateUser(@PathVariable String username,
+                                        @RequestBody Map<String, String> body) {
         try {
-//            String newUsername = body.getOrDefault("newUsername", username);
-//            String password    = body.get("password");
-//            String name        = body.get("name");
-//            String email       = body.get("email");
-
-            System.out.println("Updating user: "+ username);
             boolean success = userService.updateUser(username, body);
 
-//            boolean success = userService.updateUser(username, newUsername, password, name, email);
             if (success) {
-                return ResponseEntity.ok("User Updated successfully");
+                return ResponseEntity.ok("User updated successfully");
             }
+
             return ResponseEntity.badRequest().body("User not found or username already taken.");
+
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error : " + e.getMessage());
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 
     /**
-     * DELETE /maclogixapi/users/{username}
-     * Delete a user by their username.
+     * Deletes a user by username.
+     *
+     * <p><b>Endpoint:</b> {@code DELETE /maclogixapi/v1/users/{username}}
+     *
+     * @param username the username of the user to delete
+     * @return 200 OK if deleted, 404 Not Found if user does not exist,
+     *         or 500 Internal Server Error if deletion fails
      */
     @DeleteMapping("/{username}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteUser(@PathVariable String username) {
+
         User user = userService.getUser(username);
+
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
+
         boolean success = userService.removeUser(user);
+
         if (success) {
-            return ResponseEntity.ok("User deleted : " + username);
+            return ResponseEntity.ok("User deleted: " + username);
         }
+
         return ResponseEntity.internalServerError().body("Error during deletion.");
     }
 }

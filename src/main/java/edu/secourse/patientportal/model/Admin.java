@@ -1,38 +1,53 @@
 package edu.secourse.patientportal.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.experimental.SuperBuilder;
 
 /**
- * Represents an administrator user within the patient portal system.
- * <p>
- * Admin extends the abstract {@link User} class and provides an additional
- * auto-incrementing admin-specific identifier. Stored in the shared
- * {@code users} table with {@code role = 'admin'}.
+ * Entity representing an administrator within the patient portal system.
+ *
+ * <p>This class extends {@link User} and represents users with elevated
+ * privileges. Admin users are responsible for managing other users,
+ * system configuration, and administrative operations.
+ *
+ * <p><b>Persistence Details:</b>
+ * <ul>
+ *     <li>Stored in the shared {@code users} table</li>
+ *     <li>Uses single-table inheritance with discriminator value {@code "ADMIN"}</li>
+ * </ul>
+ *
+ * <p><b>Inheritance:</b>
+ * <ul>
+ *     <li>Extends {@link User}</li>
+ *     <li>Inherits all base user fields (username, password, email, etc.)</li>
+ * </ul>
+ *
+ * <p><b>Role Behavior:</b>
+ * <ul>
+ *     <li>Automatically assigned role {@code "ADMIN"}</li>
+ *     <li>Used for authorization checks in secured endpoints</li>
+ * </ul>
  */
 @Entity
 @SuperBuilder
 @DiscriminatorValue("ADMIN")
 public class Admin extends User {
 
-//    @Column(name = "admin_id")
-//    private int adminId = 0;
-//    private static int nextAdminId = 1;
-
     /**
-     * Default no-argument constructor.
-     * <p>
-     * Leaves all fields at default values until explicitly set.
+     * Default constructor required by JPA.
+     *
+     * <p>Initializes an empty Admin instance. Fields should be populated
+     * via setters or builder pattern.
      */
     public Admin() {
-
+        super();
     }
 
     /**
-     * Constructs an Admin user with full user information and assigns
-     * a unique admin ID if integer-boundary conditions allow it.
+     * Constructs an Admin user with required attributes.
+     *
+     * <p>This constructor sets the user's role to {@code "ADMIN"} automatically.
      *
      * @param username       the admin's username
      * @param hashedPassword the admin's hashed password
@@ -41,18 +56,5 @@ public class Admin extends User {
      */
     public Admin(String username, String hashedPassword, String name, String email) {
         super(username, hashedPassword, name, email, "ADMIN");
-
-//        this.adminId = nextAdminId;
-
-//        nextAdminId += 1;
     }
-
-    /**
-     * Retrieves the unique admin ID associated with this Admin user.
-     *
-     * @return the admin's ID number
-     */
-//    public int getAdminId() {
-//        return adminId;
-//    }
 }

@@ -44,45 +44,189 @@ public class AppointmentService implements AppointmentManagementService{
      */
     @Override
     public boolean createAppointment(Appointment appointment) {
-        boolean success = false;
+        if (appointment == null ||
+                appointment.getPatient() == null ||
+                appointment.getDoctor() == null ||
+                appointment.getAppointmentDateTime() == null) {
+            System.out.println("Invalid appointment data.");
+            return false;
+        }
+
+        Patient patient = appointment.getPatient();
+        Doctor doctor = appointment.getDoctor();
+
+        LocalDateTime appointmentTime = appointment.getAppointmentDateTime()
+                .truncatedTo(ChronoUnit.MINUTES);
+
         try {
             if (appointmentRepository != null) {
-                // Check for duplicates in the database
-                Patient p = appointment.getPatient();
-                Doctor d = appointment.getDoctor();
-                boolean exists = appointmentRepository.findByPatient(p).stream().anyMatch(a ->
-                        a.getDoctor().equals(d) &&
-                        a.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES)
-                         .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES))
-                );
-                if (!exists) {
-                    appointmentRepository.save(appointment);
-                    success = true;
-                }
-            } else {
-                boolean exists = false;
-                for (Appointment existingAppointment : appointments) {
-                    boolean samePatient = existingAppointment.getPatient().equals(appointment.getPatient());
-                    boolean sameDoctor = existingAppointment.getDoctor().equals(appointment.getDoctor());
-                    boolean sameTime = existingAppointment.getAppointmentDateTime()
-                            .truncatedTo(ChronoUnit.MINUTES)
-                            .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES));
-                    if (samePatient && sameDoctor && sameTime) {
-                        exists = true;
-                        break;
-                    }
-                }
-                if (!exists) {
-                    appointment.setAppointmentId(nextId++);
-                    appointments.add(appointment);
-                    success = true;
-                }
-            }
-        } catch (Exception ignored) {
 
+                boolean doctorAlreadyBooked = appointmentRepository.findByDoctor(doctor)
+                        .stream()
+                        .anyMatch(existing ->
+                                existing.getAppointmentDateTime() != null &&
+                                        existing.getAppointmentDateTime()
+                                                .truncatedTo(ChronoUnit.MINUTES)
+                                                .equals(appointmentTime)
+                        );
+
+                boolean patientAlreadyBooked = appointmentRepository.findByPatient(patient)
+                        .stream()
+                        .anyMatch(existing ->
+                                existing.getAppointmentDateTime() != null &&
+                                        existing.getAppointmentDateTime()
+                                                .truncatedTo(ChronoUnit.MINUTES)
+                                                .equals(appointmentTime)
+                        );
+
+                if (doctorAlreadyBooked || patientAlreadyBooked) {
+                    System.out.println("Doctor or patient already booked at: " + appointmentTime);
+                    return false;
+                }
+
+                appointmentRepository.save(appointment);
+                return true;
+            }
+
+            boolean conflictExists = appointments.stream().anyMatch(existing -> {
+                if (existing.getAppointmentDateTime() == null) {
+                    return false;
+                }
+
+                LocalDateTime existingTime = existing.getAppointmentDateTime()
+                        .truncatedTo(ChronoUnit.MINUTES);
+
+                boolean sameDoctorSameTime =
+                        existing.getDoctor().equals(doctor) &&
+                                existingTime.equals(appointmentTime);
+
+                boolean samePatientSameTime =
+                        existing.getPatient().equals(patient) &&
+                                existingTime.equals(appointmentTime);
+
+                return sameDoctorSameTime || samePatientSameTime;
+            });
+
+            if (conflictExists) {
+                return false;
+            }
+
+            appointment.setAppointmentId(nextId++);
+            appointments.add(appointment);
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        return success;
     }
+//    public boolean createAppointment(Appointment appointment) {
+//        try {
+//            if (appointment == null ||
+//                    appointment.getPatient() == null ||
+//                    appointment.getDoctor() == null ||
+//                    appointment.getAppointmentDateTime() == null) {
+//                return false;
+//            }
+//
+//            Patient patient = appointment.getPatient();
+//            Doctor doctor = appointment.getDoctor();
+//            LocalDateTime appointmentTime = appointment.getAppointmentDateTime()
+//                    .truncatedTo(ChronoUnit.MINUTES);
+//
+//            if (appointmentRepository != null) {
+//
+//                boolean doctorAlreadyBooked = appointmentRepository.findByDoctor(doctor)
+//                        .stream()
+//                        .anyMatch(existing ->
+//                                existing.getAppointmentDateTime()
+//                                        .truncatedTo(ChronoUnit.MINUTES)
+//                                        .equals(appointmentTime)
+//                        );
+//
+//                boolean patientAlreadyBooked = appointmentRepository.findByPatient(patient)
+//                        .stream()
+//                        .anyMatch(existing ->
+//                                existing.getAppointmentDateTime()
+//                                        .truncatedTo(ChronoUnit.MINUTES)
+//                                        .equals(appointmentTime)
+//                        );
+//
+//                if (doctorAlreadyBooked || patientAlreadyBooked) {
+//                    return false;
+//                }
+//
+//                appointmentRepository.save(appointment);
+//                return true;
+//            }
+//
+//            boolean conflictExists = appointments.stream()
+//                    .anyMatch(existing -> {
+//                        LocalDateTime existingTime = existing.getAppointmentDateTime()
+//                                .truncatedTo(ChronoUnit.MINUTES);
+//
+//                        boolean sameDoctorSameTime =
+//                                existing.getDoctor().equals(doctor) &&
+//                                        existingTime.equals(appointmentTime);
+//
+//                        boolean samePatientSameTime =
+//                                existing.getPatient().equals(patient) &&
+//                                        existingTime.equals(appointmentTime);
+//
+//                        return sameDoctorSameTime || samePatientSameTime;
+//                    });
+//
+//            if (conflictExists) {
+//                return false;
+//            }
+//
+//            appointments.add(appointment);
+//            return true;
+//
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+//    public boolean createAppointment(Appointment appointment) {
+//        boolean success = false;
+//        try {
+//            if (appointmentRepository != null) {
+//                // Check for duplicates in the database
+//                Patient p = appointment.getPatient();
+//                Doctor d = appointment.getDoctor();
+//                boolean exists = appointmentRepository.findByPatient(p).stream().anyMatch(a ->
+//                        a.getDoctor().equals(d) &&
+//                        a.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES)
+//                         .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES))
+//                );
+//                if (!exists) {
+//                    appointmentRepository.save(appointment);
+//                    success = true;
+//                }
+//            } else {
+//                boolean exists = false;
+//                for (Appointment existingAppointment : appointments) {
+//                    boolean samePatient = existingAppointment.getPatient().equals(appointment.getPatient());
+//                    boolean sameDoctor = existingAppointment.getDoctor().equals(appointment.getDoctor());
+//                    boolean sameTime = existingAppointment.getAppointmentDateTime()
+//                            .truncatedTo(ChronoUnit.MINUTES)
+//                            .equals(appointment.getAppointmentDateTime().truncatedTo(ChronoUnit.MINUTES));
+//                    if (samePatient && sameDoctor && sameTime) {
+//                        exists = true;
+//                        break;
+//                    }
+//                }
+//                if (!exists) {
+////                    appointment.setAppointmentId(nextId++);
+//                    appointments.add(appointment);
+//                    success = true;
+//                }
+//            }
+//        } catch (Exception ignored) {
+//
+//        }
+//        return success;
+//    }
 
     /**
      * Cancels an existing appointment by ID by marking its status as CANCELLED.

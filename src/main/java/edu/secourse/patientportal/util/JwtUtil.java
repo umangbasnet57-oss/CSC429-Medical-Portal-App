@@ -9,106 +9,107 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
-import java.util.List;
 
 /**
- * JWT (JSON Web Token) Utility Class for AquaWorld REST API
+ * Utility component responsible for JSON Web Token (JWT) operations.
  *
- * This utility class handles:
- * - JWT token generation for authenticated users
- * - JWT token validation and verification
- * - Extracting user information from tokens
- * - Token expiration checking
+ * <p>This class provides methods for:
+ * <ul>
+ *     <li>Generating JWT tokens for authenticated users</li>
+ *     <li>Validating JWT signatures and expiration status</li>
+ *     <li>Extracting usernames and claims from tokens</li>
+ *     <li>Checking whether a token has expired</li>
+ * </ul>
  *
- * JWT Structure: header.payload.signature
+ * <p><b>Security Behavior:</b>
+ * <ul>
+ *     <li>Uses HMAC-SHA256 for token signing</li>
+ *     <li>Uses a secret key configured in application properties</li>
+ *     <li>Uses a configurable expiration time</li>
+ * </ul>
  *
- * Security:
- * - Uses HMAC-SHA256 algorithm for signing
- * - Token expiration: 1 hour (configurable)
- * - Secret key: Must be at least 256 bits long (32 characters)
- *
- * Usage:
- * 1. After successful login: generateToken(username) -> return to client
- * 2. On each request: validateToken(token) -> verify authenticity
- * 3. Extract username: extractUsername(token) -> identify user
- *
- * @author AquaWorld Development Team
+ * <p><b>Typical Usage:</b>
+ * <ol>
+ *     <li>Generate a token after successful login</li>
+ *     <li>Send the token to the client</li>
+ *     <li>Require the client to include the token in future requests</li>
+ *     <li>Validate and parse the token during request filtering</li>
+ * </ol>
  */
 @Component
 public class JwtUtil implements TokenService {
 
-    // Injected from application.properties
+    /** Secret key used to sign and verify JWT tokens. */
     @Value("${jwt.secret.key}")
     private String secretKey;
 
+    /** Token expiration time in milliseconds. */
     @Value("${jwt.expiration.time}")
-    private long expirationTime; // in milliseconds
+    private long expirationTime;
 
     /**
-     * Generates a JWT token for a user after successful authentication
+     * Generates a signed JWT token for an authenticated user.
      *
-     * The token contains:
-     * - Username (subject)
-     * - Issue time (iat)
-     * - Expiration time (exp)
-     * - Digital signature (to prevent tampering)
+     * <p>The generated token includes:
+     * <ul>
+     *     <li>The username as the JWT subject</li>
+     *     <li>The user role as a custom claim</li>
+     *     <li>The issue timestamp</li>
+     *     <li>The expiration timestamp</li>
+     *     <li>A digital signature to prevent tampering</li>
+     * </ul>
      *
-     * @param username the username to encode in the token
-     * @return JWT token as a string
+     * @param username the authenticated user's username
+     * @param role the authenticated user's role
+     * @return signed JWT token as a compact string
      */
     @Override
     public String generateToken(String username, String role) {
         return Jwts.builder()
-                // Set the subject (username)
                 .setSubject(username)
-                // Claim user role
                 .claim("role", role)
-//                .claim("roles", List.of("ROLE_USER"))
-                // Set issue time (current date/time)
                 .setIssuedAt(new Date())
-                // Set expiration time
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
-                // Sign the token with the secret key using HMAC-SHA256
                 .signWith(getSignatureKey(), SignatureAlgorithm.HS256)
-                // Compact the token into a string
                 .compact();
     }
 
     /**
-     * Validates JWT token authenticity and checks expiration
+     * Validates a JWT token.
      *
-     * The token is valid if:
-     * - Signature is correct (not tampered with)
-     * - Token has not expired
-     * - Token format is correct
+     * <p>A token is considered valid when:
+     * <ul>
+     *     <li>The token has the correct format</li>
+     *     <li>The token signature matches the configured secret key</li>
+     *     <li>The token has not expired</li>
+     * </ul>
      *
-     * @param token the JWT token to validate
-     * @return true if token is valid, false otherwise
+     * @param token JWT token to validate
+     * @return true if the token is valid; false otherwise
      */
     @Override
     public boolean validateToken(String token) {
         try {
-            // Parse and verify the token signature
             Jwts.parserBuilder()
                     .setSigningKey(getSignatureKey())
                     .build()
                     .parseClaimsJws(token);
+
             return true;
         } catch (Exception e) {
-            // Log token validation failure (optional)
-            System.err.println("Token validation failed: " + e.getMessage());
             return false;
         }
     }
 
     /**
-     * Extracts the username from a valid JWT token
+     * Extracts the username from a JWT token.
      *
-     * The username is stored as the "subject" claim in the JWT payload
+     * <p>The username is stored as the JWT subject claim.
      *
-     * @param token the JWT token
-     * @return username extracted from the token
+     * @param token JWT token
+     * @return username stored in the token subject
      */
     @Override
     public String extractUsername(String token) {
@@ -116,12 +117,13 @@ public class JwtUtil implements TokenService {
     }
 
     /**
-     * Extracts all claims (information) from the JWT token
+     * Extracts all claims stored inside a JWT token.
      *
-     * Claims include: subject, issue time, expiration, etc.
+     * <p>Claims may include the subject, role, issue timestamp,
+     * expiration timestamp, and any other custom token data.
      *
-     * @param token the JWT token
-     * @return Claims object containing all token information
+     * @param token JWT token
+     * @return {@link Claims} object containing token payload data
      */
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
@@ -132,30 +134,30 @@ public class JwtUtil implements TokenService {
     }
 
     /**
-     * Checks if the token has expired
+     * Determines whether a JWT token has expired.
      *
-     * @param token the JWT token
-     * @return true if token is expired, false otherwise
+     * <p>If the token cannot be parsed, it is treated as expired.
+     *
+     * @param token JWT token to check
+     * @return true if the token is expired or invalid; false otherwise
      */
     public boolean isTokenExpired(String token) {
         try {
             return extractAllClaims(token).getExpiration().before(new Date());
         } catch (Exception e) {
-            return true; // Consider expired if any error
+            return true;
         }
     }
 
     /**
-     * Gets the signature key for token signing and verification
+     * Builds the HMAC signing key used for token signing and verification.
      *
-     * Converts the secret key string to a SecretKey object
-     * The key must be at least 256 bits for HMAC-SHA256
+     * <p>The configured secret key should be at least 256 bits for HS256.
      *
-     * @return SecretKey for HMAC-SHA256 signing
+     * @return {@link SecretKey} used for JWT signing and verification
      */
     private SecretKey getSignatureKey() {
-        // Ensure the key is at least 256 bits (32 bytes)
-        byte[] keyBytes = secretKey.getBytes();
+        byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

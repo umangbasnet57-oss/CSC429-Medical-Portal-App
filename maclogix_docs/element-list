@@ -1,0 +1,11 @@
+edu.secourse.patientportal
+edu.secourse.patientportal.config
+edu.secourse.patientportal.controller
+edu.secourse.patientportal.dto
+edu.secourse.patientportal.exception
+edu.secourse.patientportal.model
+edu.secourse.patientportal.repository
+edu.secourse.patientportal.response
+edu.secourse.patientportal.security
+edu.secourse.patientportal.service
+edu.secourse.patientportal.util
