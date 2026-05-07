@@ -128,7 +128,7 @@ public class AuthController {
                     responseCode = "409",
                     description = "Username or email already exists"
             )
-    })
+    }) //Testing github automate actions
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<MLogixApiResponse<User>> register(@Valid @RequestBody RegisterRequest registerRequest){
 
