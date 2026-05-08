@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d5dad4cf-99df-492b-8714-78853a25ab98" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="restapi_developer" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="39tkGYn5vYqudQSFZsZN8PTNHRb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Database Script.init.sql.executor": "Run",
+    "JUnit.AdminTest.executor": "Run",
+    "JUnit.AppointmentControllerTest.executor": "Run",
+    "JUnit.AppointmentServiceTest (1).executor": "Run",
+    "JUnit.AppointmentServiceTest.executor": "Run",
+    "JUnit.AppointmentTest.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.AuthenticationServiceTest.executor": "Run",
+    "JUnit.AuthenticationServiceTest.login_shouldReturnLoginResponseAndSaveUser_whenCredentialsAreValid.executor": "Run",
+    "JUnit.DoctorTest.executor": "Run",
+    "JUnit.JwtUserDetailsServiceTest.executor": "Run",
+    "JUnit.PatientTest.executor": "Run",
+    "JUnit.UserControllerTest.executor": "Run",
+    "JUnit.UserServiceTest (1).executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
+    "JUnit.UserTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "OverrideImplement.generate.javadoc": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Main.executor": "Run",
+    "Spring Boot.PatientPortalApplication.executor": "Run",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "dev",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/test/java/edu/secourse/patientportal/controller",
+    "last_opened_file_path": "/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "df349f4c-b3dc-46e2-ae89-d9c4eb64f1d3/schema/\"patientApptDB\"",
+      "0d385163-7dff-4d48-a7ca-0356f0f73329/schema/\"patientApptDB\"",
+      "0d385163-7dff-4d48-a7ca-0356f0f73329",
+      "f25fcc47-8644-4375-9ecf-49d021215f76/schema/\"patientApptDB\""
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../Patient-Management-Full/pmbackend/src/main/java/edu/secourse/patientportal/pmbackend" />
+      <recent name="$PROJECT_DIR$/../Patient-Management-Full/pmbackend/src/main/java/edu/secourse/patientportal/pmbackend/config" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/edu/secourse/patientportal/service" />
+      <recent name="$PROJECT_DIR$/src/test/java/edu/secourse/patientportal/controller" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="edu.secourse.patientportal.controller" />
+      <recent name="edu.secourse.patientportal.model" />
+      <recent name="edu.secourse.patientportal.service" />
+      <recent name="edu.secourse.patientportal.models" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="edu.secourse.patientportal.exception" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PatientPortalApplication">
+    <configuration name="AppointmentControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab_9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.controller" />
+      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.controller.AppointmentControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppointmentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab_9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
+      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.AppointmentServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab_9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
+      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.AuthenticationServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JwtUserDetailsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab_9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
+      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.JwtUserDetailsServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab_9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
+      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatientPortalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Lab_9 (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.secourse.patientportal.PatientPortalApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AppointmentControllerTest" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.JwtUserDetailsServiceTest" />
+        <item itemvalue="JUnit.AuthenticationServiceTest" />
+        <item itemvalue="JUnit.AppointmentServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5dad4cf-99df-492b-8714-78853a25ab98" name="Changes" comment="" />
+      <created>1771522658871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771522658871</updated>
+      <workItem from="1771522660265" duration="1073000" />
+      <workItem from="1771523849109" duration="310000" />
+      <workItem from="1771524166910" duration="46000" />
+      <workItem from="1771524696274" duration="10684000" />
+      <workItem from="1771602082282" duration="25093000" />
+      <workItem from="1771859464853" duration="42384000" />
+      <workItem from="1772330074310" duration="20185000" />
+      <workItem from="1772411420086" duration="37000" />
+      <workItem from="1772412372812" duration="9980000" />
+      <workItem from="1774380609679" duration="9424000" />
+      <workItem from="1774537221746" duration="733000" />
+      <workItem from="1774538862709" duration="19788000" />
+      <workItem from="1774973802847" duration="7021000" />
+      <workItem from="1775159335994" duration="53000" />
+      <workItem from="1775159635257" duration="2632000" />
+      <workItem from="1777568712525" duration="4370000" />
+      <workItem from="1778000164668" duration="1975000" />
+      <workItem from="1778002155033" duration="34816000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/backend" />
+      <path value="$PROJECT_DIR$/frontend" />
+    </ignored-roots>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
