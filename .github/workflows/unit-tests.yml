@@ -25,7 +25,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-	  cache-dependency-path: backend/pom.xml
+          cache-dependency-path: patient-portal/pom.xml
 
       - name: Run backend tests
         run: mvn clean test
@@ -36,8 +36,8 @@ jobs:
         with:
           name: backend-test-reports
           path: |
-            backend/target/surefire-reports/
-            backend/target/failsafe-reports/
+            patient-portal/target/surefire-reports/
+            patient-portal/target/failsafe-reports/
 
   frontend-tests:
     name: Frontend Tests - Java 26
@@ -57,7 +57,7 @@ jobs:
           distribution: temurin
           java-version: '26'
           cache: maven
-	  cache-dependency-path: frontend/pom.xml
+          cache-dependency-path: Medical-Portal-App/pom.xml
 
       - name: Run frontend tests
         run: mvn clean test
@@ -68,5 +68,5 @@ jobs:
         with:
           name: frontend-test-reports
           path: |
-            frontend/target/surefire-reports/
-            frontend/target/failsafe-reports/
+            Medical-Portal-App/target/surefire-reports/
+            Medical-Portal-App/target/failsafe-reports/
