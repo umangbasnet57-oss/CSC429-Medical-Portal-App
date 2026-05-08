@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="951492bf-b74d-4b28-b874-fca57995db3f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +29,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.github/workflows/unit-tests.yml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MavenRunner">
     <option name="jreName" value="#JAVA_HOME" />
@@ -69,6 +71,7 @@
     &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
     &quot;Maven.Medical-Portal-App [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.patientmgt-frontend [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -266,7 +269,9 @@
       <workItem from="1778256836239" duration="2306000" />
       <workItem from="1778261400902" duration="998000" />
       <workItem from="1778262404139" duration="259000" />
-      <workItem from="1778262666855" duration="931000" />
+      <workItem from="1778262666855" duration="4263000" />
+      <workItem from="1778266946821" duration="14000" />
+      <workItem from="1778266970353" duration="277000" />
     </task>
     <servers />
   </component>
