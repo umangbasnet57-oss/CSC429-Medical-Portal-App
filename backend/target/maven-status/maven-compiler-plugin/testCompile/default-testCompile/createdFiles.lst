@@ -1,0 +1,6 @@
+edu/patientportal/models/PatientTest.class
+edu/patientportal/models/DoctorTest.class
+edu/patientportal/models/AppointmentTest.class
+edu/patientportal/services/UserServiceTest.class
+edu/patientportal/models/AdminTest.class
+edu/patientportal/services/AppointmentServiceTest.class

@@ -4,7 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="951492bf-b74d-4b28-b874-fca57995db3f" name="Changes" comment="" />
+    <list default="true" id="951492bf-b74d-4b28-b874-fca57995db3f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/CSC429-Patient-Management-App.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/edu/secourse/patientportal/dto/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/edu/secourse/patientportal/dto/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/PatientPortalApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/config/DataInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/controller/AppointmentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/controller/AuthController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/dto/AppointmentResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/dto/LoginRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/dto/LoginResponse$LoginResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/dto/LoginResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/dto/RegisterRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/dto/UserResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/exception/APIException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/exception/InvalidInputException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/exception/ResourceAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/exception/RoleNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/exception/UnauthorizedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Admin$AdminBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Admin$AdminBuilderImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Appointment$Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Appointment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Doctor$DoctorBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Doctor$DoctorBuilderImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Doctor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Patient$PatientBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Patient$PatientBuilderImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/Patient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/User$UserBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/User$UserBuilderImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/repository/AppointmentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/response/MLogixApiResponse$MLogixApiResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/response/MLogixApiResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/security/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/service/AppointmentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/service/AuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/service/JwtUserDetailsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/util/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/util/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/edu/secourse/patientportal/util/JwtUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/AdminTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/AdminTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/AppointmentTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/AppointmentTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/DoctorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/DoctorTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/PatientTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/models/PatientTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/services/AppointmentServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/services/AppointmentServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/services/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/test-classes/edu/patientportal/services/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Medical-Portal-App.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/target/classes/edu/secourse/patientportal/ui/controllers/AdminDashboardView.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,73 +112,80 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Database Script.init.sql.executor": "Run",
-    "JUnit.AdminTest.executor": "Run",
-    "JUnit.AppointmentControllerTest.executor": "Run",
-    "JUnit.AppointmentServiceTest (1).executor": "Run",
-    "JUnit.AppointmentServiceTest.executor": "Run",
-    "JUnit.AppointmentTest.executor": "Run",
-    "JUnit.AuthControllerTest.executor": "Run",
-    "JUnit.AuthenticationServiceTest.executor": "Run",
-    "JUnit.AuthenticationServiceTest.login_shouldReturnLoginResponseAndSaveUser_whenCredentialsAreValid.executor": "Run",
-    "JUnit.DoctorTest.executor": "Run",
-    "JUnit.JwtUserDetailsServiceTest.executor": "Run",
-    "JUnit.PatientTest.executor": "Run",
-    "JUnit.UserControllerTest.executor": "Run",
-    "JUnit.UserServiceTest (1).executor": "Run",
-    "JUnit.UserServiceTest.executor": "Run",
-    "JUnit.UserTest.executor": "Run",
-    "Maven.Medical-Portal-App [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "Maven.patientmgt-frontend [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "OverrideImplement.generate.javadoc": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.Main.executor": "Run",
-    "Spring Boot.PatientPortalApplication.executor": "Run",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "dev",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/test/java/edu/secourse/patientportal/controller",
-    "last_opened_file_path": "/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.AdminTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AdminTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppointmentControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppointmentServiceTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppointmentServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppointmentTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthenticationServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthenticationServiceTest.login_shouldReturnLoginResponseAndSaveUser_whenCredentialsAreValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DoctorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtUserDetailsServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PatientTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Medical-Portal-App [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.patientmgt-frontend [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PatientPortalApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PatientPortalApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/src/test/java/edu/secourse/patientportal/controller&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "df349f4c-b3dc-46e2-ae89-d9c4eb64f1d3/schema/\"patientApptDB\"",
-      "0d385163-7dff-4d48-a7ca-0356f0f73329/schema/\"patientApptDB\"",
-      "0d385163-7dff-4d48-a7ca-0356f0f73329",
-      "f25fcc47-8644-4375-9ecf-49d021215f76/schema/\"patientApptDB\""
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;df349f4c-b3dc-46e2-ae89-d9c4eb64f1d3/schema/\&quot;patientApptDB\&quot;&quot;,
+      &quot;0d385163-7dff-4d48-a7ca-0356f0f73329/schema/\&quot;patientApptDB\&quot;&quot;,
+      &quot;0d385163-7dff-4d48-a7ca-0356f0f73329&quot;,
+      &quot;f25fcc47-8644-4375-9ecf-49d021215f76/schema/\&quot;patientApptDB\&quot;&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/../Patient-Management-Full/pmbackend/src/main/java/edu/secourse/patientportal/pmbackend" />
@@ -138,7 +208,22 @@
       <recent name="edu.secourse.patientportal.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AdminTest">
+  <component name="RunManager" selected="Spring Boot.PatientPortalApplication">
+    <configuration name="AdminTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="patientmgt-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.patientportal.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.patientportal.models" />
+      <option name="MAIN_CLASS_NAME" value="edu.patientportal.models.AdminTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AdminTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab_9 (1)" />
       <extension name="coverage">
@@ -169,65 +254,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab_9" />
+    <configuration name="DoctorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="patientmgt-backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
+          <option name="PATTERN" value="edu.patientportal.models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
-      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.AuthenticationServiceTest" />
+      <option name="PACKAGE_NAME" value="edu.patientportal.models" />
+      <option name="MAIN_CLASS_NAME" value="edu.patientportal.models.DoctorTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JwtUserDetailsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab_9" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
-      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.JwtUserDetailsServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab_9" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.secourse.patientportal.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.secourse.patientportal.service" />
-      <option name="MAIN_CLASS_NAME" value="edu.secourse.patientportal.service.UserServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PatientPortalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="Lab_9 (1)" />
+    <configuration name="PatientPortalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="patientmgt-backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="edu.secourse.patientportal.PatientPortalApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.secourse.patientportal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.AdminTest" />
+      <item itemvalue="JUnit.AdminTest (1)" />
+      <item itemvalue="JUnit.AppointmentControllerTest" />
+      <item itemvalue="JUnit.DoctorTest" />
+      <item itemvalue="Spring Boot.PatientPortalApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.PatientPortalApplication" />
+        <item itemvalue="JUnit.DoctorTest" />
+        <item itemvalue="JUnit.AdminTest (1)" />
         <item itemvalue="JUnit.AdminTest" />
         <item itemvalue="JUnit.AppointmentControllerTest" />
-        <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="JUnit.JwtUserDetailsServiceTest" />
-        <item itemvalue="JUnit.AuthenticationServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +304,6 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
@@ -271,6 +339,11 @@
       <workItem from="1778266946821" duration="14000" />
       <workItem from="1778266970353" duration="277000" />
       <workItem from="1778267250786" duration="2140000" />
+      <workItem from="1778272443487" duration="377000" />
+      <workItem from="1778272823951" duration="80000" />
+      <workItem from="1778272913113" duration="89000" />
+      <workItem from="1778273017224" duration="194000" />
+      <workItem from="1778273464510" duration="318000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1ca42c19-9487-424d-82b8-81a521c03044" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/edu/secourse/patientportal/dto/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/edu/secourse/patientportal/dto/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/PatientPortalApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/PatientPortalApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/config/DataInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/config/DataInitializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/controller/AppointmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/controller/AppointmentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/AppointmentResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/AppointmentResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/LoginResponse$LoginResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/LoginResponse$LoginResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/LoginResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/RegisterRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/RegisterRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/UserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/dto/UserResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/APIException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/APIException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/InvalidInputException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/InvalidInputException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/ResourceAlreadyExistsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/ResourceAlreadyExistsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/RoleNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/RoleNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/UnauthorizedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/exception/UnauthorizedException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Admin$AdminBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Admin$AdminBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Admin$AdminBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Admin$AdminBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Appointment$Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Appointment$Status.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Appointment.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Appointment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Doctor$DoctorBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Doctor$DoctorBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Doctor$DoctorBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Doctor$DoctorBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Doctor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Doctor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Patient$PatientBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Patient$PatientBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Patient$PatientBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Patient$PatientBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Patient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/Patient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/User$UserBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/User$UserBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/repository/AppointmentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/repository/AppointmentRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/response/MLogixApiResponse$MLogixApiResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/response/MLogixApiResponse$MLogixApiResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/response/MLogixApiResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/response/MLogixApiResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/security/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/AppointmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/AppointmentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/JwtUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/JwtUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/util/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/util/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/util/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/util/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/util/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/edu/secourse/patientportal/util/JwtUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/edu/patientportal/models/AdminTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/edu/patientportal/models/AppointmentTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/edu/patientportal/models/DoctorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/edu/patientportal/models/PatientTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/edu/patientportal/services/AppointmentServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/edu/patientportal/services/UserServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Medical-Portal-App.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="3DSRKIvbq6r3AWU8lDH9liSM1f4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "dev",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/freddie/Documents/SB_Spring2026/CSC529/assignments/lab4/CSC429-Patient-Management-App/frontend/pom.xml",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ca42c19-9487-424d-82b8-81a521c03044" name="Changes" comment="" />
+      <created>1778273418952</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778273418952</updated>
+      <workItem from="1778273419965" duration="17000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
