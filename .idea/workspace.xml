@@ -26,7 +26,7 @@
         <entry key="$PROJECT_DIR$" value="restapi_developer" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/backend" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -233,7 +233,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d5dad4cf-99df-492b-8714-78853a25ab98" name="Changes" comment="" />
+      <changelist id="951492bf-b74d-4b28-b874-fca57995db3f" name="Changes" comment="" />
       <created>1771522658871</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -256,6 +256,7 @@
       <workItem from="1777568712525" duration="4370000" />
       <workItem from="1778000164668" duration="1975000" />
       <workItem from="1778002155033" duration="34816000" />
+      <workItem from="1778256836239" duration="494000" />
     </task>
     <servers />
   </component>
