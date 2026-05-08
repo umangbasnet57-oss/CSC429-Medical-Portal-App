@@ -39,7 +39,12 @@ jobs:
             target/failsafe-reports/
 
   frontend-tests:
+    name: Backend Tests - Java 21
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
       - name: Check out repository
