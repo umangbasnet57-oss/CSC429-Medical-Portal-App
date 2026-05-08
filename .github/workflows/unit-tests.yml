@@ -2,9 +2,9 @@ name: Java CI - Patient Appointment Unit Tests
 
 on:
   push:
-    branches: [ main, final_backend, dev ]
+    branches: [ dev ]
   pull_request:
-    branches: [ main, final_backend, dev ]
+    branches: [ dev ]
 
 jobs:
   backend-tests:
@@ -13,7 +13,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: patient-portal
+        working-directory: backend
 
     steps:
       - name: Checkout repository
@@ -25,7 +25,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          cache-dependency-path: patient-portal/pom.xml
+          cache-dependency-path: backend/pom.xml
 
       - name: Run backend tests
         run: mvn clean test
@@ -45,7 +45,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: Medical-Portal-App
+        working-directory: frontend
 
     steps:
       - name: Checkout repository
@@ -57,7 +57,7 @@ jobs:
           distribution: temurin
           java-version: '26'
           cache: maven
-          cache-dependency-path: Medical-Portal-App/pom.xml
+          cache-dependency-path: frontend/pom.xml
 
       - name: Run frontend tests
         run: mvn clean test
