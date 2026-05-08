@@ -10,6 +10,10 @@
         <module name="Lab_9" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Lab_9 (1)" target="17" />
+      <module name="Medical-Portal-App" target="25" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
