@@ -1,49 +1,139 @@
+# CSC 429 – Medical Portal Application
 
-# **CSC 529/429: Patient Management App
-
-**Course:** CSC 529/429 – Obj Oriented Software Development
-**Level:** Undergraduate
-**Project Type:** Team Project
-
----
-
-## **Overview**
-
-This repository contains the collaborative team project developed for *CSC 429:Object Oriented Software Development*.
-The project focuses on designing and implementing a **Patient Management Application**, demonstrating key principles of software engineering such as requirements analysis, modular design, testing, and version control.
-
-The repository includes:
-
-* 📘 **Design Documentation** – UML diagrams, data flow diagrams, use cases, and design rationale
-* 💻 **Source Code** – Implemented in Java following the MVC architecture
-* 🧪 **Test Cases** – Unit and integration tests verifying correctness and maintainability
+**Course:** CSC 529/429 – Object Oriented Software Development  
+**Level:** Graduate/Undergraduate  
+**Project Type:** Agile Team Software Engineering Project
 
 ---
 
-## **Objective**
+## Project Overview
 
-The goal of this lab is to apply software engineering best practices within a team environment to build a small but complete software system.
-Team members collaborate using GitHub, adhere to coding standards, conduct peer reviews, and demonstrate agile project development methods.
+This repository contains the collaborative **Medical Portal Application** developed for **CSC 429**.
+
+The goal of this project is to design and implement a **desktop-based patient management system** for a hypothetical primary care medical practice using modern **software engineering principles**, including:
+
+- Modular architecture (MVC)
+- RESTful service design
+- Database integration
+- Agile teamwork & version control
+- Automated testing and documentation
+
+The system supports **three user roles**:
+
+- **Admin/Clerk** – manages users and appointments
+- **Patient** – views and cancels personal appointments
+- **Doctor** – views assigned schedule (day/week/month)
 
 ---
 
-## **Team Collaboration**
+## System Architecture
 
-Each team member contributes to different project components, including:
+The application is designed as **two loosely-coupled components**:
 
-* Backend logic (models and services)
-* Controller development
-* Testing and validation
-* Documentation and project management (using Jira) 
+### Backend – Spring Boot REST API
+- Provides secure endpoints for:
+    - User management
+    - Appointment scheduling
+    - Search functionality
+- Connects to a relational database (**MySQL/MariaDB**)
+- Tested using **Postman** and **JUnit**
+
+### Frontend – JavaFX Desktop Client
+- Single **login interface** for all roles
+- Role-based **dashboards**:
+    - Admin dashboard → CRUD users & appointments + search
+    - Patient dashboard → view & cancel appointments
+    - Doctor dashboard → view schedule by time range
+- Communicates with backend via **HTTP REST calls**
 
 ---
 
-## **Deliverables**
+## 🗄️ Data Model
 
-* ✅ Functional source code implementing patient and appointment management
-* 📄 Design and requirements documentation
-* 🧩 Comprehensive unit test suite
-* 🗒️ Project retrospective and team evaluation
+### User Entity
+- `id`
+- `firstName`
+- `lastName`
+- `username`
+- `passwordHash`
+- `role` (admin, patient, doctor)
+- `lastLogin`
+- `lastPasswordChange`
+
+### Appointment Entity
+- `id`
+- `date`
+- `startTime`
+- `endTime`
+- `patientId`
+- `doctorId`
+- `lastUpdated`
+
+---
+
+## ⚙️ Core Functionalities
+
+- Common **login & authentication system**
+- **Role-based dashboards**
+- Admin can:
+    - Create, update, delete users
+    - Schedule and modify appointments
+    - Search appointments by patient or doctor
+- Patients can:
+    - View personal appointments
+    - Cancel future appointments
+- Doctors can:
+    - View assigned appointments
+    - Filter by **day, week, or month**
+- Fully functional **REST API**
+- Persistent **database storage**
+- **Password change** capability for all users
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+- Unit and integration tests implemented using **JUnit**
+- REST endpoints verified using **Postman**
+- Target **≥ 80% test coverage**
+- Validation rules include:
+    - No overlapping appointments for the same doctor
+    - Patients can cancel only their own appointments
+    - Role-based access enforcement
+
+## 📂 Repository Structure
+---
+## 👥 Team Collaboration
+
+Development followed **Agile practices**:
+
+- GitHub for **version control & branching**
+- Feature development on **individual branches**
+- **Kanban board** for backlog tracking
+- Peer reviews and frequent merges
+- Sprint demos aligned with course **Epic milestones**
+
+---
+
+## 📑 Documentation Deliverables
+
+- UML diagrams (architecture, data flow, use cases)
+- Design rationale and planning artifacts
+- Test plans and coverage reports
+- Sprint retrospectives
+- AI usage log documenting prompt assistance and evaluation
+
+---
+
+## 🚀 How to Run the Project
+
+### 1️⃣ Start Database
+Configure and run **MySQL/MariaDB** with the schema provided in `/docs`.
+
+### 2️⃣ Run Backend API
+### 3️⃣ Run JavaFX Client
+### 4️⃣ Test API
+Import the **Postman collection** from `/docs/postman` and verify endpoints.
 
 ---
 
@@ -52,8 +142,30 @@ Each team member contributes to different project components, including:
 - Madhav Sharma
 - Umang Basnet
 - Lamine
-- Fredrick
+- Frederick Laud Amoah-Darko Jr.
 
+[Link for Kanban board](https://github.com/orgs/Final-Project-CSC-429/projects/3/views/1)
+## 🤖 Use of AI Tools
+
+AI tools (including ChatGPT) were used to:
+
+- Clarify architectural design decisions
+- Generate documentation drafts
+- Assist with debugging and testing strategies
+
+All AI assistance was **reviewed, validated, and modified** by the development team to ensure correctness and academic integrity.
+
+---
+
+## 📅 Course Timeline Alignment
+
+- **Epic 1:** Core architecture & login
+- **Epic 2:** Admin CRUD functionality
+- **Epic 3:** Patient & doctor dashboards
+- **Epic 4:** Search, filtering, UI polish
+- **Epic 5:** Testing, documentation, final demo
+
+---
 ## Architecture Design Overview
 
 ---
@@ -78,7 +190,6 @@ Each team member contributes to different project components, including:
 ## Use Case Diagram
 
 <img width="1112" height="779" alt="image" src="https://github.com/user-attachments/assets/3bf9891d-0c0f-4374-8a1b-fb1598fe3d23" />
-
 
 
 
