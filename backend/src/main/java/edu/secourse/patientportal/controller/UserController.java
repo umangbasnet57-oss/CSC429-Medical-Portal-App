@@ -29,15 +29,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    // Debug controll
-    @GetMapping("/debug")
-    public String debug(Authentication authentication) {
-        System.out.println("Trying to display User role...");
-        authentication.getAuthorities()
-                .forEach(a -> System.out.println(a.getAuthority()));
 
-        return "check console";
-    }
 //    @GetMapping("/debug")
 //    @PreAuthorize("permitAll()")
 //    public List<String> debug(Authentication authentication) {

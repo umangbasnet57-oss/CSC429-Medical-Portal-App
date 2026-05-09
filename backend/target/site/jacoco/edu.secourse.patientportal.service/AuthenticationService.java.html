@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthenticationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientmgt-backend</a> &gt; <a href="index.source.html" class="el_package">edu.secourse.patientportal.service</a> &gt; <span class="el_source">AuthenticationService.java</span></div><h1>AuthenticationService.java</h1><pre class="source lang-java linenums">package edu.secourse.patientportal.service;
+
+import edu.secourse.patientportal.dto.LoginRequest;
+import edu.secourse.patientportal.dto.LoginResponse;
+import edu.secourse.patientportal.exception.UnauthorizedException;
+import edu.secourse.patientportal.model.User;
+import edu.secourse.patientportal.repository.UserRepository;
+import edu.secourse.patientportal.util.Constants;
+import edu.secourse.patientportal.util.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+public class AuthenticationService {
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+
+//    @Autowired
+    public AuthenticationService(UserRepository userRepository,
+                                 PasswordEncoder passwordEncoder,
+<span class="fc" id="L25">                                 JwtUtil jwtUtil) {</span>
+<span class="fc" id="L26">        this.userRepository = userRepository;</span>
+<span class="fc" id="L27">        this.passwordEncoder = passwordEncoder;</span>
+<span class="fc" id="L28">        this.jwtUtil = jwtUtil;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Authenticate user and generate JWT token
+     *
+     * Process:
+     * 1. Find user by username
+     * 2. If not found -&gt; throw 401 Unauthorized
+     * 3. Compare provided password with stored encrypted password
+     * 4. If password doesn't match -&gt; throw 401 Unauthorized
+     * 5. Update last login time
+     * 6. Generate JWT token
+     * 7. Return login response with token
+     *
+     * @param loginRequest contains username and password
+     * @return LoginResponse with JWT token and user info
+     * @throws UnauthorizedException if username not found or password invalid (401)
+     */
+    public LoginResponse login(LoginRequest loginRequest) {
+        // Find user by username
+<span class="fc" id="L49">        User user = userRepository.findByUsername(loginRequest.getUsername())</span>
+<span class="fc" id="L50">                .orElseThrow(() -&gt; new UnauthorizedException(Constants.MSG_INVALID_CREDENTIALS));</span>
+
+<span class="fc" id="L52">        System.out.println(&quot;User details: &quot;+ user.toString());</span>
+        // Verify password
+        // passwordEncoder.matches() compares plain text with BCrypt encrypted password
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {</span>
+<span class="fc" id="L56">            throw new UnauthorizedException(Constants.MSG_INVALID_CREDENTIALS);</span>
+        }
+
+        // Make sure role is capitalized
+<span class="fc" id="L60">        user.setRole(user.getRole().toUpperCase());</span>
+
+        // Update last login timestamp
+<span class="fc" id="L63">        user.setLastLogin(LocalDateTime.now());</span>
+<span class="fc" id="L64">        userRepository.save(user);</span>
+
+        // Generate JWT token
+<span class="fc" id="L67">        String token = jwtUtil.generateToken(user.getUsername(), user.getRole());</span>
+<span class="fc" id="L68">        System.out.println(&quot;This is the generatied token:\n&quot;+ token);</span>
+<span class="fc" id="L69">        System.out.println((&quot;This is the username and role: &quot; + user.getUsername() + &quot; &quot; + user.getRole()));</span>
+
+        // Return login response with token
+<span class="fc" id="L72">        return LoginResponse.builder()</span>
+<span class="fc" id="L73">                .id(user.getId())</span>
+<span class="fc" id="L74">                .username(user.getUsername())</span>
+<span class="fc" id="L75">                .email(user.getEmail())</span>
+<span class="fc" id="L76">                .firstName(user.getFirstName())</span>
+<span class="fc" id="L77">                .lastName(user.getLastName())</span>
+<span class="fc" id="L78">                .role(user.getRole())</span>
+<span class="fc" id="L79">                .token(token)</span>
+<span class="fc" id="L80">                .tokenType(&quot;Bearer&quot;)</span>
+<span class="fc" id="L81">                .expiresIn(3600L) // 1 hour in seconds</span>
+<span class="fc" id="L82">                .loginAt(LocalDateTime.now())</span>
+<span class="fc" id="L83">                .build();</span>
+    }
+
+    /**
+     * Validate JWT token
+     *
+     * Used to check if a token is still valid
+     *
+     * @param token the JWT token to validate
+     * @return true if token is valid, false otherwise
+     */
+    public boolean validateToken(String token) {
+<span class="fc" id="L95">        return jwtUtil.validateToken(token);</span>
+    }
+
+    /**
+     * Extract username from JWT token
+     *
+     * Used to identify the authenticated user
+     *
+     * @param token the JWT token
+     * @return username from token
+     */
+    public String getUsernameFromToken(String token) {
+<span class="fc" id="L107">        return jwtUtil.extractUsername(token);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

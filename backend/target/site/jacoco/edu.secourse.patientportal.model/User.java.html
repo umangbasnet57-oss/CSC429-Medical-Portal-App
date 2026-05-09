@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientmgt-backend</a> &gt; <a href="index.source.html" class="el_package">edu.secourse.patientportal.model</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package edu.secourse.patientportal.model;
+
+import jakarta.persistence.*;
+//import org.hibernate.annotations.Collate;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+/**
+ * The base abstract class for all user types in the patient portal system.
+ * &lt;p&gt;
+ * Mapped to a single {@code users} table using JPA {@link InheritanceType#SINGLE_TABLE}.
+ * The {@code role} column acts as the discriminator: Hibernate writes {@code &quot;patient&quot;},
+ * {@code &quot;doctor&quot;}, or {@code &quot;admin&quot;} automatically based on the concrete subclass.
+ * &lt;p&gt;
+ * Per project specs, first and last name are stored separately. Timestamps for
+ * last login and last password change are tracked for security requirements.
+ */
+@Entity
+@Data
+@SuperBuilder
+@Table(name = &quot;users&quot;)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Access(AccessType.FIELD)
+@DiscriminatorColumn(name = &quot;role&quot;, discriminatorType = DiscriminatorType.STRING)
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+
+    /** Primary key — assigned by the database after em.persist(). Null = new entity. */
+<span class="fc" id="L36">    @Id</span>
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    private Integer id = null;
+
+//    /** Separate in-memory counter — not linked to the DB primary key. */
+//    public static int nextAccountNumber = 1;
+
+<span class="fc" id="L44">    @Column(name = &quot;username&quot;, unique = true, nullable = false, length = 100)</span>
+    public String username = &quot;&quot;;
+
+<span class="fc" id="L47">    @Column(name = &quot;password&quot;, nullable = false)</span>
+    private String password = &quot;&quot;;
+
+<span class="fc" id="L50">    @Column(name = &quot;first_name&quot;, length = 100)</span>
+    private String firstName = &quot;&quot;;
+
+<span class="fc" id="L53">    @Column(name = &quot;last_name&quot;, length = 100)</span>
+    private String lastName = &quot;&quot;;
+
+<span class="fc" id="L56">    @Column(name = &quot;name&quot;, length = 200)</span>
+    private String name = &quot;&quot;;
+
+<span class="fc" id="L59">    @Column(name = &quot;email&quot;, unique = true, length = 200)</span>
+    private String email = &quot;&quot;;
+
+    /**
+     * The role field is managed as the JPA discriminator column (&quot;role&quot;).
+     * It is kept as a @Transient convenience field for in-memory code paths;
+     * the actual DB value is written automatically by Hibernate via @DiscriminatorValue.
+     */
+//    @Transient
+//    @Enumerated(EnumType.STRING)
+//    private Role role;
+<span class="fc" id="L70">    @Column(name = &quot;role&quot;, insertable = false, updatable = false)</span>
+    private String role = &quot;&quot;;
+
+<span class="fc" id="L73">    @Column(name = &quot;last_login&quot;)</span>
+    private LocalDateTime lastLogin = null;
+
+<span class="fc" id="L76">    @Column(name = &quot;last_password_change&quot;)</span>
+    private LocalDateTime lastPasswordChange = null;
+
+//    /**
+//     * Default no-argument constructor.
+//     * &lt;p&gt;
+//     * Leaves all user fields uninitialized until explicitly set.
+//     */
+//    public User() {
+//
+//    }
+
+    /**
+     * Constructs a User with full identifying information, assigning a unique
+     * auto-incremented account number. The {@code name} is automatically split
+     * into {@code firstName} (first word) and {@code lastName} (remainder).
+     *
+     * @param username       the username chosen by the user
+     * @param password the user's hashed password
+     * @param name           the user's real name
+     * @param email          the user's email address
+     * @param role           the role of the user (patient, doctor, admin)
+     */
+<span class="fc" id="L99">    public User(String username, String password, String name, String email, String role) {</span>
+        try {
+<span class="fc" id="L101">            this.username = username;</span>
+<span class="fc" id="L102">            this.password = password;</span>
+<span class="fc" id="L103">            this.name = name;</span>
+<span class="fc" id="L104">            this.email = email;</span>
+<span class="fc" id="L105">            this.role = role.toUpperCase();</span>
+//            nextAccountNumber++;
+<span class="pc bpc" id="L107" title="1 of 4 branches missed.">            if (name != null &amp;&amp; !name.isBlank()) {</span>
+<span class="fc" id="L108">                String[] parts = name.trim().split(&quot;\\s+&quot;, 2);</span>
+<span class="fc" id="L109">                this.firstName = parts[0];</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">                this.lastName = (parts.length &gt; 1) ? parts[1] : &quot;&quot;;</span>
+            }
+<span class="nc" id="L112">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L114">        }</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * Retrieves the unique account number assigned to this user.
+     *
+     * @return the user's account number
+     */
+    public int getId() {
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        return id != null ? id : 0;</span>
+    }
+
+    /**
+     * Retrieves the user's username.
+     *
+     * @return the username string
+     */
+    public String getUsername() {
+<span class="fc" id="L132">        return username;</span>
+    }
+
+    /**
+     * Updates the user's username.
+     *
+     * @param username the new username string
+     */
+    public void setUsername(String username) {
+        try {
+<span class="fc" id="L142">            this.username = username;</span>
+<span class="nc" id="L143">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L145">        }</span>
+<span class="fc" id="L146">    }</span>
+
+    /**
+     * Retrieves the user's hashed password.
+     *
+     * @return the hashed password string
+     */
+    public String getPassword() {
+<span class="fc" id="L154">        return password;</span>
+    }
+
+    /**
+     * Updates the user's hashed password and records the change timestamp.
+     *
+     * @param hashedPassword the new hashed password string
+     */
+    public void setPassword(String hashedPassword) {
+        try {
+<span class="fc" id="L164">            this.password = hashedPassword;</span>
+<span class="fc" id="L165">            this.lastPasswordChange = LocalDateTime.now();</span>
+<span class="nc" id="L166">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L168">        }</span>
+<span class="fc" id="L169">    }</span>
+
+    /**
+     * Retrieves the user's name.
+     *
+     * @return the user's full name
+     */
+    public String getName() {
+<span class="fc" id="L177">        return name;</span>
+    }
+
+    /**
+     * Updates the user's full name and automatically splits it into
+     * {@code firstName} (first word) and {@code lastName} (remainder).
+     *
+     * @param name the new name string
+     */
+    public void setName(String name) {
+        try {
+<span class="fc" id="L188">            this.name = name;</span>
+<span class="pc bpc" id="L189" title="1 of 4 branches missed.">            if (name != null &amp;&amp; !name.isBlank()) {</span>
+<span class="fc" id="L190">                String[] parts = name.trim().split(&quot;\\s+&quot;, 2);</span>
+<span class="fc" id="L191">                this.firstName = parts[0];</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">                this.lastName = (parts.length &gt; 1) ? parts[1] : &quot;&quot;;</span>
+            }
+<span class="nc" id="L194">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L196">        }</span>
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * Retrieves the user's email address.
+     *
+     * @return the user's email string
+     */
+    public String getEmail() {
+<span class="fc" id="L205">        return email;</span>
+    }
+
+    /**
+     * Updates the user's email address.
+     *
+     * @param email the new email string
+     */
+    public void setEmail(String email) {
+        try {
+<span class="fc" id="L215">            this.email = email;</span>
+<span class="nc" id="L216">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L218">        }</span>
+<span class="fc" id="L219">    }</span>
+
+    /**
+     * Retrieves the user's first name.
+     *
+     * @return the first name string
+     */
+    public String getFirstName() {
+<span class="fc" id="L227">        return firstName;</span>
+    }
+
+    /**
+     * Updates the user's first name.
+     *
+     * @param firstName the new first name
+     */
+    public void setFirstName(String firstName) {
+        try {
+<span class="fc" id="L237">            this.firstName = firstName;</span>
+<span class="nc" id="L238">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L240">        }</span>
+<span class="fc" id="L241">    }</span>
+
+    /**
+     * Retrieves the user's last name.
+     *
+     * @return the last name string
+     */
+    public String getLastName() {
+<span class="fc" id="L249">        return lastName;</span>
+    }
+
+    /**
+     * Updates the user's last name.
+     *
+     * @param lastName the new last name
+     */
+    public void setLastName(String lastName) {
+        try {
+<span class="fc" id="L259">            this.lastName = lastName;</span>
+<span class="nc" id="L260">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L262">        }</span>
+<span class="fc" id="L263">    }</span>
+
+    /**
+     * Retrieves the timestamp of the user's most recent login.
+     *
+     * @return the last login timestamp, or {@code null} if the user has never logged in
+     */
+    public LocalDateTime getLastLogin() {
+<span class="fc" id="L271">        return lastLogin;</span>
+    }
+
+    /**
+     * Records the current time as the user's last login timestamp.
+     */
+    public void recordLogin() {
+        try {
+<span class="fc" id="L279">            this.lastLogin = LocalDateTime.now();</span>
+<span class="nc" id="L280">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L282">        }</span>
+<span class="fc" id="L283">    }</span>
+
+    /**
+     * Retrieves the timestamp of the user's most recent password change.
+     *
+     * @return the last password change timestamp, or {@code null} if never changed
+     */
+    public LocalDateTime getLastPasswordChange() {
+<span class="fc" id="L291">        return lastPasswordChange;</span>
+    }
+
+    /**
+     * Retrieves the user's role.
+     *
+     * @return the role string
+     */
+    public String getRole() {
+<span class="pc bpc" id="L300" title="1 of 2 branches missed.">        if (this.role != null) {</span>
+<span class="fc" id="L301">            return role.toUpperCase();</span>
+        }
+<span class="nc bnc" id="L303" title="All 2 branches missed.">        if (this instanceof Patient) return &quot;PATIENT&quot;;</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">        if (this instanceof Doctor) return &quot;DOCTOR&quot;;</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">        if (this instanceof Admin) return &quot;ADMIN&quot;;</span>
+<span class="nc" id="L306">        return &quot;UNKNOWN&quot;;</span>
+    }
+
+    /**
+     * Updates the user's role.
+     *
+     * @param role the new role (patient, doctor, admin)
+     */
+    public void setRole(String role) {
+        try {
+<span class="fc" id="L316">            this.role = role.toUpperCase();</span>
+<span class="nc" id="L317">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L319">        }</span>
+<span class="fc" id="L320">    }</span>
+
+    /**
+     * Determines whether this user is equal to another object.
+     * &lt;p&gt;
+     * Users are considered equal if:
+     * &lt;ul&gt;
+     *     &lt;li&gt;The other object is also a User&lt;/li&gt;
+     *     &lt;li&gt;The usernames match&lt;/li&gt;
+     * &lt;/ul&gt;
+     * All exceptions are swallowed to avoid UI crashes.
+     *
+     * @param o the object to compare
+     * @return true if both users have the same username, false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+<span class="fc" id="L337">        boolean isEqual = false;</span>
+        try {
+<span class="pc bpc" id="L339" title="1 of 2 branches missed.">            if (o != null) {</span>
+<span class="fc bfc" id="L340" title="All 2 branches covered.">                if (this == o) return true;</span>
+<span class="pc bpc" id="L341" title="1 of 2 branches missed.">                if (!(o instanceof User)) return false;</span>
+<span class="fc" id="L342">                User user = (User) o;</span>
+<span class="fc" id="L343">                return Objects.equals(this.username, user.username);</span>
+            }
+<span class="nc" id="L345">        } catch (Exception ignored) {</span>
+
+<span class="nc" id="L347">        }</span>
+<span class="nc" id="L348">        return isEqual;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L353">        return &quot;User{&quot; +</span>
+                &quot;id=&quot; + id +
+                &quot;, username='&quot; + username + '\'' +
+                &quot;, password='&quot; + password + '\'' +
+                &quot;, firstName='&quot; + firstName + '\'' +
+                &quot;, lastName='&quot; + lastName + '\'' +
+                &quot;, name='&quot; + name + '\'' +
+                &quot;, email='&quot; + email + '\'' +
+                &quot;, role='&quot; + role + '\'' +
+                &quot;, lastLogin=&quot; + lastLogin +
+                &quot;, lastPasswordChange=&quot; + lastPasswordChange +
+                '}';
+    }
+
+    /**
+     * Returns a hash code based on the username field.
+     *
+     * @return the computed hash code
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L374">        return Objects.hash(username);</span>
+    }
+
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Appointment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientmgt-backend</a> &gt; <a href="index.source.html" class="el_package">edu.secourse.patientportal.model</a> &gt; <span class="el_source">Appointment.java</span></div><h1>Appointment.java</h1><pre class="source lang-java linenums">package edu.secourse.patientportal.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+
+/**
+ * Represents a scheduled appointment between a {@link Patient} and {@link Doctor}.
+ * &lt;p&gt;
+ * Mapped to the {@code appointments} table. The patient and doctor fields are
+ * foreign-key references to the {@code patients} and {@code doctors} tables
+ * respectively, expressed via {@link ManyToOne} associations.
+ */
+@Entity
+@Table(name = &quot;appointments&quot;)
+public class Appointment {
+
+    /** Primary key — assigned by the database after em.persist(). Null = new entity. */
+<span class="fc" id="L27">    @Id</span>
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    private Integer appointmentId = null;
+
+<span class="fc" id="L32">    @ManyToOne</span>
+    @JoinColumn(name = &quot;patient_id&quot;, nullable = false)
+    private Patient patient = new Patient();
+
+<span class="fc" id="L36">    @ManyToOne</span>
+    @JoinColumn(name = &quot;doctor_id&quot;, nullable = false)
+    private Doctor doctor = new Doctor();
+
+<span class="fc" id="L40">    @Column(name = &quot;start_time&quot;, nullable = false)</span>
+    private LocalDateTime appointmentDateTime = LocalDateTime.MIN;
+
+<span class="fc" id="L43">    @Column(name = &quot;end_time&quot;)</span>
+    private LocalDateTime endTime = LocalDateTime.MIN;
+
+<span class="fc" id="L46">    @Column(name = &quot;last_updated&quot;)</span>
+    private LocalDateTime lastUpdated = null;
+
+<span class="fc" id="L49">    @Enumerated(EnumType.STRING)</span>
+    @Column(name = &quot;status&quot;, length = 20)
+    private Status status = Status.COMPLETED;
+
+    /**
+     * Enumeration representing possible appointment states.
+     */
+<span class="fc" id="L56">    public enum Status {</span>
+<span class="fc" id="L57">        ACTIVE,</span>
+<span class="fc" id="L58">        CANCELLED,</span>
+<span class="fc" id="L59">        COMPLETED</span>
+    }
+
+    /** No-argument constructor required by Hibernate for entity instantiation. */
+<span class="fc" id="L63">    public Appointment() {}</span>
+
+    /**
+     * Constructs an Appointment given a patient, doctor, and scheduled time.
+     * The end time is automatically set to 30 minutes after the start time.
+     * If any argument is null, the default values are retained.
+     *
+     * @param patient             the patient associated with the appointment
+     * @param doctor              the doctor associated with the appointment
+     * @param appointmentDateTime the date and time the appointment starts
+     */
+<span class="fc" id="L74">    public Appointment(Patient patient, Doctor doctor, LocalDateTime appointmentDateTime) {</span>
+        try {
+<span class="fc bfc" id="L76" title="All 6 branches covered.">            if (patient != null &amp;&amp; doctor != null &amp;&amp; appointmentDateTime != null) {</span>
+<span class="fc" id="L77">                this.patient = patient;</span>
+<span class="fc" id="L78">                this.doctor = doctor;</span>
+<span class="fc" id="L79">                this.appointmentDateTime = appointmentDateTime;</span>
+<span class="fc" id="L80">                this.endTime = appointmentDateTime.plusMinutes(30);</span>
+<span class="fc" id="L81">                this.lastUpdated = LocalDateTime.now();</span>
+<span class="fc" id="L82">                this.status = Status.ACTIVE;</span>
+            }
+<span class="nc" id="L84">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L86">        }</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Returns the current appointment status.
+     *
+     * @return the appointment status
+     */
+    public Status getStatus() {
+<span class="fc" id="L95">        return status;</span>
+    }
+
+    /**
+     * Attempts to update the status of the appointment.
+     *
+     * @param status the new status to assign
+     * @return true if the update succeeds, false otherwise
+     */
+    public boolean setStatus(Status status) {
+<span class="fc" id="L105">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            if (status != null) {</span>
+<span class="fc" id="L108">                this.status = status;</span>
+<span class="fc" id="L109">                success = true;</span>
+            }
+<span class="nc" id="L111">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L113">        }</span>
+<span class="fc" id="L114">        return success;</span>
+    }
+
+    /**
+     * Retrieves the unique appointment ID.
+     *
+     * @return the appointment ID, or 0 if not yet persisted
+     */
+    public int getAppointmentId() {
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        return appointmentId != null ? appointmentId : 0;</span>
+    }
+
+    /**
+     * Assigns a new appointment ID (used by the in-memory service layer).
+     *
+     * @param appointmentId the new ID value
+     * @return true if the update succeeds, false otherwise
+     */
+    public boolean setAppointmentId(int appointmentId) {
+<span class="fc" id="L133">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L135" title="All 4 branches covered.">            if (appointmentId &gt; Integer.MIN_VALUE &amp;&amp; appointmentId &lt; Integer.MAX_VALUE) {</span>
+<span class="fc" id="L136">                this.appointmentId = appointmentId;</span>
+<span class="fc" id="L137">                success = true;</span>
+            }
+<span class="nc" id="L139">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L141">        }</span>
+<span class="fc" id="L142">        return success;</span>
+    }
+
+    /**
+     * Returns the patient linked to the appointment.
+     *
+     * @return the appointment's patient
+     */
+    public Patient getPatient() {
+<span class="fc" id="L151">        return patient;</span>
+    }
+
+    /**
+     * Attempts to update the patient associated with this appointment
+     * and records the modification timestamp.
+     *
+     * @param patient the new patient object
+     * @return true if updated successfully, false otherwise
+     */
+    public boolean setPatient(Patient patient) {
+<span class="fc" id="L162">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L164" title="All 2 branches covered.">            if (patient != null) {</span>
+<span class="fc" id="L165">                this.patient = patient;</span>
+<span class="fc" id="L166">                this.lastUpdated = LocalDateTime.now();</span>
+<span class="fc" id="L167">                success = true;</span>
+            }
+<span class="nc" id="L169">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L171">        }</span>
+
+<span class="fc" id="L173">        return success;</span>
+    }
+
+    /**
+     * Returns the doctor linked to the appointment.
+     *
+     * @return the appointment's doctor
+     */
+    public Doctor getDoctor() {
+<span class="fc" id="L182">        return doctor;</span>
+    }
+
+    /**
+     * Attempts to update the doctor associated with the appointment
+     * and records the modification timestamp.
+     *
+     * @param doctor the new doctor object
+     * @return true if updated successfully, false otherwise
+     */
+    public boolean setDoctor(Doctor doctor) {
+<span class="fc" id="L193">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L195" title="All 2 branches covered.">            if (doctor != null) {</span>
+<span class="fc" id="L196">                this.doctor = doctor;</span>
+<span class="fc" id="L197">                this.lastUpdated = LocalDateTime.now();</span>
+<span class="fc" id="L198">                success = true;</span>
+            }
+<span class="nc" id="L200">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L202">        }</span>
+<span class="fc" id="L203">        return success;</span>
+    }
+
+    /**
+     * Gets the scheduled date and time for this appointment.
+     *
+     * @return the appointment date and time
+     */
+    public LocalDateTime getAppointmentDateTime() {
+<span class="fc" id="L212">        return appointmentDateTime;</span>
+    }
+
+    /**
+     * Attempts to update the appointment's start date/time. Also updates
+     * end time to 30 minutes after the new start time and records the
+     * modification timestamp.
+     *
+     * @param appointmentDateTime the new start date/time value
+     * @return true if updated successfully, false otherwise
+     */
+    public boolean setAppointmentDateTime(LocalDateTime appointmentDateTime) {
+<span class="fc" id="L224">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L226" title="All 2 branches covered.">            if (appointmentDateTime != null) {</span>
+<span class="fc" id="L227">                this.appointmentDateTime = appointmentDateTime;</span>
+<span class="fc" id="L228">                this.endTime = appointmentDateTime.plusMinutes(30);</span>
+<span class="fc" id="L229">                this.lastUpdated = LocalDateTime.now();</span>
+<span class="fc" id="L230">                success = true;</span>
+            }
+<span class="nc" id="L232">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L234">        }</span>
+<span class="fc" id="L235">        return success;</span>
+    }
+
+    /**
+     * Returns the end time of this appointment.
+     *
+     * @return the end time as a {@link LocalDateTime}
+     */
+    public LocalDateTime getEndTime() {
+<span class="fc" id="L244">        return endTime;</span>
+    }
+
+    /**
+     * Explicitly sets the end time of the appointment.
+     *
+     * @param endTime the new end time
+     * @return true if updated successfully, false otherwise
+     */
+    public boolean setEndTime(LocalDateTime endTime) {
+<span class="fc" id="L254">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L256" title="All 2 branches covered.">            if (endTime != null) {</span>
+<span class="fc" id="L257">                this.endTime = endTime;</span>
+<span class="fc" id="L258">                this.lastUpdated = LocalDateTime.now();</span>
+<span class="fc" id="L259">                success = true;</span>
+            }
+<span class="nc" id="L261">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L263">        }</span>
+<span class="fc" id="L264">        return success;</span>
+    }
+
+    /**
+     * Returns the timestamp of the last modification made to this appointment.
+     *
+     * @return the last updated timestamp, or {@code null} if never modified
+     */
+    public LocalDateTime getLastUpdated() {
+<span class="fc" id="L273">        return lastUpdated;</span>
+    }
+
+    /**
+     * Cancels the appointment by setting its status to {@link Status#CANCELLED}.
+     */
+    public void cancelAppointment() {
+        try {
+<span class="fc" id="L281">            this.status = Status.CANCELLED;</span>
+<span class="nc" id="L282">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L284">        }</span>
+<span class="fc" id="L285">    }</span>
+
+    /**
+     * Returns a readable string representation of the appointment, including
+     * ID, patient/doctor usernames, date/time, and status. Handles null objects gracefully.
+     *
+     * @return a formatted appointment string
+     */
+    @Override
+    public String toString() {
+<span class="fc bfc" id="L295" title="All 2 branches covered.">        String patientName = (patient != null) ? patient.getUsername() : &quot;Unknown Patient&quot;;</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">        String doctorName = (doctor != null) ? doctor.getUsername() : &quot;Unknown Doctor&quot;;</span>
+<span class="fc bfc" id="L297" title="All 2 branches covered.">        String time = (appointmentDateTime != null) ? appointmentDateTime.toString() : &quot;No Date&quot;;</span>
+
+<span class="pc bpc" id="L299" title="1 of 4 branches missed.">        String end = (endTime != null &amp;&amp; endTime != LocalDateTime.MIN) ? endTime.toString() : &quot;No End Time&quot;;</span>
+
+<span class="fc" id="L301">        return &quot;Appointment {&quot; +</span>
+                &quot;ID=&quot; + appointmentId +
+                &quot;, Patient='&quot; + patientName + '\'' +
+                &quot;, Doctor='&quot; + doctorName + '\'' +
+                &quot;, Start=&quot; + time +
+                &quot;, End=&quot; + end +
+                &quot;, Status=&quot; + status +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

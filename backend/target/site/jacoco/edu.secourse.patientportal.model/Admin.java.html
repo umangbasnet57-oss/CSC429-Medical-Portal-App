@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Admin.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientmgt-backend</a> &gt; <a href="index.source.html" class="el_package">edu.secourse.patientportal.model</a> &gt; <span class="el_source">Admin.java</span></div><h1>Admin.java</h1><pre class="source lang-java linenums">package edu.secourse.patientportal.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.experimental.SuperBuilder;
+
+/**
+ * Represents an administrator user within the patient portal system.
+ * &lt;p&gt;
+ * Admin extends the abstract {@link User} class and provides an additional
+ * auto-incrementing admin-specific identifier. Stored in the shared
+ * {@code users} table with {@code role = 'admin'}.
+ */
+@Entity
+@SuperBuilder
+@DiscriminatorValue(&quot;ADMIN&quot;)
+public class Admin extends User {
+
+//    @Column(name = &quot;admin_id&quot;)
+//    private int adminId = 0;
+//    private static int nextAdminId = 1;
+
+    /**
+     * Default no-argument constructor.
+     * &lt;p&gt;
+     * Leaves all fields at default values until explicitly set.
+     */
+<span class="fc" id="L29">    public Admin() {</span>
+
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * Constructs an Admin user with full user information and assigns
+     * a unique admin ID if integer-boundary conditions allow it.
+     *
+     * @param username       the admin's username
+     * @param hashedPassword the admin's hashed password
+     * @param name           the admin's full name
+     * @param email          the admin's email address
+     */
+    public Admin(String username, String hashedPassword, String name, String email) {
+<span class="fc" id="L43">        super(username, hashedPassword, name, email, &quot;ADMIN&quot;);</span>
+
+//        this.adminId = nextAdminId;
+
+//        nextAdminId += 1;
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Retrieves the unique admin ID associated with this Admin user.
+     *
+     * @return the admin's ID number
+     */
+//    public int getAdminId() {
+//        return adminId;
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

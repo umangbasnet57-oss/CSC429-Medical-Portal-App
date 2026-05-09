@@ -21,5 +21,11 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.18.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:6.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:10.1.36" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:6.4.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:6.4.3" level="project" />
   </component>
 </module>

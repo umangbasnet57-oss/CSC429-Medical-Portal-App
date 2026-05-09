@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientmgt-backend</a> &gt; <a href="index.source.html" class="el_package">edu.secourse.patientportal.service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package edu.secourse.patientportal.service;
+
+import edu.secourse.patientportal.dto.RegisterRequest;
+import edu.secourse.patientportal.exception.InvalidInputException;
+import edu.secourse.patientportal.exception.ResourceAlreadyExistsException;
+import edu.secourse.patientportal.model.Admin;
+import edu.secourse.patientportal.model.User;
+import edu.secourse.patientportal.repository.UserRepository;
+import edu.secourse.patientportal.util.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+@Service
+
+/**
+ * Service layer responsible for managing {@link User} objects.
+ * &lt;p&gt;
+ * Uses JPA repository when running in Spring Boot context.
+ * Falls back to in-memory ArrayList for unit tests.
+ */
+public class UserService {
+
+    /** JPA repository — injected by Spring, null when used in unit tests. */
+    /** @Autowired //(required = false) */
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    /** In-memory fallback list (used by unit tests). */
+<span class="fc" id="L39">    public ArrayList&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
+
+
+<span class="fc" id="L42">    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){</span>
+<span class="fc" id="L43">        this.userRepository = userRepository;</span>
+<span class="fc" id="L44">        this.passwordEncoder = passwordEncoder;</span>
+<span class="fc" id="L45">    }</span>
+
+<span class="fc" id="L47">    public UserService(){}</span>
+
+    public User register(RegisterRequest registerRequest) {
+        // Validate input
+<span class="fc bfc" id="L51" title="All 4 branches covered.">        if (registerRequest.getUsername() == null || registerRequest.getUsername().trim().isEmpty()) {</span>
+<span class="fc" id="L52">            throw new InvalidInputException(Constants.MSG_USERNAME_REQUIRED);</span>
+        }
+
+        // Check if username already exists (409 Conflict)
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (userRepository.existsByUsername(registerRequest.getUsername())) {</span>
+<span class="fc" id="L57">            throw new ResourceAlreadyExistsException(Constants.MSG_USERNAME_ALREADY_EXISTS);</span>
+        }
+
+//        // Check if email already exists (409 Conflict)
+//        if (userRepository.existsByEmail(registerRequest.getEmail())) {
+//            throw new ResourceAlreadyExistsException(Constants.MSG_EMAIL_ALREADY_EXISTS);
+//        }
+//        User user = createUser(registerRequest);
+
+        // Create new user
+        User user;
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (registerRequest.getRole().equals(&quot;ADMIN&quot;)){</span>
+<span class="fc" id="L69">            user = Admin.builder()</span>
+<span class="fc" id="L70">                    .username(registerRequest.getUsername())</span>
+<span class="fc" id="L71">                    .email(registerRequest.getEmail())</span>
+<span class="fc" id="L72">                    .password(passwordEncoder.encode(registerRequest.getPassword()))</span>
+<span class="fc" id="L73">                    .firstName(registerRequest.getFirstName())</span>
+<span class="fc" id="L74">                    .lastName(registerRequest.getLastName())</span>
+<span class="fc" id="L75">                    .role(registerRequest.getRole())</span>
+<span class="fc" id="L76">                    .lastPasswordChange(LocalDateTime.now())</span>
+<span class="fc" id="L77">                    .build();</span>
+<span class="fc" id="L78">            System.out.println(&quot;This user is an &quot; + registerRequest.getRole());</span>
+        }
+        else{
+<span class="fc" id="L81">            user = User.builder()</span>
+<span class="fc" id="L82">                    .username(registerRequest.getUsername())</span>
+<span class="fc" id="L83">                    .email(registerRequest.getEmail())</span>
+<span class="fc" id="L84">                    .password(passwordEncoder.encode(registerRequest.getPassword()))</span>
+<span class="fc" id="L85">                    .firstName(registerRequest.getFirstName())</span>
+<span class="fc" id="L86">                    .lastName(registerRequest.getLastName())</span>
+<span class="fc" id="L87">                    .role(registerRequest.getRole().toUpperCase())</span>
+<span class="fc" id="L88">                    .lastPasswordChange(LocalDateTime.now())</span>
+<span class="fc" id="L89">                    .build();</span>
+        }
+
+        // Save to repository (ID will be auto-generated)
+<span class="fc" id="L93">        System.out.println(&quot;Will save user with role: &quot; + registerRequest.getRole().toUpperCase());</span>
+<span class="fc" id="L94">        return userRepository.save(user);</span>
+    }
+
+    /**
+     * Attempts to create a new user. A user is only added if no existing user
+     * already has the same username.
+     *
+     * @param user the user object to create
+     * @return true if user successfully added, false otherwise
+     */
+    public boolean createUser(User user) {
+<span class="fc" id="L105">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            if (userRepository != null) {</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">                if (!userRepository.existsByUsername(user.getUsername())) {</span>
+                    // hash user password
+<span class="fc" id="L110">                    user.setPassword(hashPassword(user.getPassword()));</span>
+<span class="fc" id="L111">                    user.setRole(user.getRole().toUpperCase());</span>
+<span class="fc" id="L112">                    userRepository.save(user);</span>
+<span class="fc" id="L113">                    success = true;</span>
+                }
+            } else {
+<span class="fc" id="L116">                boolean exists = false;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">                for (User value : users) {</span>
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">                    if (value.getUsername().equals(user.getUsername())) {</span>
+<span class="fc" id="L119">                        exists = true;</span>
+<span class="fc" id="L120">                        break;</span>
+                    }
+<span class="nc" id="L122">                }</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">                if (!exists) {</span>
+<span class="fc" id="L124">                    users.add(user);</span>
+<span class="fc" id="L125">                    success = true;</span>
+                }
+            }
+<span class="nc" id="L128">        } catch (Exception e) {</span>
+<span class="nc" id="L129">            System.out.println(&quot;Error: &quot;+e.getMessage());</span>
+<span class="nc" id="L130">            e.printStackTrace();</span>
+
+<span class="fc" id="L132">        }</span>
+<span class="fc" id="L133">        return success;</span>
+    }
+
+    /**
+     * Retrieves a user by their username.
+     *
+     * @param username the username to search for
+     * @return the matching user, or {@code null} if none found
+     */
+    public User getUser(String username) {
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if (userRepository != null) {</span>
+<span class="fc" id="L144">            return userRepository.findByUsername(username).orElse(null);</span>
+        }
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        for (User user : users) {</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">            if (user.getUsername().equals(username)) {</span>
+<span class="fc" id="L148">                return user;</span>
+            }
+<span class="nc" id="L150">        }</span>
+<span class="fc" id="L151">        return null;</span>
+    }
+
+    public List&lt;User&gt; getAllUsers() {
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        if (userRepository != null) {</span>
+<span class="fc" id="L156">            return userRepository.findAll();</span>
+        }
+<span class="fc" id="L158">        return users;</span>
+    }
+
+    private String hashPassword(String rawPassword) {
+<span class="fc" id="L162">        return passwordEncoder.encode(rawPassword);</span>
+    }
+
+    /**
+     * Prints user details (account number, username, name, email) to console.
+     * &lt;p&gt;
+     * If the user does not exist, prints &quot;User does not exist.&quot;
+     *
+     * @param username the username of the user to print
+     */
+    public void printUser(String username) {
+        try {
+<span class="fc" id="L174">            boolean userExists = false;</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">            for (User user : users) {</span>
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">                if (user.getUsername().equals(username)) {</span>
+<span class="fc" id="L177">                    System.out.println(&quot;\nAccount Number: &quot; + user.getId());</span>
+<span class="fc" id="L178">                    System.out.println(&quot;Username: &quot; + user.getUsername());</span>
+<span class="fc" id="L179">                    System.out.println(&quot;Name: &quot; + user.getName());</span>
+<span class="fc" id="L180">                    System.out.println(&quot;Email: &quot; + user.getEmail());</span>
+<span class="fc" id="L181">                    userExists = true;</span>
+                }
+<span class="fc" id="L183">            }</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">            if (!userExists) {</span>
+<span class="fc" id="L185">                System.out.println(&quot;User does not exist.&quot;);</span>
+            }
+<span class="nc" id="L187">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L189">        }</span>
+<span class="fc" id="L190">    }</span>
+
+    /**
+     * Removes the given user object from the list if it exists.
+     *
+     * @param user the user object to remove
+     * @return true if removed successfully, false otherwise
+     */
+    public boolean removeUser(User user) {
+<span class="fc" id="L199">        boolean success = false;</span>
+        try {
+<span class="fc bfc" id="L201" title="All 2 branches covered.">            if (user != null) {</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">                if (userRepository != null) {</span>
+<span class="fc" id="L203">                    userRepository.delete(user);</span>
+<span class="fc" id="L204">                    success = true;</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">                } else if (users.contains(user)) {</span>
+<span class="fc" id="L206">                    users.remove(user);</span>
+<span class="fc" id="L207">                    success = true;</span>
+                }
+            }
+<span class="nc" id="L210">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L212">        }</span>
+<span class="fc" id="L213">        return success;</span>
+    }
+
+    /**
+     * Checks if a user already exists in the database.
+     * @param username the username to check
+     * @return true if the user exists, false otherwise
+     */
+    public boolean existsByUsername(String username) {
+<span class="fc" id="L222">        return userRepository.existsByUsername(username);</span>
+    }
+
+//    public boolean updateUser(String oldUsername, String newUsername, String hashedPassword, String name, String email) {
+//        boolean success = false;
+//        try {
+//            if (userRepository != null) {
+//                System.out.println(&quot;user repo is NUll&quot;);
+//                if (!oldUsername.equals(newUsername) &amp;&amp; userRepository.existsByUsername(newUsername)) {
+//                    System.out.println(&quot;user kinda exists.&quot;);
+//                    return false;
+//                }
+//                User user = userRepository.findByUsername(oldUsername).orElse(null);
+//                if (user != null) {
+//                    user.setUsername(newUsername);
+//                    user.setPassword(hashedPassword);
+//                    user.setName(name);
+//                    user.setEmail(email);
+//                    userRepository.save(user);
+//                    success = true;
+//                }
+//            } else {
+//                if (!oldUsername.equals(newUsername)) {
+//                    for (User user : users) {
+//                        if (user.getUsername().equals(newUsername)) {
+//                            System.out.println(&quot;user also kinda exists&quot;);
+//                            return false;
+//                        }
+//                    }
+//                }
+//                for (User user : users) {
+//                    if (user.getUsername().equals(oldUsername)) {
+//                        user.setUsername(newUsername);
+//                        user.setPassword(hashedPassword);
+//                        user.setName(name);
+//                        user.setEmail(email);
+//                        success = true;
+//                    }
+//                }
+//            }
+//        } catch (Exception ignored) {
+//
+//        }
+//        return success;
+//    }
+    public boolean updateUser(String username, Map&lt;String, String&gt; body) {
+
+<span class="fc" id="L269">        Optional&lt;User&gt; optionalUser = userRepository.findByUsername(username);</span>
+
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (optionalUser.isEmpty()) {</span>
+<span class="fc" id="L272">            return false;</span>
+        }
+
+<span class="fc" id="L275">        User user = optionalUser.get();</span>
+
+<span class="fc bfc" id="L277" title="All 2 branches covered.">        if (body.containsKey(&quot;username&quot;)){</span>
+<span class="fc" id="L278">            user.setUsername(body.get(&quot;username&quot;));</span>
+        }
+
+<span class="fc bfc" id="L281" title="All 2 branches covered.">        if (body.containsKey(&quot;email&quot;)) {</span>
+<span class="fc" id="L282">            user.setEmail(body.get(&quot;email&quot;));</span>
+        }
+
+<span class="fc bfc" id="L285" title="All 2 branches covered.">        if (body.containsKey(&quot;password&quot;)) {</span>
+<span class="fc" id="L286">            user.setPassword(hashPassword(body.get(&quot;password&quot;)));</span>
+        }
+
+<span class="fc bfc" id="L289" title="All 2 branches covered.">        if (body.containsKey(&quot;last_name&quot;)){</span>
+<span class="fc" id="L290">            user.setLastName(body.get(&quot;last_name&quot;));</span>
+        }
+
+<span class="fc bfc" id="L293" title="All 2 branches covered.">        if (body.containsKey(&quot;first_name&quot;)){</span>
+<span class="fc" id="L294">            user.setFirstName(body.get(&quot;first_name&quot;));</span>
+        }
+
+<span class="fc bfc" id="L297" title="All 2 branches covered.">        if (body.containsKey(&quot;name&quot;)) {</span>
+<span class="fc" id="L298">            user.setName(body.get(&quot;name&quot;));</span>
+        }
+
+<span class="fc bfc" id="L301" title="All 2 branches covered.">        if (body.containsKey(&quot;role&quot;)){</span>
+<span class="fc" id="L302">            String roleToUpdate = body.get(&quot;role&quot;).toLowerCase();</span>
+<span class="fc bfc" id="L303" title="All 2 branches covered.">            if (roleToUpdate.equals(&quot;doctor&quot;) | roleToUpdate.equals(&quot;patient&quot;) | roleToUpdate.equals(&quot;admin&quot;)){</span>
+<span class="fc" id="L304">                user.setRole(body.get(&quot;role&quot;));</span>
+            }
+        }
+
+<span class="fc" id="L308">        userRepository.save(user);</span>
+
+<span class="fc" id="L310">        return true;</span>
+    }
+
+    /**
+     * Checks whether a given user exists in the internal user list.
+     *
+     * @param user the user object to look for
+     * @return true if user exists, false otherwise
+     */
+    public boolean containsUser(User user) {
+<span class="fc" id="L320">        boolean containsUser = false;</span>
+        try {
+<span class="fc bfc" id="L322" title="All 2 branches covered.">            if (userRepository != null) {</span>
+<span class="fc" id="L323">                containsUser = userRepository.existsByUsername(user.getUsername());</span>
+            } else {
+<span class="fc" id="L325">                containsUser = users.contains(user);</span>
+            }
+<span class="nc" id="L327">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L329">        }</span>
+<span class="fc" id="L330">        return containsUser;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
